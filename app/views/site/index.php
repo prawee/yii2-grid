@@ -6,6 +6,12 @@ $this->title = 'My Yii Application';
 ?>
 <div class="site-index">
 
+    <?php
+    $a=Yii::$app->db;
+    print_r($a);
+    $b=Yii::$app->db2;
+    print_r($b);
+    ?>
     <div class="jumbotron">
         <h1>Congratulations!</h1>
 
