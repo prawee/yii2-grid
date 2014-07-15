@@ -50,12 +50,12 @@ AppAsset::register($this);
             
             $menuItemsRight=[];
             if (Yii::$app->user->isGuest) {
-                $menuItemsRight[] = ['label' => 'Login', 'url' => ['/site/login']];
+                $menuItemsRight[] = ['label' => 'Login', 'url' => ['/auth/default/login']];
             } else {
                 $menuItemsRight[] = ['label' => 'Profile', 'url' => ['/user/profile']];
                 $menuItemsRight[] = [
                     'label' => 'Logout (' . Yii::$app->user->identity->username . ')',
-                    'url' => ['/site/logout'],
+                    'url' => ['/auth/default/logout'],
                 ];
             }
             echo Nav::widget([
