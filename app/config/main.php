@@ -12,10 +12,10 @@ return [
     'modules' => [
         'auth' => [
             'class' => 'auth\Module',
+            'modal'=>true,
             'tableMap' => [
                 'User' => 'user'
             ],
-            'modal' => true
         ],
     ],
     'components' => [
@@ -36,6 +36,13 @@ return [
         ],
         'errorHandler' => [
             'errorAction' => 'site/error',
+        ],
+        'view' => [
+            'theme' => [
+                'pathMap' => [
+                    '@auth/views'=>'@app/views/auth',
+                ],
+            ],
         ],
     ],
     'params' => $params,
