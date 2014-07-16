@@ -6,6 +6,8 @@ use yii\bootstrap\NavBar;
 use yii\widgets\Breadcrumbs;
 use app\assets\AppAsset;
 use app\widgets\Alert;
+use kartik\icons\Icon;
+Icon::map($this);
 
 /**
  * @var \yii\web\View $this
@@ -34,37 +36,39 @@ AppAsset::register($this);
                 ],
             ]);
             $menuItems = [
-                ['label' => 'Request Analysis', 'url' => ['/request/index']],
-                ['label' => 'Daily Plan', 'url' => ['/dailyplan/index']],
-                ['label' => 'Satellite Usage', 'url' => ['/satellite/index']],
-                ['label' => 'CUF', 'url' => ['/cuf/index']],
-                ['label' => 'Mail', 'url' => ['/mail/index']],
-                ['label' => 'User Management', 'url' => ['/user/index']],
-                ['label' => 'Settings', 'url' =>'#','items'=>[
-                    ['label' => 'Request Status', 'url' => ['/request/status']],
-                    ['label' => 'Downlink Station', 'url' => ['/downlink/index']],
-                    ['label' => 'Priority', 'url' => ['/priority/index']],
-                    ['label' => 'Strip Status', 'url' => ['/strip/index']],
-                ]],
+                ['label' => Icon::show('th-list').' Request Analysis', 'url' => ['/request/index']],
+//                ['label' => Icon::show('th').' Daily Plan', 'url' => ['/dailyplan/index']],
+//                ['label' => Icon::show('th-large').' Satellite Usage', 'url' => ['/satellite/index']],
+//                ['label' => Icon::show('barcode').' CUF', 'url' => ['/cuf/index']],
+//                ['label' => Icon::show('envelope').' Mail', 'url' => ['/mail/index']],
+//                ['label' => Icon::show('user').' User Management', 'url' => ['/user/index']],
+//                ['label' => Icon::show('cog').' Settings', 'url' =>'#','items'=>[
+//                    ['label' => 'Request Status', 'url' => ['/request/status']],
+//                    ['label' => 'Downlink Station', 'url' => ['/downlink/index']],
+//                    ['label' => 'Priority', 'url' => ['/priority/index']],
+//                    ['label' => 'Strip Status', 'url' => ['/strip/index']],
+//                ]],
             ];
             
             $menuItemsRight=[];
             if (Yii::$app->user->isGuest) {
-                $menuItemsRight[] = ['label' => 'Login', 'url' => ['/auth/default/login']];
+                $menuItemsRight[] = ['label' =>Icon::show('sign-in').' Login', 'url' => ['/auth/default/login']];
             } else {
-                $menuItemsRight[] = ['label' => 'Profile', 'url' => ['/user/profile']];
+                $menuItemsRight[] = ['label' =>Icon::show('user').' Profile', 'url' => ['/user/profile']];
                 $menuItemsRight[] = [
-                    'label' => 'Logout (' . Yii::$app->user->identity->username . ')',
+                    'label' =>Icon::show('sign-out').' Logout (' . Yii::$app->user->identity->username . ')',
                     'url' => ['/auth/default/logout'],
                 ];
             }
             echo Nav::widget([
                 'options' => ['class' => 'navbar-nav navbar-right pull-left'],
                 'items' => $menuItems,
+                'encodeLabels'=>false,
             ]);
             echo Nav::widget([
                 'options' => ['class' => 'navbar-nav navbar-right pull-right'],
                 'items' => $menuItemsRight,
+                'encodeLabels'=>false,
             ]);
             NavBar::end();
             ?>
