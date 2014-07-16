@@ -40,7 +40,8 @@ return [
         'view' => [
             'theme' => [
                 'pathMap' => [
-                    '@auth/views'=>'@app/views/auth',
+                    '@auth/views/default'=>'@app/views/auth/default',
+                    //'@app/views/auth'=>'@auth/views',
                 ],
             ],
         ],
