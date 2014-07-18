@@ -5,6 +5,6 @@
  */
 namespace prawee\grid;
 
-class ActionColumn{
-    
+class ActionColumn extends \yii\grid\ActionColumn{
+ 
 }
