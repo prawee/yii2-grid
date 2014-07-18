@@ -14,8 +14,9 @@ class ActionColumn extends \yii\grid\ActionColumn {
             $this->buttons['view'] = function ($url, $model) {
                 return Html::a('<span class="glyphicon glyphicon-eye-open"></span>', $url, [
                             'title' => Yii::t('yii', 'View'),
-                            'class'=>'btn btn-primary',
                             'data-pjax' => '0',
+                            'class' => 'btn btn-xs btn-primary',
+                            'style' => 'margin-right:5px;',
                 ]);
             };
         }
@@ -24,6 +25,8 @@ class ActionColumn extends \yii\grid\ActionColumn {
                 return Html::a('<span class="glyphicon glyphicon-pencil"></span>', $url, [
                             'title' => Yii::t('yii', 'Update'),
                             'data-pjax' => '0',
+                            'class' => 'btn btn-xs btn-warning',
+                            'style' => 'margin-right:5px;',
                 ]);
             };
         }
@@ -34,6 +37,7 @@ class ActionColumn extends \yii\grid\ActionColumn {
                             'data-confirm' => Yii::t('yii', 'Are you sure you want to delete this item?'),
                             'data-method' => 'post',
                             'data-pjax' => '0',
+                            'class' => 'btn btn-xs btn-danger',
                 ]);
             };
         }
