@@ -35,12 +35,11 @@ class ActionColumn extends \yii\grid\ActionColumn {
         }
         if (!isset($this->buttons['delete'])) {
             $this->buttons['delete'] = function ($url, $model) {
-                return Html::a('<span class="glyphicon glyphicon-trash btn btn-danger"></span>', $url, [
+                return Html::a('<span class="glyphicon glyphicon-trash btn btn-xs btn-danger">Delete</span>', $url, [
                             'title' => Yii::t('yii', 'Delete'),
                             'data-confirm' => Yii::t('yii', 'Are you sure you want to delete this item?'),
                             'data-method' => 'post',
                             'data-pjax' => '0',
-                            //'class' => 'btn btn-xs btn-danger',
                 ]);
             };
         }
