@@ -1,13 +1,15 @@
 {
     "name": "prawee/yii2-gridview",
     "description": "Management Yii2 Gridview",
+    "keywords": ["yii2","gridview","actioncolumn","extension"],
+    "homepage": "http://www.prawee.com",
     "type": "yii2-extension",
-    "keywords": ["yii2", "extension"],
     "license": "MIT",
+    "minimum-stability": "dev",
     "authors": [
         {
             "name": "prawee wongsa",
-            "email": "prawee@playwork.co.th"
+            "email": "konkeanweb@gmail.com"
         }
     ],
     "require": {
@@ -20,7 +22,7 @@
     },
     "autoload": {
         "psr-4": {
-            "gridview\\": ""
+            "prawee\\": ""
         }
     }
 }
