@@ -9,9 +9,17 @@ class RequestController extends \yii\web\Controller
 {
     public function actionUss()
     {
+        $connection=Yii::$app->db3;
+        
 //        echo '<pre>';
-//        print_r(Yii::$app->db2);
+//        print_r($connection);
 //        echo '</pre>';
+        
+        	
+        $model = $connection->createCommand('SELECT * FROM tpt_wo');
+        print_r($model);
+        $wo = $model->queryAll();
+
         
 //        $sql = "select * from tpt_wo";
 //        $command = $db->createCommand($sql);
