@@ -14,6 +14,10 @@
         {
             "type": "git",
             "url": "https://github.com/prawee/yii2-grid.git"
+        },
+        {
+            "type": "git",
+            "url": "https://github.com/prawee/yii2-components.git"
         }
     ],
     "require": {
