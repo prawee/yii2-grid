@@ -2,6 +2,14 @@
     Created on : Jul 20, 2014, 6:40:38 PM
     Author     : prawee
 */
+.site-login{
+    margin-top:20px;
+}
 .login-page{
     background:url('../images/bg_gistda.png');
+}
+.login-title{
+    margin-left:10px;
+    font-size:18px;
+    font-weight: bold;
 }
