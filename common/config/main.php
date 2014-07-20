@@ -12,5 +12,8 @@ return [
         'cache' => [
             'class' => 'yii\caching\FileCache',
         ],
+        'request'=>[
+            'cookieValidationKey'=>'xyz1234pod',
+        ]
     ],
 ];
