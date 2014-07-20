@@ -21,9 +21,6 @@ return [
                 ],
             ],
         ],
-        'request'=>[
-            'cookieValidationKey'=>'prawee@devsecret8',
-        ]
     ],
     'params' => $params,
 ];
