@@ -13,7 +13,7 @@ return [
             'class' => 'yii\caching\FileCache',
         ],
         'request'=>[
-            'cookieValidationKey'=>'xyz1234pod',
+            'cookieValidationKey'=>'prawee@devsecret8',
         ]
     ],
 ];
