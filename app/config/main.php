@@ -9,6 +9,7 @@ return [
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
     'controllerNamespace' => 'app\controllers',
+    'defaultRoute'=>'uss/index',
     'modules' => [
         'auth' => [
             'class' => 'auth\Module',
