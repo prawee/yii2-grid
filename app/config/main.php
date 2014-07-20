@@ -13,7 +13,8 @@ return [
     'modules' => [
         'auth' => [
             'class' => 'auth\Module',
-            'modal'=>true,
+            'modal'=>false,
+            'layoutOne'=>'//login',
             'tableMap' => [
                 'User' => 'user'
             ],
@@ -41,7 +42,7 @@ return [
         'view' => [
             'theme' => [
                 'pathMap' => [
-                    '@auth/views/default'=>'@app/views/auth/default',
+                    '@auth/views'=>'@app/views/auth',
                 ],
             ],
         ],
