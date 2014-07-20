@@ -54,7 +54,7 @@ AppAsset::register($this);
             if (Yii::$app->user->isGuest) {
                 $menuItemsRight[] = ['label' =>Icon::show('sign-in').' Login', 'url' => ['/auth/default/login']];
             } else {
-                $menuItemsRight[] = ['label' =>Icon::show('user').' Profile', 'url' => ['/user/profile']];
+                $menuItemsRight[] = ['label' =>Icon::show('user').' Profile', 'url' => ['/auth/user/profile']];
                 $menuItemsRight[] = [
                     'label' =>Icon::show('power-off').' Logout (' . Yii::$app->user->identity->username . ')',
                     'url' => ['/auth/default/logout'],
