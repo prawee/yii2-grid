@@ -16,4 +16,9 @@ return [
             'cookieValidationKey'=>'prawee@devsecret8',
         ]
     ],
+    'modules' => [
+        'gridview' => [
+            'class' => '\kartik\grid\Module'
+        ]
+    ]
 ];
