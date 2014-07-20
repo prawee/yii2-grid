@@ -2,6 +2,9 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
+use kartik\icons\Icon;
+Icon::map($this);
+
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\USSWoSearch */
@@ -11,28 +14,22 @@ $this->title = 'Usswos';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="usswo-index">
-
-    <h1><?= Html::encode($this->title) ?></h1>
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
-
-    <p>
-        <?= Html::a('Create Usswo', ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
-
-    <?= GridView::widget([
+    <?=
+    GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
-
-            'id',
-            'aoi_id',
-            'order_id',
-            'order_doc_no',
-            'order_doc_year',
+            'wo_doc_name',
+            'aoi_name',
+            //'id',
+            //'aoi_id',
+            //'order_id',
+            //'order_doc_no',
+            //'order_doc_year',
             // 'order_doc_prefix',
             // 'order_status',
-            // 'aoi_name',
+            
             // 'satellite_id',
             // 'acq_date_start',
             // 'acq_date_end',
@@ -54,7 +51,7 @@ $this->params['breadcrumbs'][] = $this->title;
             // 'is_dem',
             // 'created',
             // 'modified',
-            // 'wo_doc_name',
+             
             // 'wo_doc_year',
             // 'wo_doc_no',
             // 'wo_created',
@@ -66,9 +63,31 @@ $this->params['breadcrumbs'][] = $this->title;
             // 'customer_name',
             // 'customer_name_th',
             // 'project_name',
-
-            ['class' => 'yii\grid\ActionColumn'],
+            [
+                'class' => 'prawee\grid\ActionColumn',
+                /*'template' => '{shape}  {export}  {info}  {import}',
+                'buttons' => [
+                    'shape' => function($data) {
+                        return Html::a(Icon::show('file-zip-o'));
+                    },
+                    'export' => function($data) {
+                        return Html::a(Icon::show('upload'));
+                    },
+                    'info' => function($data) {
+                        return Html::a(Icon::show('info'));
+                    },
+                    'import'=>function($data){
+                        return Html::a(Icon::show('download'));
+                    }
+                ]*/
+            ],
         ],
-    ]); ?>
+    ]);
+    ?>
+    
+    
+    <?php
+    
+    ?>
 
 </div>
