@@ -10,6 +10,10 @@
         {
             "type": "git",
             "url": "https://bitbucket.org/prawee/yii2-auth-module.git"
+        },
+        {
+            "type": "git",
+            "url": "https://github.com/prawee/yii2-grid.git"
         }
     ],
     "require": {
@@ -22,7 +26,8 @@
         "yiisoft/yii2-codeception": "*",
         "yiisoft/yii2-debug": "*",
         "yiisoft/yii2-gii": "*",
-        "prawee/yii2-auth-module": "*"
+        "prawee/yii2-auth-module": "*",
+        "prawee/yii2-components":"*"
     },
     "suggest": {
         "codeception/codeception": "Codeception, 1.8.*@dev is currently works well with Yii.",
