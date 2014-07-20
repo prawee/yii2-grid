@@ -8,6 +8,7 @@ use app\models\USSWoSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use auth\components\AccessControl;
 
 /**
  * UssController implements the CRUD actions for USSWo model.
@@ -17,6 +18,9 @@ class UssController extends Controller
     public function behaviors()
     {
         return [
+            'access'=>[
+                'class'=>  AccessControl::className(),
+            ],
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
