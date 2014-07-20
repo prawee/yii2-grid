@@ -36,7 +36,7 @@ AppAsset::register($this);
                 ],
             ]);
             $menuItems = [
-                ['label' => Icon::show('th-list').' Request Analysis', 'url' => ['/request/index']],
+                ['label' => Icon::show('th-list').' Request Analysis', 'url' => ['/uss/index']],
 //                ['label' => Icon::show('th').' Daily Plan', 'url' => ['/dailyplan/index']],
 //                ['label' => Icon::show('th-large').' Satellite Usage', 'url' => ['/satellite/index']],
 //                ['label' => Icon::show('barcode').' CUF', 'url' => ['/cuf/index']],
