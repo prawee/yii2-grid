@@ -56,7 +56,7 @@ AppAsset::register($this);
             } else {
                 $menuItemsRight[] = ['label' =>Icon::show('user').' Profile', 'url' => ['/user/profile']];
                 $menuItemsRight[] = [
-                    'label' =>Icon::show('sign-out').' Logout (' . Yii::$app->user->identity->username . ')',
+                    'label' =>Icon::show('power-off').' Logout (' . Yii::$app->user->identity->username . ')',
                     'url' => ['/auth/default/logout'],
                 ];
             }
