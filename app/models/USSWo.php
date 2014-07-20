@@ -5,9 +5,16 @@
  */
 namespace app\models;
 
-use yii\db\ActiveRecord;
+use Yii;
+use \yii\db\ActiveRecord;
 class USSWo extends ActiveRecord{
     public static function getDb() {
-        return $this->get('db3');
+        return Yii::$app->db3;
+    }
+    public static function tableName() {
+        return 'tpt_wo';
+    }
+    public static function primaryKey() {
+        return ['id'];
     }
 }
