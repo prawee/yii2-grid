@@ -12,9 +12,6 @@ return [
         'cache' => [
             'class' => 'yii\caching\FileCache',
         ],
-        'request'=>[
-            'cookieValidationKey'=>'prawee@devsecret8',
-        ]
     ],
     'modules' => [
         'gridview' => [
