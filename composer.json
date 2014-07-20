@@ -32,7 +32,8 @@
         "yiisoft/yii2-gii": "*",
         "prawee/yii2-auth-module": "*",
         "prawee/yii2-components":"*",
-        "prawee/yii2-grid":"*"
+        "prawee/yii2-grid":"*",
+        "kartik-v/yii2-grid": "*"
     },
     "suggest": {
         "codeception/codeception": "Codeception, 1.8.*@dev is currently works well with Yii.",
