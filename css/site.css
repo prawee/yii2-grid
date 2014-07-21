@@ -92,7 +92,8 @@ a.desc:after {
 
 /* scrollspy*/
 .scrollspy-board {
-  height:300px;
+  /*height:300px;*/
+  /*width:1200px;*/
   margin-top:10px;
   overflow:auto;
   position:relative;
