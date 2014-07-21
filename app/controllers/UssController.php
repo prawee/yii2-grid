@@ -9,6 +9,7 @@ use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use auth\components\AccessControl;
+use auth\Asset;
 
 /**
  * UssController implements the CRUD actions for USSWo model.
@@ -28,6 +29,12 @@ class UssController extends Controller
                 ],
             ],
         ];
+    }
+    
+    public function init()
+    {
+        parent::init();
+        Asset::register($this->view);
     }
 
     /**
@@ -122,4 +129,14 @@ class UssController extends Controller
             throw new NotFoundHttpException('The requested page does not exist.');
         }
     }
+    
+    public function actionInfo($id)
+    {
+        $model=$this->findModel($id);
+
+        return $this->render('info',[
+            'model'=>$model,
+        ]);
+    }
+    
 }
