@@ -33,6 +33,41 @@ $this->params['breadcrumbs'][] = $this->title;
                 ['class' => '\yii\grid\CheckboxColumn'],
                 'wo_doc_name',
                 'aoi_name',
+                [
+                    'label' => 'Strip Name',
+                    'attribute' => 'id',
+                    'value' => function($data) {return null;}
+                ],
+                [
+                    'label' => 'Rev No.',
+                    'attribute' => 'id',
+                    'value' => function($data) {return null;}
+                ],
+                [
+                    'label' => 'Lastest Program Date',
+                    'attribute' => 'id',
+                    'value' => function($data) {return null;}
+                ],
+                [
+                    'label' => 'Delivery Date',
+                    'attribute' => 'id',
+                    'value' => function($data) {return null;}
+                ],
+//                [
+//                    'label' => 'Accessible Orbit',
+//                    'attribute' => 'id',
+//                    'value' => function($data) {return null;}
+//                ],
+                [
+                    'label' => 'Deposit Date',
+                    'attribute' => 'id',
+                    'value' => function($data) {return null;}
+                ],
+//                [
+//                    'label' => 'Status',
+//                    'attribute' => 'id',
+//                    'value' => function($data) {return null;}
+//                ],
                 //'id',
                 //'aoi_id',
                 //'order_id',
@@ -77,17 +112,33 @@ $this->params['breadcrumbs'][] = $this->title;
                     'template' => '{shape}  {export}  {info}  {import}',
                     'buttons' => [
                         'shape' => function($data) {
-                    return Html::a(Icon::show('file-zip-o'));
-                },
+                            return Html::a(Icon::show('file-zip-o'),'#',[
+                                'data-pjax'=>'0',
+                                'title'=>' Shape ',
+                                'class'=>'btn btn-xs btn-info',
+                            ]);
+                        },
                         'export' => function($data) {
-                    return Html::a(Icon::show('upload'));
-                },
+                            return Html::a(Icon::show('upload'),'#',[
+                                'data-pjax'=>'0',
+                                'title'=>' Export ',
+                                'class'=>'btn btn-xs btn-info',
+                            ]);
+                        },
                         'info' => function($data) {
-                    return Html::a(Icon::show('info'));
-                },
+                            return Html::a(Icon::show('info'),['info'],[
+                                'data-pjax'=>'0',
+                                'title'=>' Info ',
+                                'class'=>'btn btn-xs btn-info',
+                            ]);
+                        },
                         'import' => function($data) {
-                    return Html::a(Icon::show('download'));
-                }
+                            return Html::a(Icon::show('download'),'#',[
+                                'data-pjax'=>'0',
+                                'title'=>' Import ',
+                                'class'=>'btn btn-xs btn-info',
+                            ]);
+                        }
                     ]
                 ],
             ],
