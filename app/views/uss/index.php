@@ -125,8 +125,8 @@ $this->params['breadcrumbs'][] = $this->title;
                                 'class'=>'btn btn-xs btn-info',
                             ]);
                         },
-                        'info' => function($data) {
-                            return Html::a(Icon::show('info'),['info'],[
+                        'info' => function($url,$model) {
+                            return Html::a(Icon::show('info'),$url,[
                                 'data-pjax'=>'0',
                                 'title'=>' Info ',
                                 'class'=>'btn btn-xs btn-info',
