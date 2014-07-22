@@ -48,6 +48,7 @@ AppAsset::register($this);
 //                    ['label' => 'Priority', 'url' => ['/priority/index']],
 //                    ['label' => 'Strip Status', 'url' => ['/strip/index']],
 //                ]],
+                ['label' => Icon::show('cog').' Settings', 'url' => ['/setting/index']],
             ];
             
             $menuItemsRight=[];
