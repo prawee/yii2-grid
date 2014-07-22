@@ -7,8 +7,7 @@ use kartik\icons\Icon;
 
 Icon::map($this);
 
-//use zhuravljov\widgets\DatePicker;
-use kartik\widgets\DatePicker;
+use zhuravljov\widgets\DatePicker;
 
 Modal::begin([
     'id' => 'content-modal',
