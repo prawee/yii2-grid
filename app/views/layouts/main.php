@@ -41,7 +41,7 @@ AppAsset::register($this);
 //                ['label' => Icon::show('th-large').' Satellite Usage', 'url' => ['/satellite/index']],
 //                ['label' => Icon::show('barcode').' CUF', 'url' => ['/cuf/index']],
 //                ['label' => Icon::show('envelope').' Mail', 'url' => ['/mail/index']],
-//                ['label' => Icon::show('user').' User Management', 'url' => ['/user/index']],
+                ['label' => Icon::show('user').' User Management', 'url' => ['/user/index']],
 //                ['label' => Icon::show('cog').' Settings', 'url' =>'#','items'=>[
 //                    ['label' => 'Request Status', 'url' => ['/request/status']],
 //                    ['label' => 'Downlink Station', 'url' => ['/downlink/index']],
