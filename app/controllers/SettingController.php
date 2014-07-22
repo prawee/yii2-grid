@@ -2,7 +2,7 @@
 
 namespace app\controllers;
 
-class SettingsController extends \yii\web\Controller
+class SettingController extends \yii\web\Controller
 {
     public function actionIndex()
     {
