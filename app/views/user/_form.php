@@ -10,7 +10,7 @@ Icon::map($this);
 use zhuravljov\widgets\DatePicker;
 
 Modal::begin([
-    'id' => 'content-modal',
+    'id' => 'form-modal',
     'header' => Icon::show('group') . '<b>Add Group</b>',
     'closeButton' => [
         'aria-hidden' => 'true',
