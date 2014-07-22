@@ -41,8 +41,9 @@ class UserController extends Controller {
      */
     public function actionIndex() {
         $searchModel = new UserSearch();
-        $searchModel->parent_id != '';
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $params=Yii::$app->request->queryParams;
+        $params['UserSearch']['role']=88;
+        $dataProvider = $searchModel->search($params);
         
         return $this->render('index', [
                     'searchModel' => $searchModel,
@@ -51,10 +52,24 @@ class UserController extends Controller {
     }
     public function actionAdministrator() {
         $searchModel = new UserSearch();
-        $searchModel->parent_id != '';
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $params=Yii::$app->request->queryParams;
+        $params['UserSearch']['role']=99;
+        $dataProvider = $searchModel->search($params);
 
         return $this->render('administrator', [
+                    'searchModel' => $searchModel,
+                    'dataProvider' => $dataProvider,
+        ]);
+    }
+    public function actionChild() {
+        $id=Yii::$app->getRequest()->get('id');
+        $searchModel = new UserSearch();
+        $params=Yii::$app->request->queryParams;
+        $params['UserSearch']['role']=77;
+        $params['UserSearch']['parent_id']=$id;
+        $dataProvider = $searchModel->search($params);
+
+        return $this->render('child', [
                     'searchModel' => $searchModel,
                     'dataProvider' => $dataProvider,
         ]);
@@ -78,11 +93,44 @@ class UserController extends Controller {
      */
     public function actionCreate() {
         $model = new User();
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        if ($model->load(Yii::$app->request->post())) {
             //return $this->redirect(['view', 'id' => $model->id]);
-            return $this->redirect(['index']);
+            $model->role=88;
+            if($model->save()):
+                return $this->redirect(['index']);
+            endif;
         } else {
             return $this->render('create', [
+                        'model' => $model,
+            ]);
+        }
+    }
+    public function actionCreateAdmin() {
+        $model = new User();
+        if ($model->load(Yii::$app->request->post())) {
+            //return $this->redirect(['view', 'id' => $model->id]);
+            $model->role=99;
+            if($model->save()):
+                return $this->redirect(['administrator']);
+            endif;
+        } else {
+            return $this->render('create-admin', [
+                        'model' => $model,
+            ]);
+        }
+    }
+    public function actionCreateChild() {
+        $id=Yii::$app->getRequest()->get('id');
+        $model = new User();
+        if ($model->load(Yii::$app->request->post())) {
+            //return $this->redirect(['view', 'id' => $model->id]);
+            $model->role=77;
+            $model->parent_id=$id;
+            if($model->save()):
+                return $this->redirect(['child','id'=>$id]);
+            endif;
+        } else {
+            return $this->render('create-child', [
                         'model' => $model,
             ]);
         }
@@ -106,6 +154,33 @@ class UserController extends Controller {
             ]);
         }
     }
+    public function actionUpdateAdmin($id) {
+        $model = $this->findModel($id);
+
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            //return $this->redirect(['view', 'id' => $model->id]);
+            return $this->redirect(['administrator']);
+        } else {
+            return $this->render('update-admin', [
+                        'model' => $model,
+            ]);
+        }
+    }
+    public function actionUpdateChild($id) {
+        $ref=Yii::$app->getRequest()->get('ref');
+        $model = $this->findModel($id);
+        if ($model->load(Yii::$app->request->post())) {
+            //return $this->redirect(['view', 'id' => $model->id]);
+            $model->role=77;
+            if($model->save()):
+                return $this->redirect(['child','id'=>$ref]);
+            endif;
+        } else {
+            return $this->render('update-child', [
+                        'model' => $model,
+            ]);
+        }
+    }
 
     /**
      * Deletes an existing User model.
@@ -118,6 +193,19 @@ class UserController extends Controller {
             $this->findModel($id)->delete();
         }
         return $this->redirect(['index']);
+    }
+    public function actionDeleteAdmin($id) {
+        if($id!==1){
+            $this->findModel($id)->delete();
+        }
+        return $this->redirect(['administrator']);
+    }
+    public function actionDeleteChild($id) {
+        $ref=Yii::$app->getRequest()->get('ref');
+        if($id!==1){
+            $this->findModel($id)->delete();
+        }
+        return $this->redirect(['child','id'=>$ref]);
     }
 
     /**

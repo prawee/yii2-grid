@@ -10,7 +10,7 @@ use yii\widgets\Pjax;
 /* @var $searchModel app\models\UserSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Users';
+$this->title = 'Group';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="user-index">
@@ -53,7 +53,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'options'=>['style'=>'width:160px;'],
                 'buttons'=>[
                     'user'=>function($url,$data){
-                        return Html::a('<span class="glyphicon glyphicon-user btn btn-xs btn-success"></span>','#',[
+                        return Html::a('<span class="glyphicon glyphicon-user btn btn-xs btn-success"></span>',['child','id'=>$data->id],[
                             'title'=>'Add User',
                             'data-pjax'=>'0'
                         ]);
