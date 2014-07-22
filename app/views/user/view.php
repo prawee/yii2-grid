@@ -2,52 +2,57 @@
 
 use yii\helpers\Html;
 use yii\widgets\DetailView;
+use kartik\icons\Icon; Icon::map($this);
+use yii\bootstrap\Modal;
 
-/* @var $this yii\web\View */
-/* @var $model app\models\User */
+$this->title = 'View ' . $model->username;
 
-$this->title = $model->id;
-$this->params['breadcrumbs'][] = ['label' => 'Users', 'url' => ['index']];
-$this->params['breadcrumbs'][] = $this->title;
+Modal::begin([
+    'id' => 'content-modal',
+    'header' => Icon::show('user') . '<b>Administrator</b>',
+    'closeButton' => [
+        'aria-hidden' => 'true',
+        'class' => 'hide',
+    ],
+]);
 ?>
 <div class="user-view">
-
-    <h1><?= Html::encode($this->title) ?></h1>
-
     <p>
-        <?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('Delete', ['delete', 'id' => $model->id], [
+        <?= Html::a(Icon::show('edit').' Update', ['update', 'id' => $model->id], ['class' => 'btn btn-warning']) ?>
+        <?=
+        Html::a(Icon::show('times').' Delete', ['delete', 'id' => $model->id], [
             'class' => 'btn btn-danger',
             'data' => [
                 'confirm' => 'Are you sure you want to delete this item?',
                 'method' => 'post',
             ],
-        ]) ?>
+        ])
+        ?>
     </p>
 
-    <?= DetailView::widget([
+    <?=
+    DetailView::widget([
         'model' => $model,
         'attributes' => [
-            'id',
-            'username',
-            'auth_key',
-            'password_hash',
-            'password_reset_token',
-            'email:email',
-            'role',
-            'status',
-            'created',
-            'modified',
-            'last_login',
-            'user_type_id',
             'fullname',
+            'username',
+            'email:email',
             'telephone',
             'nation',
             'address:ntext',
-            'organization',
             'expired_date',
-            'parent_id',
+            /*
+            'created',
+            'modified',
+            'last_login',
+            'organization',
+            'status',*/
         ],
-    ]) ?>
-
+    ])
+    ?>
+    <p>
+        <?= Html::a(Icon::show('times').'Close', ['index'], ['class' => 'btn btn-danger']) ?>
+    </p>
 </div>
+<?php
+Modal::end();

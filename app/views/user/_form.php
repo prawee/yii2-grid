@@ -1,31 +1,66 @@
 <?php
 
 use yii\helpers\Html;
-use yii\widgets\ActiveForm;
+use yii\bootstrap\ActiveForm;
+use yii\bootstrap\Modal;
+use kartik\icons\Icon;
 
-/* @var $this yii\web\View */
-/* @var $model app\models\User */
-/* @var $form yii\widgets\ActiveForm */
+Icon::map($this);
+
+//use zhuravljov\widgets\DatePicker;
+use kartik\widgets\DatePicker;
+
+Modal::begin([
+    'id' => 'content-modal',
+    'header' => Icon::show('group') . '<b>Add Group</b>',
+    'closeButton' => [
+        'aria-hidden' => 'true',
+        'class' => 'hide',
+    ],
+]);
 ?>
-
 <div class="user-form">
+    <div class="">
+        <?php
+        $form = ActiveForm::begin([
+                    'layout' => 'horizontal',
+        ]);
+        ?>
 
-    <?php $form = ActiveForm::begin(); ?>
+        <?= $form->field($model, 'fullname')->textInput(['maxlength' => 255]) ?>
 
-    <?= $form->field($model, 'user_type_id')->textInput() ?>
+        <?= $form->field($model, 'username')->textInput(['maxlength' => 255]) ?>
 
-    <?= $form->field($model, 'status')->textInput() ?>
+        <?= $form->field($model, 'password')->passwordInput() ?>
 
-    <?= $form->field($model, 'username')->textInput(['maxlength' => 255]) ?>
+        <?= $form->field($model, 'email')->textInput(['maxlength' => 255]) ?>
 
-    <?= $form->field($model, 'email')->textInput(['maxlength' => 255]) ?>
+        <?= $form->field($model, 'telephone')->textInput(['maxlength' => 255]) ?>
 
-    <?= $form->field($model, 'password')->passwordInput() ?>
+        <?= $form->field($model, 'nation')->textInput(['maxlength' => 255]) ?>
 
-    <div class="form-group">
-        <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+        <?= $form->field($model, 'address')->textInput(['maxlength' => 255]) ?>
+
+
+        <?php
+        $form->field($model, 'expired_date')->widget(DatePicker::className(), [
+            'options' => ['class' => 'form-control'],
+            'clientOptions' => [
+                'format' => 'yyyy-mm-dd',
+                'language' => 'en',
+                'autoclose' => true,
+                'todayHighlight' => true,
+            ],
+            'clientEvents' => [],
+        ]);
+        ?>
+        <div class="center-block" style="">
+            <?= Html::submitButton($model->isNewRecord ? Icon::show('plus') . ' Create' : Icon::show('edit') . ' Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+            <?= Html::a(Icon::show('times') . ' Cancel', ['index'], ['class' => 'btn btn-danger']) ?>
+        </div>
+
+        <?php ActiveForm::end(); ?>
     </div>
-
-    <?php ActiveForm::end(); ?>
-
 </div>
+<?php
+Modal::end();
