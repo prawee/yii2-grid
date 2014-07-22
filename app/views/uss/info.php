@@ -17,14 +17,14 @@ $this->title = 'Source Items';
 $this->params['breadcrumbs'][] = $this->title;
 
 
-/*Modal::begin([
+Modal::begin([
     'id' => 'content-modal',
     'header' => Icon::show('cog') . '<b>Info</b>',
     'closeButton' => [
         'aria-hidden' => 'true',
         'class' => 'hide',
     ],
-]);*/
+]);
 ?>
 <div class="source-item-index">
     <div class="row">
@@ -82,4 +82,4 @@ $this->params['breadcrumbs'][] = $this->title;
     </div>
 </div>
 <?php
-//Modal::end();
+Modal::end();
