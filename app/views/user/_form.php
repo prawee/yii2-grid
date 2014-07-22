@@ -41,7 +41,7 @@ Modal::begin([
         <?= $form->field($model, 'address')->textInput(['maxlength' => 255]) ?>
 
 
-        <?= $form->field($model, 'expired_date')->widget(DatePicker::className(), [
+        <?=$form->field($model, 'expired_date')->widget(DatePicker::className(), [
             'options' => ['class' => 'form-control'],
             'clientOptions' => [
                 'format' => 'yyyy-mm-dd',
