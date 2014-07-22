@@ -42,7 +42,7 @@ Modal::begin([
 
 
         <?php
-        $form->field($model, 'expired_date')->widget(DatePicker::className(), [
+        echo $form->field($model, 'expired_date')->widget(DatePicker::className(), [
             'options' => ['class' => 'form-control'],
             'clientOptions' => [
                 'format' => 'yyyy-mm-dd',
