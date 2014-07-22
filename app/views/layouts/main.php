@@ -81,6 +81,7 @@ AppAsset::register($this);
                 ?>
                 <?= Alert::widget() ?>
                 <?= $content ?>
+                <?=Html::csrfMetaTags()?>
             </div>
         </div>
 
