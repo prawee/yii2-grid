@@ -4,6 +4,7 @@ use yii\helpers\Html;
 use yii\grid\GridView;
 use kartik\icons\Icon;
 Icon::map($this);
+use yii\widgets\Pjax;
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\UserSearch */
@@ -19,7 +20,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <?= Html::a(Icon::show('th').'Management Administrator', ['/user/administrator'], ['class' => 'btn btn-info']) ?>
         <?= Html::a(Icon::show('group').' Add Group', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
-
+    <?php Pjax::begin(['enablePushState'=>false]); ?>
     <?=
     GridView::widget([
         'dataProvider' => $dataProvider,
@@ -27,7 +28,7 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
             ['attribute'=>'fullname','label'=>'Group Name'],
-            ['attribute'=>'fullname','label'=>'Name'],
+            //['attribute'=>'fullname','label'=>'Name'],
             ['attribute'=>'username','label'=>'User Name'],
             ['attribute'=>'created','label'=>'Issue Date','options'=>['style'=>'width:155px;']],
             'telephone',
@@ -73,6 +74,7 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
         ],
     ]);
+               
     ?>
-
+    <?php    Pjax::end(); ?>
 </div>
