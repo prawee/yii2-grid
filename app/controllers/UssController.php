@@ -133,7 +133,6 @@ class UssController extends Controller
     public function actionInfo($id)
     {
         $model=$this->findModel($id);
-
         return $this->render('info',[
             'model'=>$model,
         ]);
