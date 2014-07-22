@@ -23,6 +23,7 @@ class AppAsset extends AssetBundle
         'css/login.css',
     ];
     public $js = [
+        'js/tpt.js',
     ];
     public $depends = [
         'yii\web\YiiAsset',
