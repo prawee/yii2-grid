@@ -19,6 +19,13 @@ use Yii;
  * @property string $modified
  * @property string $last_login
  * @property integer $user_type_id
+ * @property string $fullname
+ * @property integer $telephone
+ * @property string $nation
+ * @property string $address
+ * @property string $organization
+ * @property string $expired_date
+ * @property integer $parent_id
  *
  * @property Account[] $accounts
  * @property UserType $userType
@@ -39,11 +46,14 @@ class User extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['username', 'auth_key', 'password_hash', 'email'], 'required'],
-            [['role', 'status', 'user_type_id'], 'integer'],
-            [['created', 'modified', 'last_login'], 'safe'],
-            [['username', 'password_hash', 'password_reset_token', 'email'], 'string', 'max' => 255],
+            [['username', 'auth_key', 'password_hash', 'email', 'fullname', 'nation', 'organization'], 'required'],
+            [['role', 'status', 'user_type_id', 'telephone', 'parent_id'], 'integer'],
+            [['created', 'modified', 'last_login', 'expired_date'], 'safe'],
+            [['address'], 'string'],
+            [['username', 'password_hash', 'password_reset_token', 'email', 'organization'], 'string', 'max' => 255],
             [['auth_key'], 'string', 'max' => 32],
+            [['fullname'], 'string', 'max' => 128],
+            [['nation'], 'string', 'max' => 60],
             [['username'], 'unique'],
             [['email'], 'unique']
         ];
@@ -67,6 +77,13 @@ class User extends \yii\db\ActiveRecord
             'modified' => 'Modified',
             'last_login' => 'Last Login',
             'user_type_id' => 'User Type ID',
+            'fullname' => 'Fullname',
+            'telephone' => 'Telephone',
+            'nation' => 'Nation',
+            'address' => 'Address',
+            'organization' => 'Organization',
+            'expired_date' => 'Expired Date',
+            'parent_id' => 'Parent ID',
         ];
     }
 
