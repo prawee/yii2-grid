@@ -97,7 +97,7 @@ echo Html::a(Icon::show('folder-open') . 'Add Relations', ['/auth/permission/rel
     'class' => 'btn btn-success'
 ]);
 echo ' ';
-echo Html::a(Icon::show('times') . 'Cancel', ['/setting/index'],[
+echo Html::a(Icon::show('times') . 'Close', ['/setting/index'],[
     'class' => 'btn btn-danger'
 ]);
 
