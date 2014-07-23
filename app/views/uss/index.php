@@ -13,7 +13,7 @@ Icon::map($this);
 /* @var $searchModel app\models\USSWoSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Usswos';
+$this->title = 'Request Analysis';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="usswo-index " >
