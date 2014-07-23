@@ -2,8 +2,11 @@
 use yii\helpers\Html;
 use kartik\icons\Icon;
 Icon::map($this);
+
+$this->title = 'Setting';
+$this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="row">
+<div class="setting-index">
     <?php
     $sizeClass='fa-2x';
     ?>
