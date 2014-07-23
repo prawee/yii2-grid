@@ -2,35 +2,46 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
-
-/* @var $this yii\web\View */
-/* @var $searchModel app\models\DownlinkStationSearch */
-/* @var $dataProvider yii\data\ActiveDataProvider */
+use kartik\icons\Icon;
+Icon::map($this);
+use yii\bootstrap\Modal;
+use yii\widgets\Pjax;
 
 $this->title = 'Downlink Stations';
-$this->params['breadcrumbs'][] = $this->title;
+
+Modal::begin([
+    'id' =>'content-modal',
+    'header' => Icon::show('cog') . '<b>Downlink Station</b>',
+    'closeButton'=>[
+        'aria-hidden' =>'true',
+        'class'=>'hide',
+    ]
+]);
 ?>
 <div class="downlink-station-index">
-
-    <h1><?= Html::encode($this->title) ?></h1>
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a('Create Downlink Station', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a(Icon::show('plus').' Create', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
-
-    <?= GridView::widget([
+    <?php Pjax::begin(['enablePushState'=>false]); ?>
+    <?=
+    GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
-
-            'id',
             'name',
             'value',
-
-            ['class' => 'yii\grid\ActionColumn'],
+            ['class' => 'prawee\grid\ActionColumn','options'=>['style'=>'width:100px;']],
         ],
-    ]); ?>
-
+    ]);
+    ?>
+    <?php Pjax::end()?>
+    <?= Html::a(Icon::show('times-circle').'Close',['/setting/index'],[
+        'class' => 'btn btn-danger', 
+        'name' => 'assign-button',
+    ]) ?>
 </div>
+<?php
+Modal::end();
