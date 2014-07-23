@@ -11,7 +11,7 @@ $this->title = 'Downlink Stations';
 
 Modal::begin([
     'id' =>'content-modal',
-    'header' => Icon::show('cog') . '<b>Downlink Station</b>',
+    'header' => Icon::show('star') . '<b>Downlink Station</b>',
     'closeButton'=>[
         'aria-hidden' =>'true',
         'class'=>'hide',
