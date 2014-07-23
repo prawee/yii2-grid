@@ -9,6 +9,7 @@ use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use auth\components\AccessControl;
+use auth\Asset;
 
 /**
  * DownlinkStationController implements the CRUD actions for DownlinkStation model.
@@ -27,6 +28,11 @@ class DownlinkStationController extends Controller {
                 ],
             ],
         ];
+    }
+    
+    public function init() {
+        parent::init();
+        Asset::register($this->view);
     }
 
     /**
