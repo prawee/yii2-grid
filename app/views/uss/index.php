@@ -115,14 +115,14 @@ $this->params['breadcrumbs'][] = $this->title;
                             return Html::a(Icon::show('file-zip-o'),'#',[
                                 'data-pjax'=>'0',
                                 'title'=>' Shape ',
-                                'class'=>'btn btn-xs btn-info',
+                                'class'=>'btn btn-xs btn-danger',
                             ]);
                         },
                         'export' => function($data) {
                             return Html::a(Icon::show('upload'),'#',[
                                 'data-pjax'=>'0',
                                 'title'=>' Export ',
-                                'class'=>'btn btn-xs btn-info',
+                                'class'=>'btn btn-xs btn-danger',
                             ]);
                         },
                         'info' => function($url,$model) {
