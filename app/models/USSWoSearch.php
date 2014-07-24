@@ -105,7 +105,7 @@ class USSWoSearch extends USSWo
     }
     public function searchx($params)
     {
-        $gquery = USSWo::find();
+        $query = USSWo::find();
 //        $query = USSWo::find()->innerJoin('mission_local', 'mission_local.scene_id=tpt_wo.id')
 //        ->with('MissionLocal')->all();
 
