@@ -136,7 +136,7 @@ $this->params['breadcrumbs'][] = $this->title;
                             return Html::a(Icon::show('download'),['/xml/index','id'=>$model->id],[
                                 'data-pjax'=>'0',
                                 'title'=>' Import ',
-                                'class'=>'btn btn-xs btn-info',
+                                'class'=>'btn btn-xs btn-success',
                             ]);
                         }
                     ]
