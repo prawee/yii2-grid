@@ -63,10 +63,13 @@ $id=Yii::$app->getRequest()->get('id');
                 'buttons'=>[
                     'import' => function($url,$model) {
                         if($model->status===0){
-                            return Html::a('<span class="glyphicon glyphicon-upload btn btn-xs btn-success"></span>','#',[
+                            $ref=Yii::$app->getRequest()->get('id');
+                            $url=['import','id'=>$model->id,'ref'=>$ref];
+                            return Html::a('<span class="glyphicon glyphicon-upload btn btn-xs btn-success"></span>',$url,[
                                 'data-pjax'=>'0',
                                 'title'=>' Import ',
                             ]);
+                            
                         }else{
                             return '<span class="label btn btn-xs btn-warning">Yes</span>';
                         }
