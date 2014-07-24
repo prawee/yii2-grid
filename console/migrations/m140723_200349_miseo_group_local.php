@@ -48,7 +48,7 @@ class m140723_200349_miseo_group_local extends Migration {
     public function down() {
         echo "m140723_200349_miseo_group_local cannot be reverted.\n";
         $this->dropTable('miseo_group_local');
-        $this->dropTable('databasedata');
+        //$this->dropTable('databasedata');
         $this->dropTable('groupzone');
         return false;
     }
