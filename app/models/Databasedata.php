@@ -8,9 +8,9 @@ namespace app\models;
 use common\models\Databasedata as CDatabasedata;
 
 class Databasedata extends CDatabasedata{
-    public static function insertGetId($sceneId){
+    public static function insertGetId(){
         $model=new self;
-        $model->scene_id=$sceneId;
         $model->save(false);
+        return $model->id;
     }
 }
