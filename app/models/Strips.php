@@ -14,7 +14,6 @@ class Strips extends CStrips{
     }
     public static function updateXML($data,$id){
         $model = self::findOne($id);
-        echo $model->id;
         if($model->id){
             $model->miseo_name=(string)$data->StripName;
             $model->rank=(int)$data->Rank;
