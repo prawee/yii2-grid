@@ -5,7 +5,7 @@
  */
 namespace app\models;
 
-use Yii;
+//use Yii;
 use common\models\Xml as CXml;
 class Xml extends CXml{
     public function rules() {
