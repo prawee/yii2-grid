@@ -15,10 +15,4 @@ class Xml extends CXml{
             [['name', 'path'], 'string', 'max' => 255]
         ];
     }
-    public function beforeSave($insert) {
-        if($this->isNewRecord){
-            $this->user_id=Yii::$app->user->identity->id;
-        }
-        return parent::beforeSave($insert);
-    }
 }
