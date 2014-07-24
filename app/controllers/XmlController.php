@@ -9,6 +9,7 @@ use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use auth\Asset;
+use yii\web\UploadedFile;
 
 /**
  * XmlController implements the CRUD actions for Xml model.
@@ -63,12 +64,28 @@ class XmlController extends Controller {
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
-    public function actionCreate() {
+    public function actionCreate($id) {
         $model = new Xml();
-
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
-        } else {
+        if (Yii::$app->request->isPost) {
+            $uploaded = UploadedFile::getInstance($model,'name');
+            
+            $model->load(Yii::$app->request->post());
+            
+            $model->name=$uploaded->baseName.'.'.$uploaded->extension;
+            $model->path='uploaded/xml';
+            $model->user_id=Yii::$app->user->identity->id;
+            $model->scene_id=$id;
+            $model->status=0;
+            print_r($model->attributes);
+            if ($model->validate() && $model->save()) {  
+                $uploaded->saveAs('uploads/xml/'.$model->name);
+                return $this->redirect(['index', 'id' => $id]);
+            }else{
+                return $this->render('create', [
+                        'model' => $model,
+                ]);
+            }
+        }else{
             return $this->render('create', [
                         'model' => $model,
             ]);
@@ -99,10 +116,18 @@ class XmlController extends Controller {
      * @param integer $id
      * @return mixed
      */
-    public function actionDelete($id) {
-        $this->findModel($id)->delete();
+    public function actionDelete() {
+        $id=Yii::$app->getRequest()->get('id');
+        $ref=Yii::$app->getRequest()->get('ref');
+        $model=$this->findModel($id);
+        if ($model->name) {
+            if (file_exists(Yii::getAlias('@urlUploads') . '/' . $model->name)) {
+                @unlink(Yii::getAlias('@urlUploads') . '/' . $model->name);
+                $model->delete();
+            }
+        }
 
-        return $this->redirect(['index']);
+        return $this->redirect(['index','id'=>$ref]);
     }
 
     /**
@@ -119,5 +144,10 @@ class XmlController extends Controller {
             throw new NotFoundHttpException('The requested page does not exist.');
         }
     }
+    
+    
+    /*
+     * 20140724
+     */
 
 }
