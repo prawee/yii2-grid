@@ -35,9 +35,11 @@ class XmlController extends Controller {
      * Lists all Xml models.
      * @return mixed
      */
-    public function actionIndex() {
+    public function actionIndex($id) {
         $searchModel = new XmlSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $params=Yii::$app->request->queryParams;
+        $params['XmlSearch']['scene_id']=$id;
+        $dataProvider = $searchModel->search($params);
 
         return $this->render('index', [
                     'searchModel' => $searchModel,
