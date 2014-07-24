@@ -11,6 +11,10 @@ use yii\filters\VerbFilter;
 use auth\components\AccessControl;
 use auth\Asset;
 
+use app\models\MiseoGroupLocal;
+use app\models\MissionLocal;
+use app\models\SplittedStripLocal;
+
 /**
  * UssController implements the CRUD actions for USSWo model.
  */
@@ -35,6 +39,17 @@ class UssController extends Controller
     {
         parent::init();
         Asset::register($this->view);
+        
+        //auto insert
+        $models=  USSWo::find()->all();
+        foreach($models as $model){
+            $mgl=MiseoGroupLocal::find()->where(['scene_id'=>$model->id])->one();
+            if(!is_object($mgl)){
+                MiseoGroupLocal::insertBySceneId($model->id);
+                MissionLocal::insertBySceneId($model->id);
+                SplittedStripLocal::insertBySceneId($model->id);
+            }
+        }
     }
 
     /**
@@ -137,5 +152,6 @@ class UssController extends Controller
             'model'=>$model,
         ]);
     }
+    
     
 }
