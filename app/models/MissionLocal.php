@@ -3,6 +3,7 @@
  * 20140724
  * prawee@hotmail.com
  */
+namespace app\models;
 
 use common\models\MissionLocal as CMissionLocal;
 class MissionLocal extends CMissionLocal{
