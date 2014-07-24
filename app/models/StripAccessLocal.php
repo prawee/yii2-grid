@@ -8,6 +8,7 @@ namespace app\models;
 use common\models\StripAccessLocal as CStripAccessLocal;
 class StripAccessLocal extends CStripAccessLocal{
     public static function insertBySplitted($data,$id){
+        self::deleteAll(['splitted_strip_local_id'=>$id]);
         //echo '<pre>'.print_r($data,true).'</pre>';
         foreach($data as $values){
             foreach($values as $key=>$value){
