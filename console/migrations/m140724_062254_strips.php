@@ -46,6 +46,7 @@ class m140724_062254_strips extends Migration {
             'id'=>  Schema::TYPE_PK,
             'databasedata_id'=>  Schema::TYPE_INTEGER,
             'strips_id'=>  Schema::TYPE_INTEGER,
+            'scene_id'=>Schema::TYPE_INTEGER,
         ]);
         $this->addForeignKey('fk_splitted_strip_local_databasedata','splitted_strip_local','databasedata_id','databasedata','id','RESTRICT', 'CASCADE');
         $this->addForeignKey('fk_splitted_strip_local_strips','splitted_strip_local','strips_id','strips','id','RESTRICT', 'CASCADE');
