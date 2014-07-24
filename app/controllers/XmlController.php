@@ -11,6 +11,8 @@ use yii\filters\VerbFilter;
 use auth\Asset;
 use yii\web\UploadedFile;
 use app\models\MiseoGroupLocal;
+use app\models\MissionLocal;
+use app\models\SplittedStripLocal;
 
 /**
  * XmlController implements the CRUD actions for Xml model.
@@ -160,8 +162,13 @@ class XmlController extends Controller {
         $content=utf8_encode(file_get_contents($request));
         $xml=simplexml_load_string($content);
         if(is_object($xml)){
-            MiseoGroupLocal::updateBySceneId($xml,$id);
+            MiseoGroupLocal::updateBySceneId($xml,$ref);
+            MissionLocal::updateBySceneId($xml->Requests,$ref);
+            SplittedStripLocal::updateBySceneId($xml->Requests,$ref);
         }
+        $model->status=1;
+        $model->save();
+        return $this->redirect(['index','id'=>$ref]);
     }
 
 }
