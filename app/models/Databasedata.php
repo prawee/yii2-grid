@@ -26,6 +26,7 @@ class Databasedata extends CDatabasedata{
             $model->delta_lat_north=isset($data->DeltaLatNorth)?(string)$data->DeltaLatNorth:null;
             $model->delta_lat_south=isset($data->DeltaLatSouth)?(string)$data->DeltaLatSouth:null;
             $model->save();
+            //print_r($model->errors);
         }
     }
 }
