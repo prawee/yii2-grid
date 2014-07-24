@@ -7,7 +7,8 @@ use kartik\grid\GridView;
 use yii\widgets\Pjax;
 
 Icon::map($this);
-
+use app\models\SplittedStripLocal;
+use app\models\MissionLocal;
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\USSWoSearch */
@@ -36,7 +37,10 @@ $this->params['breadcrumbs'][] = $this->title;
                 [
                     'label' => 'Strip Name',
                     'attribute' => 'id',
-                    'value' => function($data) {return null;}
+                    'value' => function($data) {
+                        $a= SplittedStripLocal::find()->where(['scene_id'=>$data->id])->one()->strips->miseo_name;
+                        return  $a;                       
+                    }
                 ],
                 [
                     'label' => 'Rev No.',
@@ -61,7 +65,10 @@ $this->params['breadcrumbs'][] = $this->title;
                 [
                     'label' => 'Deposit Date',
                     'attribute' => 'id',
-                    'value' => function($data) {return null;}
+                    'value' => function($data) {
+                        $date=MissionLocal::find()->where(['scene_id'=>$data->id])->one()->definition->deposit_date;
+                        return $date;
+                    }
                 ],
 //                [
 //                    'label' => 'Status',

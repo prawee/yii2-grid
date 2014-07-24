@@ -59,7 +59,7 @@ class UssController extends Controller
     public function actionIndex()
     {
         $searchModel = new USSWoSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $dataProvider = $searchModel->searchx(Yii::$app->request->queryParams);
 
         return $this->render('index', [
             'searchModel' => $searchModel,
