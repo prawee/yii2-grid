@@ -10,6 +10,7 @@ use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use auth\Asset;
 use yii\web\UploadedFile;
+use app\models\MiseoGroupLocal;
 
 /**
  * XmlController implements the CRUD actions for Xml model.
@@ -149,5 +150,18 @@ class XmlController extends Controller {
     /*
      * 20140724
      */
+    public function actionImport(){
+        $id=Yii::$app->getRequest()->get('id');
+        $ref=Yii::$app->getRequest()->get('ref');
+        $model=$this->findModel($id);
+        
+        
+        $request=Yii::getAlias('@urlUploads/').$model->name;
+        $content=utf8_encode(file_get_contents($request));
+        $xml=simplexml_load_string($content);
+        if(is_object($xml)){
+            MiseoGroupLocal::updateBySceneId($xml,$id);
+        }
+    }
 
 }
