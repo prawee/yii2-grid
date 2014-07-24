@@ -10,7 +10,7 @@ use common\models\Xml as CXml;
 class Xml extends CXml{
     public function rules() {
         return [
-            [['name'],'file','extensions' => 'xml'],
+            [['name'], 'file', 'extensions' =>'xml'],
             [['send_email', 'user_id', 'scene_id', 'status'], 'integer'],
             [['name', 'path'], 'string', 'max' => 255]
         ];
