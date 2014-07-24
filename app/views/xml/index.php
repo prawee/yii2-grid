@@ -17,12 +17,14 @@ Modal::begin([
         'class'=>'hide',
     ]
 ]);
+
+$id=Yii::$app->getRequest()->get('id');
 ?>
 <div class="xml-index">
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a(Icon::show('plus').' Create', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a(Icon::show('plus').' Create', ['create','id'=>$id], ['class' => 'btn btn-success']) ?>
     </p>
     <?php Pjax::begin(['enablePushState'=>false]); ?>
     <?=
@@ -33,26 +35,54 @@ Modal::begin([
             ['class' => 'yii\grid\SerialColumn'],
             'name',
             //'path',
-            'send_email:email',
             //'user_id',
             // 'scene_id',
-            'status',
             [
-                'class' => 'prawee\grid\ActionColumn',
-                'template'=>'{import}',
-                'buttons'=>[
-                    'import' => function($url,$model) {
-                        return Html::a(Icon::show('download'),'#',[
-                            'data-pjax'=>'0',
-                            'title'=>' Import ',
-                            'class'=>'btn btn-xs btn-info',
-                        ]);
-                    }
+                'attribute' => 'send_email',
+                'filter' => [0 => 'Inactive', 1 => 'Active'],
+                'value' => function($data) {
+                    return ($data->send_email == 1 ? 'Yes' : 'No');
+                },
+                'options' => [
+                    'style' => 'width:100px;'
+                ]
+            ],
+            [
+                'attribute' => 'status',
+                'filter' => [0 => 'Inactive', 1 => 'Active'],
+                'value' => function($data) {
+                    return ($data->status == 1 ? 'Active' : 'Inactive');
+                },
+                'options' => [
+                    'style' => 'width:100px;'
                 ]
             ],
             [
                 'class' => 'prawee\grid\ActionColumn',
-                'template'=>'{delete}',
+                'template'=>'{import} {delete}',
+                'buttons'=>[
+                    'import' => function($url,$model) {
+                        if($model->status===0){
+                            return Html::a('<span class="glyphicon glyphicon-upload btn btn-xs btn-success"></span>','#',[
+                                'data-pjax'=>'0',
+                                'title'=>' Import ',
+                            ]);
+                        }else{
+                            return '<span class="label btn btn-xs btn-warning">Yes</span>';
+                        }
+                    },
+                    'delete'=>function($url,$model){
+                        $ref=Yii::$app->getRequest()->get('id');
+                        $url=['delete','id'=>$model->id,'ref'=>$ref];
+                        return Html::a('<span class="glyphicon glyphicon-trash btn btn-xs btn-danger"></span>', $url, [
+                            'title' => Yii::t('yii', 'Delete'),
+                            'data-confirm' => Yii::t('yii', 'Are you sure you want to delete this item?'),
+                            'data-method' => 'post',
+                            'data-pjax' => '0',
+                        ]);
+                    }
+                ]
+                
             ],
         ],
     ]);
