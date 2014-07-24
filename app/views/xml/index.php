@@ -33,11 +33,14 @@ $id=Yii::$app->getRequest()->get('id');
         'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
-            'name',
+            [
+                'attribute'=>'name',
+                'label'=>'XML Name',
+            ],
             //'path',
             //'user_id',
             // 'scene_id',
-            [
+            /*[
                 'attribute' => 'send_email',
                 'filter' => [0 => 'Inactive', 1 => 'Active'],
                 'value' => function($data) {
@@ -46,15 +49,16 @@ $id=Yii::$app->getRequest()->get('id');
                 'options' => [
                     'style' => 'width:100px;'
                 ]
-            ],
+            ],*/
             [
                 'attribute' => 'status',
-                'filter' => [0 => 'Inactive', 1 => 'Active'],
+                'label'=>'Import Status',
+                'filter' => [0 => 'Not Import', 1 => 'Import Complete'],
                 'value' => function($data) {
-                    return ($data->status == 1 ? 'Active' : 'Inactive');
+                    return ($data->status == 1 ? 'Import Complete' : 'Not Import');
                 },
                 'options' => [
-                    'style' => 'width:100px;'
+                    'style' => 'width:200px;'
                 ]
             ],
             [

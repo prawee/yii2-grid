@@ -27,7 +27,7 @@ Modal::begin([
     <?= $form->errorSummary($model)?>
     <?= $form->field($model, 'name')->fileInput() ?>
 
-    <?= $form->field($model, 'send_email')->checkbox() ?>
+    <?php //$form->field($model, 'send_email')->checkbox() ?>
 
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? Icon::show('plus').' Create' : Icon::show('edit').' Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
