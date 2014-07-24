@@ -132,8 +132,8 @@ $this->params['breadcrumbs'][] = $this->title;
                                 'class'=>'btn btn-xs btn-info',
                             ]);
                         },
-                        'import' => function($data) {
-                            return Html::a(Icon::show('download'),'#',[
+                        'import' => function($url,$model) {
+                            return Html::a(Icon::show('download'),['/xml/index','id'=>$model->id],[
                                 'data-pjax'=>'0',
                                 'title'=>' Import ',
                                 'class'=>'btn btn-xs btn-info',
