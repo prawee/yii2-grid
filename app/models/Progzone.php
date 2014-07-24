@@ -21,14 +21,15 @@ class Progzone extends CProgzone{
             $model->satellite=(int)$data->ReqSatellite;
             $model->phase=(int)$data->ReqOrbitPhase;
             $model->average_altitude=(int)$data->AvgAltitude;
-            $model->miseo_template=(string)$data->Template;
+            $model->miseo_template=(string) (isset($data->Template)?$data->Template:'|');
             $model->center_latitude=(float)isset($data->ReqCenter->Latitude);
             $model->center_longitude=(float)isset($data->ReqCenter->Longitude);
             $model->item_length=(int)$data->ReqLength;
             $model->zonetype=(string)$data->ZoneType;
-            //$model->request_status_id=(int)$data->ReqStatus;
-            //$model->downlink_station_id=(int)DownlinkStation::getIdByValue((int)$data->DownLinkStation);
+            $model->request_status_id=(int)$data->ReqStatus;
+            $model->downlink_station_id=(int)DownlinkStation::getIdByValue((int)$data->DownLinkStation);
             $model->save();
+            //print_r($model->errors);
         }
     }
 }
