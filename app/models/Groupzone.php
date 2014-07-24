@@ -12,4 +12,15 @@ class Groupzone extends CGroupzone{
         $model->save(false);
         return $model->id;
     }
+    public static function updateXML($data,$id){
+        $model = self::findOne($id);
+        if($model->id){
+            $model->miseo_name=(string)$data->GroupName;
+            $model->info_1=(string)$data->info_1;
+            $model->info_2=(string)$data->info_2;
+            $model->info_3=(string)$data->info_3;
+            $model->info_4=(string)$data->info_4;
+            $model->save();
+        }
+    }
 }
