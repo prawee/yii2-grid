@@ -21,11 +21,10 @@ class MiseoGroupLocal extends CMiseoGroupLocal{
             $model->name = (string) $data['name'];
             $model->version = (string) $data['version'];
             $model->type = (string) $data['type'];
-            //$model->databasedata_id = (int) PDatabasedata::insertGetId($data->DatabaseData);
-            //$model->groupzone_id = (int) PGroupzone::insertGetId($data->GroupZone);
-            //$model->mission_local_id = PMissionLocal::insertGetId($data->Requests);
-            //print_r($model->attributes);
             $model->save();
+            
+            Databasedata::updateXML($data->DatabaseData,$model->databasedata_id);
+            Groupzone::updateXML($data->GroupZone, $model->groupzone_id);       
         }
     }
 }
