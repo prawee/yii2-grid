@@ -5,6 +5,20 @@
  */
 namespace app\models;
 
+use Yii;
 use common\models\Xml as CXml;
 class Xml extends CXml{
+    public function rules() {
+        return [
+            [['name'],'file','extensions' => 'xml'],
+            [['send_email', 'user_id', 'scene_id', 'status'], 'integer'],
+            [['name', 'path'], 'string', 'max' => 255]
+        ];
+    }
+    public function beforeSave($insert) {
+        if($this->isNewRecord){
+            $this->user_id=Yii::$app->user->identity->id;
+        }
+        return parent::beforeSave($insert);
+    }
 }
