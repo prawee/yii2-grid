@@ -12,5 +12,19 @@ class Criteria extends CCriteria{
         $model->save(false);
         return $model->id;
     }
+    public static function updateXML($data,$id){
+        $model = self::findOne($id);
+        if($model->id){
+            $model->updatable_gains=(string)trim($data->UpdatableGAINS);
+            $model->sensor_type=(string)trim($data->SensorType);
+            $model->nadir_viewing=(string)trim($model->getString($data->PerfoDomain));
+            $model->compression_ratio=(string)trim($data->Compression);
+            $model->luminosity=(string)trim($model->getString($data->Luminosity));
+            $model->save();
+        }
+    }
+    public function getString($data){
+        return trim($data);
+    }
 }
 
