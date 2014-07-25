@@ -16,4 +16,24 @@ or add to composer.json on require path.
 "prawee/yii2-grid": "dev-master"
 ```
 
+ActionColumn
+============
+on gridview
+....
+[
+    'class'=>'prawee\grid\ActionColumn',
+],
+.....
 
+ImageColumn
+===========
+on gridview
+....
+[
+    'class'=>'prawee\grid\ImageColumn',
+    'attribute'=>'image',
+    'options'=>[
+        'width'=>'40px',
+    ],
+],
+....
