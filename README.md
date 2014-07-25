@@ -19,15 +19,18 @@ or add to composer.json on require path.
 ActionColumn
 ============
 on gridview
+```php
 ....
 [
     'class'=>'prawee\grid\ActionColumn',
 ],
 .....
+```
 
 ImageColumn
 ===========
 on gridview
+```php
 ....
 [
     'class'=>'prawee\grid\ImageColumn',
@@ -37,3 +40,4 @@ on gridview
     ],
 ],
 ....
+```
