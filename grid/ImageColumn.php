@@ -13,7 +13,7 @@ class ImageColumn extends \yii\grid\Column {
     public $options=[];
     public function renderDataCellContent($model){
         $image=$model->{$this->attribute};
-        $path=Yii::$app->getUrlManager()->getBaseUrl().$this->path.DIRECTORY_SEPARATOR.$image;
+        $path=Yii::$app->getUrlManager()->getBaseUrl().DIRECTORY_SEPARATOR.$this->path.DIRECTORY_SEPARATOR.$image;
         return Html::img($path,$this->options);
     }
 }
