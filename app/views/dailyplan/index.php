@@ -8,17 +8,16 @@ use yii\widgets\Pjax;
 
 Icon::map($this);
 
-use app\models\SplittedStripLocal;
-use app\models\MissionLocal;
+//use app\models\SplittedStripLocal;
+//use app\models\MissionLocal;
 
-/* @var $this yii\web\View */
-/* @var $searchModel app\models\USSWoSearch */
-/* @var $dataProvider yii\data\ActiveDataProvider */
-
-$this->title = 'Request Analysis';
+$this->title = 'Daily Plan';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="usswo-index " >
+    <p>
+        <?= Html::a(Icon::show('plus').' Upload New Plan', ['#'], ['class' => 'btn btn-success']) ?>
+    </p>
 
     <?php //echo $this->render('_search', ['model' => $searchModel]);   ?>
     <div class="scrollspy-board" data-spy="scroll" data-offset="0">
