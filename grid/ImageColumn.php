@@ -5,7 +5,7 @@
  */
 namespace prawee\grid;
 
-//use Yii;
+use Yii;
 use yii\helpers\Html;
 class ImageColumn extends \yii\grid\Column {
     public $attribute='';
