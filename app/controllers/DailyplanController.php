@@ -2,11 +2,19 @@
 
 namespace app\controllers;
 
+use Yii;
+use app\models\USSWoSearch;
+
 class DailyplanController extends \yii\web\Controller
 {
     public function actionIndex()
     {
-        return $this->render('index');
+        $searchModel = new USSWoSearch();
+        $dataProvider = $searchModel->searchx(Yii::$app->request->queryParams);
+        return $this->render('index',[
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+        ]);
     }
 
 }
