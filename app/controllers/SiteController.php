@@ -168,4 +168,10 @@ class SiteController extends Controller
             'model' => $model,
         ]);
     }
+    public function actionDb($id){
+        $db=Yii::$app->$id;   
+        return $this->render('db',[
+            'db'=>$db,
+        ]);
+    }
 }
