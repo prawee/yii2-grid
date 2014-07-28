@@ -41,3 +41,14 @@ on gridview
 ],
 ....
 ```
+
+ActionChildColumn
+=================
+on gridview
+```php
+...
+[
+    'class'=>'prawee\grid\ActionChildColumn',
+],
+...
+```
