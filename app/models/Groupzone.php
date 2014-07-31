@@ -12,7 +12,7 @@ class Groupzone extends CGroupzone{
         $model->save(false);
         return $model->id;
     }
-    public static function insertGetId(){
+    public static function insertGetId($data){
         $model=new self;
         $model->miseo_name=(string)$data->GroupName;
         $model->info_1=(string)$data->info_1;
