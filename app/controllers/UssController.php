@@ -45,9 +45,9 @@ class UssController extends Controller
         foreach($models as $model){
             $mgl=MiseoGroupLocal::find()->where(['scene_id'=>$model->id])->one();
             if(!is_object($mgl)){
-                MiseoGroupLocal::insertBySceneId($model->id);
-                MissionLocal::insertBySceneId($model->id);
-                SplittedStripLocal::insertBySceneId($model->id);
+                //MiseoGroupLocal::insertBySceneId($model->id);
+                //MissionLocal::insertBySceneId($model->id);
+                //SplittedStripLocal::insertBySceneId($model->id);
             }
         }
     }
