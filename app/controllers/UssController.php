@@ -152,6 +152,8 @@ class UssController extends Controller
             'model'=>$model,
         ]);
     }
-    
-    
+    public function actionOrbit($id)
+    {
+        return $this->render('orbit');
+    }  
 }
