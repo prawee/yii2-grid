@@ -3,7 +3,7 @@
  * 2014-07-31
  * konkeanweb@gmail.com
  */
-use Html;
+use yii\helpers\Html;
 use yii\bootstrap\Modal; 
 use kartik\icons\Icon;
 Icon::map($this);
