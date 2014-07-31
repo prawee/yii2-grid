@@ -37,19 +37,6 @@ $id=Yii::$app->getRequest()->get('id');
                 'attribute'=>'name',
                 'label'=>'XML Name',
             ],
-            //'path',
-            //'user_id',
-            // 'scene_id',
-            /*[
-                'attribute' => 'send_email',
-                'filter' => [0 => 'Inactive', 1 => 'Active'],
-                'value' => function($data) {
-                    return ($data->send_email == 1 ? 'Yes' : 'No');
-                },
-                'options' => [
-                    'style' => 'width:100px;'
-                ]
-            ],*/
             [
                 'attribute' => 'status',
                 'label'=>'Import Status',
