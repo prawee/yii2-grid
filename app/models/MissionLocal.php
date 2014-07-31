@@ -20,7 +20,7 @@ class MissionLocal extends CMissionLocal{
         foreach ($data as $key => $value){
             foreach($value as $request){
                 $model=new self;
-                $model->name = (string) $request['name'];
+                $model->name =(string)$request['name'];
                 $model->databasedata_id=(int)Databasedata::insertGetId($request->DatabaseData);
                 $model->progzone_id=(int)  Progzone::insertGetId($request->ProgZone);
                 $model->definition_id=(int) Definition::insertGetId($request->Definition);
@@ -30,7 +30,7 @@ class MissionLocal extends CMissionLocal{
                 $model->image=(string)$request['image'];
                 $model->type=(string)$request['type'];
                 $model->status=(string)$request['status'];
-                $model->save();
+                $model->save(false);
             }
         }
     }

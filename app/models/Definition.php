@@ -22,7 +22,7 @@ class Definition extends CDefinition{
         $model->completion_date=(string)$model->getDateTime($data->CompletionDate);
         $model->periodicity_flag=(string)$model->getString($data->Periodicity);
         $model->priority_id=(int)  Priority::getIdByValue((string)$data->Priority);
-        $model->save();
+        $model->save(false);
         return $model->id;
     }
 

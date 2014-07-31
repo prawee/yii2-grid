@@ -26,7 +26,7 @@ class Progzone extends CProgzone{
         $model->zonetype=(string)$data->ZoneType;
         $model->request_status_id=(int)$data->ReqStatus;
         $model->downlink_station_id=(int)DownlinkStation::getIdByValue((int)$data->DownLinkStation);
-        $model->save();
+        $model->save(false);
         return $model->id;
     }
 

@@ -19,7 +19,7 @@ class Criteria extends CCriteria{
         $model->nadir_viewing=(string)trim($model->getString($data->PerfoDomain));
         $model->compression_ratio=(string)trim($data->Compression);
         $model->luminosity=(string)trim($model->getString($data->Luminosity));
-        $model->save();
+        $model->save(false);
         return $model->id;
     }
 
