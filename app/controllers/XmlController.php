@@ -168,7 +168,7 @@ class XmlController extends Controller {
             MissionLocal::insertByLoop($xml->Requests,$ref);
             SplittedStripLocal::insertByLoop($xml->Requests,$ref);
         }
-        //$model->status=1;
+        $model->status=1;
         $model->save();
         return $this->redirect(['index','id'=>$ref]);
     }
