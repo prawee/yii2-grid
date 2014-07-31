@@ -166,6 +166,7 @@ class XmlController extends Controller {
             //MissionLocal::updateBySceneId($xml->Requests,$ref);
             //SplittedStripLocal::updateBySceneId($xml->Requests,$ref);
             MissionLocal::insertByLoop($xml->Requests,$ref);
+            SplittedStripLocal::insertByLoop($xml->Requests,$ref);
         }
         //$model->status=1;
         $model->save();
