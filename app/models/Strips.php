@@ -30,6 +30,7 @@ class Strips extends CStrips{
         $model->lon_corner_sw=isset($data->CornerSW->Longitude)?(string)$data->CornerSW->Longitude:null;
         $model->strip_status_id=(int)$data->StripStatus;
         $model->save(false);
+        return $model->id;
     }
 
     public static function updateXML($data,$id){
