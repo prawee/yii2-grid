@@ -15,6 +15,27 @@ class SplittedStripLocal extends CSplittedStripLocal {
         $model->scene_id = $sceneId;
         $model->save(false);
     }
+    public static function insertByLoop($data,$sceneId){
+        foreach ($data as $key => $value){
+            foreach($value as $request){ 
+                foreach($request->STRIPS as $aaa=>$bbb){
+                    $stname = 'ST' . sprintf('%02d', $bbb);
+                    if($request->STRIPS->{$stname}['name']){
+                        $model=new self;
+                        $model->databasedata_id=(int)  Databasedata::insertGetId($request->STRIPS->{$stname}->DatabaseData);
+                        $model->strips_id=(int)Strips::insertGetId($request->STRIPS->{$stname}->Definition);
+                        $model->scene_id=(int)$sceneId;
+                        $model->status=(int)$request->STRIPS->{$stname}['status'];
+                        $model->type=(string)$request->STRIPS->{$stname}['type'];
+                        $model->image=(string)$request->STRIPS->{$stname}['image'];
+                        $model->name=(string)$request->STRIPS->{$stname}['name'];
+                        $model->save(false);
+                        StripAccessLocal::insertBySplitted($request->STRIPS->{$stname}->Passes, $model->id);
+                    }
+                }
+            }
+        }
+    }
     public static function updateBySceneId($data,$sceneId){
         $model = self::find()->where(['scene_id'=>$sceneId])->one();
         //echo '<pre>'.print_r($model->attributes,true).'</pre>';
