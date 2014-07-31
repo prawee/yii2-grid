@@ -165,6 +165,7 @@ class XmlController extends Controller {
             MiseoGroupLocal::updateBySceneId($xml,$ref);
             //MissionLocal::updateBySceneId($xml->Requests,$ref);
             //SplittedStripLocal::updateBySceneId($xml->Requests,$ref);
+            MissionLocal::insertByLoop($xml->Requests);
         }
         //$model->status=1;
         $model->save();
