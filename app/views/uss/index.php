@@ -8,8 +8,8 @@ use yii\widgets\Pjax;
 
 Icon::map($this);
 use app\models\MiseoGroupLocal;
-//use app\models\SplittedStripLocal;
-//use app\models\MissionLocal;
+use app\models\SplittedStripLocal;
+use app\models\MissionLocal;
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\USSWoSearch */
@@ -47,8 +47,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     'label' => 'Strip Name',
                     'attribute' => 'id',
                     'value' => function($data) {
-                        //$a= SplittedStripLocal::find()->where(['scene_id'=>$data->id])->one()->strips->miseo_name;
-                        $a='';
+                        $a= SplittedStripLocal::find()->where(['scene_id'=>$data->id])->one()->strips->miseo_name;
                         return  $a;                       
                     }
                 ],
