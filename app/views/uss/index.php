@@ -154,7 +154,7 @@ $this->params['breadcrumbs'][] = $this->title;
                             return Html::a(Icon::show('support'),$url,[
                                 'data-pjax'=>'0',
                                 'title'=>' Orbit ',
-                                'class'=>'btn btn-xs btn-info',
+                                'class'=>'btn btn-xs btn-warning',
                             ]);
                         },
                         'import' => function($url,$model) {
@@ -164,28 +164,13 @@ $this->params['breadcrumbs'][] = $this->title;
                                 'class'=>'btn btn-xs btn-success',
                             ]);
                         }
+                    ],
+                    'options'=>[
+                        'style'=>'width:130px;'
                     ]
                 ],
             ],
         ]);
-
-        /*  echo GridView::widget([
-          'dataProvider' => $dataProvider,
-          'filterModel' => $searchModel,
-          'responsive' => true,
-          'hover' => true,
-          'columns' => [
-          ['class' => '\kartik\grid\SerialColumn'],
-          ['class' => '\kartik\grid\CheckboxColumn'],
-          'wo_doc_name',
-          'aoi_name',
-          //['class'=>'prawee\grid\ActionColumn'],
-          [
-          'class' => '\kartik\grid\ActionColumn',
-          'deleteOptions' => ['label' => Icon::show('times')]
-          ]
-          ]
-          ]); */
         Pjax::end();
         ?>
     </div>
