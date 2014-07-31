@@ -166,7 +166,7 @@ class XmlController extends Controller {
             //MissionLocal::updateBySceneId($xml->Requests,$ref);
             //SplittedStripLocal::updateBySceneId($xml->Requests,$ref);
         }
-        $model->status=1;
+        //$model->status=1;
         $model->save();
         return $this->redirect(['index','id'=>$ref]);
     }
