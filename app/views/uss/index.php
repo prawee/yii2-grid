@@ -7,8 +7,9 @@ use kartik\grid\GridView;
 use yii\widgets\Pjax;
 
 Icon::map($this);
-use app\models\SplittedStripLocal;
-use app\models\MissionLocal;
+use app\models\MiseoGroupLocal;
+//use app\models\SplittedStripLocal;
+//use app\models\MissionLocal;
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\USSWoSearch */
@@ -126,7 +127,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 // 'project_name',
                 [
                     'class' => 'prawee\grid\ActionColumn',
-                    'template' => '{shape}  {export}  {info}  {import}',
+                    'template' => '{shape}  {export}  {info} {orbit} {import}',
                     'buttons' => [
                         'shape' => function($data) {
                             return Html::a(Icon::show('file-zip-o'),'#',[
@@ -146,6 +147,13 @@ $this->params['breadcrumbs'][] = $this->title;
                             return Html::a(Icon::show('info'),$url,[
                                 'data-pjax'=>'0',
                                 'title'=>' Info ',
+                                'class'=>'btn btn-xs btn-info',
+                            ]);
+                        },
+                        'orbit' => function($url,$model) {
+                            return Html::a(Icon::show('info'),$url,[
+                                'data-pjax'=>'0',
+                                'title'=>' Orbit ',
                                 'class'=>'btn btn-xs btn-info',
                             ]);
                         },
