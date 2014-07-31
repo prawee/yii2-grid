@@ -16,6 +16,17 @@ Modal::begin([
 ]);
 ?>
 <div class="uss-orbit-index">
+    <div class="row">
+        <div class="col-xs-12">
+            
+            <?=
+            Html::a(Icon::show('times') . 'Close', ['/uss/index'], [
+                'class' => 'btn btn-danger',
+                'name' => 'assign-button',
+            ]);
+            ?>
+        </div>
+    </div>
 </div>
 <?php
 Modal::end();
