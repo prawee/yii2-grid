@@ -14,7 +14,7 @@ class Progzone extends CProgzone{
         return $model->id;
     }
     public static function insertGetId($data){
-        print_r($data);
+        print_r($data); 
         $model=new self;
         $model->miseo_name=(string)$data->ReqName;
         $model->satellite=(int)$data->ReqSatellite;
