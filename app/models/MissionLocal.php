@@ -19,22 +19,20 @@ class MissionLocal extends CMissionLocal{
     public static function insertByLoop($data,$sceneId){
         foreach ($data as $key => $value){
             foreach($value as $request){
-                echo '<pre>';
-                print_r($request);
-                echo '</pre>';
-                
-                /*$model=new self;
-                $model->name =(string)$request['name'];
-                $model->databasedata_id=(int)Databasedata::insertGetId($request->DatabaseData);
-                $model->progzone_id=(int)  Progzone::insertGetId($request->ProgZone);
-                $model->definition_id=(int) Definition::insertGetId($request->Definition);
-                $model->criteria_id=(int) Criteria::insertGetId($request->Criteria);
-                $model->scene_id=$sceneId;
-                $model->version=(string)$request['version'];
-                $model->image=(string)$request['image'];
-                $model->type=(string)$request['type'];
-                $model->status=(string)$request['status'];
-                $model->save(false);*/
+                if($request['name']){
+                    $model=new self;
+                    $model->name =(string)$request['name'];
+                    $model->databasedata_id=(int)Databasedata::insertGetId($request->DatabaseData);
+                    $model->progzone_id=(int)  Progzone::insertGetId($request->ProgZone);
+                    $model->definition_id=(int) Definition::insertGetId($request->Definition);
+                    $model->criteria_id=(int) Criteria::insertGetId($request->Criteria);
+                    $model->scene_id=$sceneId;
+                    $model->version=(string)$request['version'];
+                    $model->image=(string)$request['image'];
+                    $model->type=(string)$request['type'];
+                    $model->status=(string)$request['status'];
+                    $model->save(false);
+                }
             }
         }
     }
