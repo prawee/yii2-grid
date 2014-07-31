@@ -1,4 +1,7 @@
 <?php
+use yii\bootstrap\Modal;
+use kartik\icons\Icon;
+Icon::map($this);
 
 $this->title = 'Orbit';
 $this->params['breadcrumbs'][] = $this->title;
