@@ -76,7 +76,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     'attribute' => 'id',
                     'value' => function($data) {
                         $date=MissionLocal::find()->where(['scene_id'=>$data->id])->one()->definition->deposit_date;
-                        return $date;
+                        return isset($date);
                     }
                 ],
 //                [
