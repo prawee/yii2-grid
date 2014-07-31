@@ -19,8 +19,9 @@ class MissionLocal extends CMissionLocal{
     public static function insertByLoop($data,$sceneId){
         foreach ($data as $key => $value){
             foreach($value as $request){
-                
+                echo '<pre>';
                 print_r($request);
+                echo '</pre>';
                 
                 /*$model=new self;
                 $model->name =(string)$request['name'];
