@@ -9,7 +9,7 @@ use common\models\Priority as CPriority;
 class Priority extends CPriority{
     public static function getIdByValue($value){
         $model=self::find()->where(['value'=>(string)trim($value)])->one();
-        return $model->id;
+        return (!empty($model->id)?$model->id:null);
     }
 }
 
