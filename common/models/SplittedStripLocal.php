@@ -11,10 +11,14 @@ use Yii;
  * @property integer $databasedata_id
  * @property integer $strips_id
  * @property integer $scene_id
+ * @property integer $status
+ * @property string $type
+ * @property string $image
+ * @property string $name
  *
- * @property Strips $strips
  * @property Databasedata $databasedata
- * @property StripAccessLocal[] $stripAccessLocals
+ * @property Strips $strips
+ * @property StripAccessLocal[] $stripAccessLocs
  */
 class SplittedStripLocal extends \yii\db\ActiveRecord
 {
@@ -32,7 +36,9 @@ class SplittedStripLocal extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['databasedata_id', 'strips_id', 'scene_id'], 'integer']
+            [['databasedata_id', 'strips_id', 'scene_id', 'status'], 'integer'],
+            [['type', 'image'], 'string', 'max' => 45],
+            [['name'], 'string', 'max' => 255]
         ];
     }
 
@@ -43,18 +49,14 @@ class SplittedStripLocal extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'databasedata_id' => 'Databasedata ID',
-            'strips_id' => 'Strips ID',
-            'scene_id' => 'Scene ID',
+            'databasedata_id' => 'Databasedata Id',
+            'strips_id' => 'Strips Id',
+            'scene_id' => 'Scene Id',
+            'status' => 'Status',
+            'type' => 'Type',
+            'image' => 'Image',
+            'name' => 'Name',
         ];
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getStrips()
-    {
-        return $this->hasOne(Strips::className(), ['id' => 'strips_id']);
     }
 
     /**
@@ -68,7 +70,15 @@ class SplittedStripLocal extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getStripAccessLocals()
+    public function getStrips()
+    {
+        return $this->hasOne(Strips::className(), ['id' => 'strips_id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getStripAccessLocs()
     {
         return $this->hasMany(StripAccessLocal::className(), ['splitted_strip_local_id' => 'id']);
     }
