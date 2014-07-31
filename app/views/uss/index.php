@@ -166,7 +166,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         }
                     ],
                     'options'=>[
-                        'style'=>'width:160px;'
+                        'style'=>'width:200px;'
                     ]
                 ],
             ],
