@@ -1,5 +1,5 @@
 <?php
-use yii\bootstrap\Modal;
+use yii\bootstrap\Modal; 
 use kartik\icons\Icon;
 Icon::map($this);
 
