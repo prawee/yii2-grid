@@ -14,9 +14,11 @@ use Yii;
  * @property integer $databasedata_id
  * @property integer $groupzone_id
  * @property integer $scene_id
+ * @property integer $status
+ * @property string $image
  *
- * @property Groupzone $groupzone
  * @property Databasedata $databasedata
+ * @property Groupzone $groupzone
  */
 class MiseoGroupLocal extends \yii\db\ActiveRecord
 {
@@ -35,9 +37,10 @@ class MiseoGroupLocal extends \yii\db\ActiveRecord
     {
         return [
             [['name'], 'required'],
-            [['databasedata_id', 'groupzone_id', 'scene_id'], 'integer'],
+            [['databasedata_id', 'groupzone_id', 'scene_id', 'status'], 'integer'],
             [['name'], 'string', 'max' => 255],
             [['version', 'type'], 'string', 'max' => 45],
+            [['image'], 'string', 'max' => 20],
             [['scene_id'], 'unique']
         ];
     }
@@ -52,18 +55,12 @@ class MiseoGroupLocal extends \yii\db\ActiveRecord
             'name' => 'Name',
             'version' => 'Version',
             'type' => 'Type',
-            'databasedata_id' => 'Databasedata ID',
-            'groupzone_id' => 'Groupzone ID',
-            'scene_id' => 'Scene ID',
+            'databasedata_id' => 'Databasedata Id',
+            'groupzone_id' => 'Groupzone Id',
+            'scene_id' => 'Scene Id',
+            'status' => 'Status',
+            'image' => 'Image',
         ];
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getGroupzone()
-    {
-        return $this->hasOne(Groupzone::className(), ['id' => 'groupzone_id']);
     }
 
     /**
@@ -72,5 +69,13 @@ class MiseoGroupLocal extends \yii\db\ActiveRecord
     public function getDatabasedata()
     {
         return $this->hasOne(Databasedata::className(), ['id' => 'databasedata_id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getGroupzone()
+    {
+        return $this->hasOne(Groupzone::className(), ['id' => 'groupzone_id']);
     }
 }

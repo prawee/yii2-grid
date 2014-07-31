@@ -14,6 +14,10 @@ use Yii;
  * @property integer $definition_id
  * @property integer $criteria_id
  * @property integer $scene_id
+ * @property string $version
+ * @property string $image
+ * @property string $type
+ * @property integer $status
  *
  * @property Criteria $criteria
  * @property Databasedata $databasedata
@@ -36,8 +40,8 @@ class MissionLocal extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['databasedata_id', 'progzone_id', 'definition_id', 'criteria_id', 'scene_id'], 'integer'],
-            [['name'], 'string', 'max' => 45]
+            [['databasedata_id', 'progzone_id', 'definition_id', 'criteria_id', 'scene_id', 'status'], 'integer'],
+            [['name', 'version', 'image', 'type'], 'string', 'max' => 45]
         ];
     }
 
@@ -49,11 +53,15 @@ class MissionLocal extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'name' => 'Name',
-            'databasedata_id' => 'Databasedata ID',
-            'progzone_id' => 'Progzone ID',
-            'definition_id' => 'Definition ID',
-            'criteria_id' => 'Criteria ID',
-            'scene_id' => 'Scene ID',
+            'databasedata_id' => 'Databasedata Id',
+            'progzone_id' => 'Progzone Id',
+            'definition_id' => 'Definition Id',
+            'criteria_id' => 'Criteria Id',
+            'scene_id' => 'Scene Id',
+            'version' => 'Version',
+            'image' => 'Image',
+            'type' => 'Type',
+            'status' => 'Status',
         ];
     }
 
