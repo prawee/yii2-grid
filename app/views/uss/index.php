@@ -176,4 +176,4 @@ $this->params['breadcrumbs'][] = $this->title;
 </div>
 
 <?php
-echo $date=MissionLocal::find()->where(['scene_id'=>$data->id])->one()->definition->deposit_date;
+echo $date=MissionLocal::find()->where(['scene_id'=>30])->one()->definition->deposit_date;
