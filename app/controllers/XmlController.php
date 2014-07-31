@@ -162,7 +162,7 @@ class XmlController extends Controller {
         $content=utf8_encode(file_get_contents($request));
         $xml=simplexml_load_string($content);
         if(is_object($xml)){
-            //MiseoGroupLocal::updateBySceneId($xml,$ref);
+            MiseoGroupLocal::updateBySceneId($xml,$ref);
             //MissionLocal::updateBySceneId($xml->Requests,$ref);
             //SplittedStripLocal::updateBySceneId($xml->Requests,$ref);
         }

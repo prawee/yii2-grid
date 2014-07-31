@@ -21,10 +21,12 @@ class MiseoGroupLocal extends CMiseoGroupLocal{
             $model->name = (string) $data['name'];
             $model->version = (string) $data['version'];
             $model->type = (string) $data['type'];
+            $model->status=(string) $data['status'];
+            $model->image=(string) $data['image'];
             $model->save();
             
-            Databasedata::updateXML($data->DatabaseData,$model->databasedata_id);
-            Groupzone::updateXML($data->GroupZone, $model->groupzone_id);       
+            //Databasedata::updateXML($data->DatabaseData,$model->databasedata_id);
+            //Groupzone::updateXML($data->GroupZone, $model->groupzone_id);       
         }
     }
 }
