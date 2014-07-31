@@ -151,7 +151,7 @@ $this->params['breadcrumbs'][] = $this->title;
                             ]);
                         },
                         'orbit' => function($url,$model) {
-                            return Html::a(Icon::show('info'),$url,[
+                            return Html::a(Icon::show('support'),$url,[
                                 'data-pjax'=>'0',
                                 'title'=>' Orbit ',
                                 'class'=>'btn btn-xs btn-info',
