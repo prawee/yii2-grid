@@ -10,8 +10,8 @@ class MiseoGroupLocal extends CMiseoGroupLocal{
     public static function insertBySceneId($sceneId) {
         $model = new self;
         $model->scene_id = $sceneId;
-        $model->databasedata_id = (int) Databasedata::insertGetId();
-        $model->groupzone_id = (int) Groupzone::insertGetId();
+        //$model->databasedata_id = (int) Databasedata::insertGetId();
+        //$model->groupzone_id = (int) Groupzone::insertGetId(); 
         $model->save(false);
     }
 
