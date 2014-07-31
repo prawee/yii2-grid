@@ -35,6 +35,14 @@ $this->params['breadcrumbs'][] = $this->title;
                 'wo_doc_name',
                 'aoi_name',
                 [
+                    'label'=>'Request Name',
+                    'attribute'=>'id',
+                    'value'=>function($data){
+                        $a= MiseoGroupLocal::find()->where(['scene_id'=>$data->id])->one()->name;  
+                        return  (empty($a)?'import xml':$a);
+                    }
+                ],
+                [
                     'label' => 'Strip Name',
                     'attribute' => 'id',
                     'value' => function($data) {
