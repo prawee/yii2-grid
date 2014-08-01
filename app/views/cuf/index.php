@@ -146,6 +146,8 @@ $this->params['breadcrumbs'][] = $this->title;
                 [
                     'class'=>'prawee\grid\ActionColumn',
                     'template'=>'{import} {export}',
+                    'options'=>['class'=>'width-action'],
+                    'header'=>'Import | Export',
                     'buttons'=>[
                         'export' => function($data) {
                             return Html::a(Icon::show('upload'),'#',[
