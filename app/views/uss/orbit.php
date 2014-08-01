@@ -7,10 +7,11 @@ use yii\helpers\Html;
 use yii\bootstrap\Modal; 
 use kartik\icons\Icon;
 Icon::map($this);
+use yii\grid\GridView;
 
 $this->title = 'Orbit';
-$this->params['breadcrumbs'][] = $this->title;
-
+$this->params['breadcrumbs'][] = $this->title; 
+ 
 Modal::begin([
     'id' => 'content-modal',
     'header' => Icon::show('info') . '<b>Orbit</b>',
@@ -23,7 +24,19 @@ Modal::begin([
 <div class="uss-orbit-index">
     <div class="row">
         <div class="col-xs-12">
-            
+            <?=
+            GridView::widget([
+                'dataProvider' => $dataProvider,
+                'columns'=>[
+                    ['class' => '\yii\grid\SerialColumn'],
+                    [
+                        'label'=>'Orbit Number',
+                        'attribute'=>'orbit_cycle'
+                    ],
+                    'roll_max_access',
+                ]
+            ])
+            ?>
             <?=
             Html::a(Icon::show('times') . 'Close', ['/uss/index'], [
                 'class' => 'btn btn-danger',
