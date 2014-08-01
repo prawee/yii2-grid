@@ -123,6 +123,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 [
                     'class' => 'prawee\grid\ActionColumn',
                     'template' => '{shape}  {export}  {info} {orbit} {import}',
+                    'header'=>'Shape|Export|Info|Orbit|Import',
                     'buttons' => [
                         'shape' => function($data) {
                             return Html::a(Icon::show('file-zip-o'),'#',[

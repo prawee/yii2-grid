@@ -104,7 +104,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     'label'=>'rollmax',
                     'value'=>function($data){
                         $name=app\models\StripAccessLocal::find()->where(['splitted_strip_local_id'=>[11,12]])->one()->roll_max_access;
-                        return $name;
+                        return round($name,2);
                     },
                 ], 
                 [
@@ -119,7 +119,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 ], 
                 [
                     'attribute'=>'id',
-                    'label'=>'cloudcoverage',
+                    'label'=>'cloud',
                     'value'=>function($data){return null;},
                 ],
                 [
@@ -134,6 +134,8 @@ $this->params['breadcrumbs'][] = $this->title;
                 ],
                 [
                     'class' => 'prawee\grid\ActionColumn',
+                    'options'=>['class'=>'width-action'],
+                    'header'=>'Shape|Export|Info|Import',
                     'template' => '{shape}  {export}  {info}  {import}',
                     'buttons' => [
                         'shape' => function($data) {
