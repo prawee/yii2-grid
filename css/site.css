@@ -99,3 +99,8 @@ a.desc:after {
   overflow:auto;
   position:relative;
 }
+
+/*20140801*/
+.width-action{
+    width:400px;
+}
