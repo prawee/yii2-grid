@@ -36,12 +36,12 @@ $this->params['breadcrumbs'][] = $this->title;
                 [
                     'attribute'=>'id',
                     'label'=>'Request Name',
-                    'value'=>function($data){return null;},
+                    'value'=>function($data){return $data->RequestName;},
                 ],
                 [
                     'attribute'=>'id',
                     'label'=>'Strip',
-                    'value'=>function($data){return null;},
+                    'value'=>function($data){return $data->StripName;},
                 ],
                 [
                     'attribute'=>'id',
@@ -56,7 +56,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 [
                     'attribute'=>'id',
                     'label'=>'Date Update',
-                    'value'=>function($data){return null;},
+                    'value'=>function($data){return $data->DepositDate;},
                 ],  
             ],
         ]);
