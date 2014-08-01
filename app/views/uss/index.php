@@ -38,17 +38,15 @@ $this->params['breadcrumbs'][] = $this->title;
                 [
                     'label'=>'Request Name',
                     'attribute'=>'id',
-                    'value'=>function($data){
-                        $a= MiseoGroupLocal::find()->where(['scene_id'=>$data->id])->one()->name;  
-                        return  (empty($a)?'import xml':$a);
+                    'value'=>function($data){   
+                        return $data->RequestName;
                     }
                 ],
                 [
                     'label' => 'Strip Name',
                     'attribute' => 'id',
                     'value' => function($data) {
-                        $a= SplittedStripLocal::find()->where(['scene_id'=>$data->id])->one()->strips->miseo_name;
-                        return  $a;                       
+                        return $data->StripName;                       
                     }
                 ],
                 [
@@ -75,12 +73,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     'label' => 'Deposit Date',
                     'attribute' => 'id',
                     'value' => function($data) {
-                        //$date=MissionLocal::find()->where(['scene_id'=>$data->id])->one()->definition->deposit_date;
-                        $date=MissionLocal::find()->where(['scene_id'=>$data->id])->one()->definition;
-                        print_r($date);
-                        //return (is_null($date)?null:$date);
-                        echo 'ok';
-                        return $data->id;
+                        return $data->DepositDate;
                     }
                 ],
 //                [
@@ -177,6 +170,3 @@ $this->params['breadcrumbs'][] = $this->title;
         ?>
     </div>
 </div>
-
-<?php
-//echo $date=MissionLocal::find()->where(['scene_id'=>30])->one()->definition->deposit_date;
