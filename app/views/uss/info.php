@@ -29,7 +29,7 @@ Modal::begin([
 ?>
 <div class="source-item-index">
     <div class="row">
-        <div class="col-xs-6">
+        <div class="col-xs-12">
             <b>USS</b>
             <?=
             DetailView::widget([
@@ -84,9 +84,6 @@ Modal::begin([
                 'name' => 'assign-button',
             ]);
             ?>
-        </div>
-        <div class="col-xs-6">
-            <b>Request</b>
         </div>
     </div>
 </div>
