@@ -17,4 +17,12 @@ class USSWo extends ActiveRecord{
     public static function primaryKey() {
         return ['id'];
     }
+    public function getDepositDate(){
+        $date=MissionLocal::find()->where(['scene_id'=>$this->id])->one();
+        if(is_object($date)){
+            return $date->definition->deposit_date;
+        }else{
+            return null;
+        } 
+    }
 }
