@@ -22,7 +22,11 @@ class USSWo extends ActiveRecord{
         return is_object($date)?$date->definition->deposit_date:null;
     }
     public function getStripName(){
-        $model=SplittedStripLocal::find()->where(['scene_id'=>$data->id])->one();
+        $model=SplittedStripLocal::find()->where(['scene_id'=>$this->id])->one();
         return is_object($model)?$model->strips->miseo_name:null;
+    }
+    public function getRequestName(){
+        $model=MiseoGroupLocal::find()->where(['scene_id'=>$this->id])->one(); 
+        return is_object($model)?$model->name:null;
     }
 }
