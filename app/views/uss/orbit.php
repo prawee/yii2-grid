@@ -34,6 +34,7 @@ Modal::begin([
                         'attribute'=>'orbit_cycle'
                     ],
                     'roll_max_access',
+                    'earliest_date'
                 ]
             ])
             ?>
