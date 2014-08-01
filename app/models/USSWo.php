@@ -19,10 +19,10 @@ class USSWo extends ActiveRecord{
     }
     public function getDepositDate(){
         $date=MissionLocal::find()->where(['scene_id'=>$this->id])->one();
-        if(is_object($date)){
-            return $date->definition->deposit_date;
-        }else{
-            return null;
-        } 
+        return is_object($date)?$date->definition->deposit_date:null;
+    }
+    public function getStripName(){
+        $model=SplittedStripLocal::find()->where(['scene_id'=>$data->id])->one();
+        return is_object($model)?$model->strips->miseo_name:null;
     }
 }
