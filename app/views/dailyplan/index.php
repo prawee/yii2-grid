@@ -40,12 +40,12 @@ $this->params['breadcrumbs'][] = $this->title;
                 [
                     'attribute'=>'id',
                     'label'=>'requestname',
-                    'value'=>function($data){return null;},
+                    'value'=>function($data){return $data->RequestName;},
                 ],
                 [
                     'attribute'=>'id',
                     'label'=>'strip',
-                    'value'=>function($data){return null;},
+                    'value'=>function($data){return $data->StripName;},
                 ],
                 [
                     'attribute'=>'id',
@@ -102,7 +102,10 @@ $this->params['breadcrumbs'][] = $this->title;
                 [
                     'attribute'=>'id',
                     'label'=>'rollmax',
-                    'value'=>function($data){return null;},
+                    'value'=>function($data){
+                        $name=app\models\StripAccessLocal::find()->where(['splitted_strip_local_id'=>[11,12]])->one()->roll_max_access;
+                        return $name;
+                    },
                 ], 
                 [
                     'attribute'=>'id',
