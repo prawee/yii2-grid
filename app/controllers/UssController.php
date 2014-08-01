@@ -14,6 +14,8 @@ use auth\Asset;
 use app\models\MiseoGroupLocal;
 use app\models\MissionLocal;
 use app\models\SplittedStripLocal;
+use yii\data\ActiveDataProvider;
+use app\models\StripAccessLocal;
 
 /**
  * UssController implements the CRUD actions for USSWo model.
@@ -154,6 +156,14 @@ class UssController extends Controller
     }
     public function actionOrbit($id)
     {
-        return $this->render('orbit');
+        $model=SplittedStripLocal::find()->select(['id'])->where(['scene_id'=>$id])->orderBy(['id'=>SORT_DESC])->asArray()->all();
+        
+        $dataProvider = new ActiveDataProvider([
+            'query' => StripAccessLocal::find()->where(['splitted_strip_local_id'=>[11,12]]),
+        ]);
+        return $this->render('orbit',[
+            'model'=>$model,
+            'dataProvider'=>$dataProvider,
+        ]);
     }  
 }
