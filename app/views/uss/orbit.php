@@ -14,7 +14,7 @@ $this->params['breadcrumbs'][] = $this->title;
  
 Modal::begin([
     'id' => 'content-modal',
-    'header' => Icon::show('info') . '<b>Orbit</b>',
+    'header' => Icon::show('support') . '<b>Orbit</b>',
     'closeButton' => [
         'aria-hidden' => 'true',
         'class' => 'hide',
