@@ -64,11 +64,6 @@ $this->params['breadcrumbs'][] = $this->title;
                     'attribute' => 'id',
                     'value' => function($data) {return null;}
                 ],
-//                [
-//                    'label' => 'Accessible Orbit',
-//                    'attribute' => 'id',
-//                    'value' => function($data) {return null;}
-//                ],
                 [
                     'label' => 'Deposit Date',
                     'attribute' => 'id',
@@ -76,54 +71,10 @@ $this->params['breadcrumbs'][] = $this->title;
                         return $data->DepositDate;
                     }
                 ],
-//                [
-//                    'label' => 'Status',
-//                    'attribute' => 'id',
-//                    'value' => function($data) {return null;}
-//                ],
-                //'id',
-                //'aoi_id',
-                //'order_id',
-                //'order_doc_no',
-                //'order_doc_year',
-                // 'order_doc_prefix',
-                // 'order_status',
-                // 'satellite_id',
-                // 'acq_date_start',
-                // 'acq_date_end',
-                // 'quantity',
-                // 'unit',
-                // 'remark:ntext',
-                // 'attr_ta',
-                // 'attr_tl',
-                // 'attr_s',
-                // 'attr_pt',
-                // 'attr_ct',
-                // 'attr_ta_id',
-                // 'attr_tl_id',
-                // 'attr_s_id',
-                // 'attr_pt_id',
-                // 'attr_ct_id',
-                // 'is_ortho',
-                // 'is_rush',
-                // 'is_dem',
-                // 'created',
-                // 'modified',
-                // 'wo_doc_year',
-                // 'wo_doc_no',
-                // 'wo_created',
-                // 'wo_modified',
-                // 'tpt_status',
-                // 'tpt_user_id',
-                // 'tpt_user_name',
-                // 'customer_id',
-                // 'customer_name',
-                // 'customer_name_th',
-                // 'project_name',
                 [
                     'class' => 'prawee\grid\ActionColumn',
                     'template' => '{shape}  {export}  {info} {orbit} {import}',
-                    'header'=>'Shape|Export|Info|Orbit|Import',
+                    'header'=>'Action & Infomation.',
                     'buttons' => [
                         'shape' => function($data) {
                             return Html::a(Icon::show('file-zip-o'),'#',[
