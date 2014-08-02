@@ -19,7 +19,7 @@ class Groupzone extends CGroupzone{
         $model->info_2=(string)$data->info_2;
         $model->info_3=(string)$data->info_3;
         $model->info_4=(string)$data->info_4;
-        $model->save();
+        $model->save(false);
         return $model->id;
     }
 
