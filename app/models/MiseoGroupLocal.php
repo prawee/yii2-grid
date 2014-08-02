@@ -23,8 +23,12 @@ class MiseoGroupLocal extends CMiseoGroupLocal{
             $model->type = (string) $data['type'];
             $model->status=(string) $data['status'];
             $model->image=(string) $data['image'];
-            $model->databasedata_id=(int)  Databasedata::insertGetId($data->DatabaseData);
-            $model->groupzone_id=(int)Groupzone::insertGetId($data->GroupZone);
+            if($data->DatabaseData){
+                $model->databasedata_id=(int)  Databasedata::insertGetId($data->DatabaseData);
+            }
+            if($data->GroupZone){
+                $model->groupzone_id=(int)Groupzone::insertGetId($data->GroupZone);
+            }
             $model->save();
             
             //Databasedata::updateXML($data->DatabaseData,$model->databasedata_id);
