@@ -7,7 +7,7 @@ class m140803_184438_trial_local_table extends Migration {
 
     public function up() {
         //2
-        /*$this->createTable('trial_status',[
+        $this->createTable('trial_status',[
             'id'=>  Schema::TYPE_PK,
             'name'=>  Schema::TYPE_STRING.'(128) NOT NULL',
         ]);
@@ -15,7 +15,7 @@ class m140803_184438_trial_local_table extends Migration {
         $this->insert('trial_status',['name'=>'PLANNED']);
         $this->insert('trial_status',['name'=>'PROGRAMMED']);
         $this->insert('trial_status',['name'=>'COMPLETED']);
-        $this->insert('trial_status',['name'=>'OUTOFDATE']);*/
+        $this->insert('trial_status',['name'=>'OUTOFDATE']);
         
         //1
         $this->createTable('trial_local',[
