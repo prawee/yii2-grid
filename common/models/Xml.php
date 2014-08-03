@@ -13,6 +13,7 @@ use Yii;
  * @property integer $user_id
  * @property integer $scene_id
  * @property integer $status
+ * @property integer $xml_type_id
  *
  * @property User $user
  */
@@ -33,7 +34,7 @@ class Xml extends \yii\db\ActiveRecord
     {
         return [
             [['name'], 'required'],
-            [['user_id', 'scene_id', 'status'], 'integer'],
+            [['user_id', 'scene_id', 'status', 'xml_type_id'], 'integer'],
             [['name', 'path'], 'string', 'max' => 255]
         ];
     }
@@ -50,6 +51,7 @@ class Xml extends \yii\db\ActiveRecord
             'user_id' => 'User Id',
             'scene_id' => 'Scene Id',
             'status' => 'Status',
+            'xml_type_id' => 'Xml Type Id',
         ];
     }
 
