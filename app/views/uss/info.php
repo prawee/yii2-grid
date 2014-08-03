@@ -89,7 +89,6 @@ Modal::begin([
                 ],
             ])
             ?>
-            <br>
             <?=
             Html::a(Icon::show('times') . 'Close', ['/uss/index'], [
                 'class' => 'btn btn-danger',

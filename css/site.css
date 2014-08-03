@@ -104,3 +104,19 @@ a.desc:after {
 .width-action{
     width:400px;
 }
+.usswo-index thead{
+    font-size: 12px;
+    font-weight: bold;
+}
+.usswo-index .table{
+    font-size: 12px;
+}
+.usswo-index .aoi{
+    width: 100px;
+}
+.usswo-index .rev_no{
+    width: 100px;
+}
+.usswo-index .conten_date{
+    width: 300px;
+}

@@ -33,8 +33,9 @@ $this->params['breadcrumbs'][] = $this->title;
             'columns' => [
                 ['class' => '\yii\grid\SerialColumn'],
                 ['class' => '\yii\grid\CheckboxColumn'],
-                'wo_doc_name',
-                'aoi_name',
+                //'wo_doc_name',
+                ['attribute'=>'wo_doc_name','label'=>'wo #'],
+                ['attribute'=>'aoi_name','label'=>'aoi_name','contentOptions'=>array('class'=>'aoi')],
                 [
                     'label'=>'Request Name',
                     'attribute'=>'id',
@@ -52,6 +53,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 [
                     'label' => 'Rev No.',
                     'attribute' => 'id',
+                    'contentOptions'=>array('class'=>'rev_no'),
                     'value' => function($data) {return null;}
                 ],
                 [
@@ -67,6 +69,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 [
                     'label' => 'Deposit Date',
                     'attribute' => 'id',
+                    'contentOptions'=>array('class'=>'conten_date'),
                     'value' => function($data) {
                         return $data->DepositDate;
                     }
