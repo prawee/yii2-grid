@@ -40,7 +40,7 @@ class XmlController extends Controller {
      * @return mixed
      */
     public function actionIndex($id) {
-        $type=Yii::$app->getRequest()->post('type');
+        $type=Yii::$app->getRequest()->get('type');
         $searchModel = new XmlSearch();
         $params=Yii::$app->request->queryParams;
         $params['XmlSearch']['scene_id']=$id;
@@ -70,6 +70,7 @@ class XmlController extends Controller {
      * @return mixed
      */
     public function actionCreate($id) {
+        $type=Yii::$app->getRequest()->get('type');
         $model = new Xml();
         if (Yii::$app->request->isPost) {
             $uploaded = UploadedFile::getInstance($model,'name');
@@ -81,7 +82,7 @@ class XmlController extends Controller {
             $model->user_id=Yii::$app->user->identity->id;
             $model->scene_id=$id;
             $model->status=0;
-            print_r($model->attributes);
+            $model->xml_type_id=$type;
             if ($model->validate() && $model->save()) {  
                 $uploaded->saveAs('uploads/xml/'.$model->name);
                 return $this->redirect(['index', 'id' => $id]);
@@ -124,6 +125,7 @@ class XmlController extends Controller {
     public function actionDelete() {
         $id=Yii::$app->getRequest()->get('id');
         $ref=Yii::$app->getRequest()->get('ref');
+        $type=Yii::$app->getRequest()->get('type');
         $model=$this->findModel($id);
         if ($model->name) {
             if (file_exists(Yii::getAlias('@urlUploads') . '/' . $model->name)) {
@@ -132,7 +134,7 @@ class XmlController extends Controller {
             }
         }
 
-        return $this->redirect(['index','id'=>$ref]);
+        return $this->redirect(['index','id'=>$ref,'type'=>$type]);
     }
 
     /**
