@@ -43,5 +43,11 @@ class USSWo extends ActiveRecord {
         $model = USSCustomer::find()->where(['id' => $this->customer_id])->one();
         return is_object($model) ? $model : null;
     }
+    public function getWoattribute(){
+        $model_task_wo_att = USSTaskwoattribute::findAll(['scene_id' => $this->id]);
+        //$model_wo_att = USSWoattribute::find()->where(['id' => $model_task_wo_att->wo_attribute_id])->all();
+        
+        return is_object($model_task_wo_att) ? $model_task_wo_att : null;
+    }
 
 }

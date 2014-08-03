@@ -112,7 +112,10 @@ a.desc:after {
     font-size: 12px;
 }
 .usswo-index .aoi{
-    width: 200px;
+    width: 300px;
+}
+.usswo-index .wo_id{
+    width: 250px;
 }
 .usswo-index .rev_no{
     width: 100px;
@@ -125,4 +128,8 @@ a.desc:after {
 }
 #content-modal .modal-body .table > thead > tr > th, .table > tbody > tr > th, .table > tfoot > tr > th, .table > thead > tr > td, .table > tbody > tr > td, .table > tfoot > tr > td {
     padding: 2px;
+}
+table.wo_attribute{width: 50%;}
+table.wo_attribute th{
+    width: 200px;
 }

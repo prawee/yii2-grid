@@ -21,7 +21,7 @@ $this->params['breadcrumbs'][] = $this->title;
 Modal::begin([
     'id' => 'content-modal',
     'header' => Icon::show('info') . '<b>Infomation</b>',
-    'options'=>array('class'=>'info'),
+    'options' => array('class' => 'info'),
     'closeButton' => [
         'aria-hidden' => 'true',
         'class' => 'hide',
@@ -70,7 +70,7 @@ Modal::begin([
                     //'wo_created',
                     [
                         'attribute' => 'wo_modified',
-                        'value' => substr($model->wo_modified,0,19),
+                        'value' => substr($model->wo_modified, 0, 19),
                     ],
                 //'tpt_status',
                 //'tpt_user_id',
@@ -82,14 +82,36 @@ Modal::begin([
                 ],
             ])
             ?>
+            <?php 
+                $woattribute = $model->woattribute;
+                //print_r($woattribute);
+            ?>
+            <?php if($woattribute){?>
+            <b>WO Attribute</b>
+            <table class="table table-striped table-bordered detail-view wo_attribute">
+                <tbody>
+                    <?php foreach($woattribute as $wo){
+                        echo "<tr>";
+                        echo "<th>".$wo->attr_name."</th>";
+                        echo "<td>".$wo->attr_value."</td>";
+                        echo "</tr>";
+                    }?>
+                </tbody>
+            </table>
+            <?php }else{echo "NULL";}?>
             <b>Customer Information:</b>
             <?php
             //print_r($model->customer);
             echo DetailView::widget([
                 'model' => $model->customer,
                 'attributes' => [
-                    ['attribute' => 'cus_name', 'label' => 'name'],
-                    ['attribute' => 'cus_department', 'label' => 'Department'],
+                    ['attribute' => 'cus_name_th', 'label' => 'Name(th)'],
+                    ['attribute' => 'cus_name', 'label' => 'Name'],
+                    ['attribute' => 'cus_email', 'label' => 'Email'],
+                    ['attribute' => 'cus_department_th', 'label' => 'Department(th)'],
+                    ['attribute' => 'cus_phone', 'label' => 'Phone'],
+                    ['attribute' => 'cus_fax', 'label' => 'Fax'],
+                    ['attribute' => 'cus_mobile', 'label' => 'Mobile'],
                 ],
             ])
             ?>

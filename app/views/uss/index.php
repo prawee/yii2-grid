@@ -34,7 +34,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 ['class' => '\yii\grid\SerialColumn'],
                 ['class' => '\yii\grid\CheckboxColumn'],
                 //'wo_doc_name',
-                ['attribute'=>'wo_doc_name','label'=>'wo #'],
+                ['attribute'=>'wo_doc_name','label'=>'wo #','contentOptions'=>array('class'=>'wo_id')],
                 ['attribute'=>'aoi_name','label'=>'AOI name','contentOptions'=>array('class'=>'aoi')],
                 [
                     'label'=>'Request Name',
