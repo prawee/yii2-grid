@@ -28,7 +28,9 @@ use Yii;
  * @property integer $parent_id
  *
  * @property Account[] $accounts
+ * @property Dailyplan[] $dailyplans
  * @property UserType $userType
+ * @property Xml[] $xmls
  */
 class User extends \yii\db\ActiveRecord
 {
@@ -98,8 +100,24 @@ class User extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
+    public function getDailyplans()
+    {
+        return $this->hasMany(Dailyplan::className(), ['user_id' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
     public function getUserType()
     {
         return $this->hasOne(UserType::className(), ['id' => 'user_type_id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getXmls()
+    {
+        return $this->hasMany(Xml::className(), ['user_id' => 'id']);
     }
 }

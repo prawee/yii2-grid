@@ -5,22 +5,19 @@ namespace common\models;
 use Yii;
 
 /**
- * This is the model class for table "downlink_station".
+ * This is the model class for table "trial_status".
  *
  * @property integer $id
  * @property string $name
- * @property integer $value
- *
- * @property Progzone[] $progzones
  */
-class DownlinkStation extends \yii\db\ActiveRecord
+class TrialStatus extends \yii\db\ActiveRecord
 {
     /**
      * @inheritdoc
      */
     public static function tableName()
     {
-        return 'downlink_station';
+        return 'trial_status';
     }
 
     /**
@@ -30,7 +27,6 @@ class DownlinkStation extends \yii\db\ActiveRecord
     {
         return [
             [['name'], 'required'],
-            [['value'], 'integer'],
             [['name'], 'string', 'max' => 128]
         ];
     }
@@ -43,15 +39,6 @@ class DownlinkStation extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'name' => 'Name',
-            'value' => 'Value',
         ];
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getProgzones()
-    {
-        return $this->hasMany(Progzone::className(), ['downlink_station_id' => 'id']);
     }
 }

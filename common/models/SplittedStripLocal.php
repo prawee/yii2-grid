@@ -18,7 +18,7 @@ use Yii;
  *
  * @property Databasedata $databasedata
  * @property Strips $strips
- * @property StripAccessLocal[] $stripAccessLocs
+ * @property StripAccessLocal[] $stripAccessLocals
  */
 class SplittedStripLocal extends \yii\db\ActiveRecord
 {
@@ -49,9 +49,9 @@ class SplittedStripLocal extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'databasedata_id' => 'Databasedata Id',
-            'strips_id' => 'Strips Id',
-            'scene_id' => 'Scene Id',
+            'databasedata_id' => 'Databasedata ID',
+            'strips_id' => 'Strips ID',
+            'scene_id' => 'Scene ID',
             'status' => 'Status',
             'type' => 'Type',
             'image' => 'Image',
@@ -78,7 +78,7 @@ class SplittedStripLocal extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getStripAccessLocs()
+    public function getStripAccessLocals()
     {
         return $this->hasMany(StripAccessLocal::className(), ['splitted_strip_local_id' => 'id']);
     }

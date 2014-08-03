@@ -48,10 +48,10 @@ class Xml extends \yii\db\ActiveRecord
             'id' => 'ID',
             'name' => 'Name',
             'path' => 'Path',
-            'user_id' => 'User Id',
-            'scene_id' => 'Scene Id',
+            'user_id' => 'User ID',
+            'scene_id' => 'Scene ID',
             'status' => 'Status',
-            'xml_type_id' => 'Xml Type Id',
+            'xml_type_id' => 'Xml Type ID',
         ];
     }
 

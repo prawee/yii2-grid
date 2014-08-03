@@ -55,9 +55,9 @@ class MiseoGroupLocal extends \yii\db\ActiveRecord
             'name' => 'Name',
             'version' => 'Version',
             'type' => 'Type',
-            'databasedata_id' => 'Databasedata Id',
-            'groupzone_id' => 'Groupzone Id',
-            'scene_id' => 'Scene Id',
+            'databasedata_id' => 'Databasedata ID',
+            'groupzone_id' => 'Groupzone ID',
+            'scene_id' => 'Scene ID',
             'status' => 'Status',
             'image' => 'Image',
         ];

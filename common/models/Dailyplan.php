@@ -46,7 +46,7 @@ class Dailyplan extends \yii\db\ActiveRecord
             'id' => 'ID',
             'name' => 'Name',
             'path' => 'Path',
-            'user_id' => 'User Id',
+            'user_id' => 'User ID',
             'status' => 'Status',
         ];
     }
