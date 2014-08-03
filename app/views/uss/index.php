@@ -35,7 +35,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 ['class' => '\yii\grid\CheckboxColumn'],
                 //'wo_doc_name',
                 ['attribute'=>'wo_doc_name','label'=>'wo #'],
-                ['attribute'=>'aoi_name','label'=>'aoi_name','contentOptions'=>array('class'=>'aoi')],
+                ['attribute'=>'aoi_name','label'=>'AOI name','contentOptions'=>array('class'=>'aoi')],
                 [
                     'label'=>'Request Name',
                     'attribute'=>'id',

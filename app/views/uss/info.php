@@ -21,6 +21,7 @@ $this->params['breadcrumbs'][] = $this->title;
 Modal::begin([
     'id' => 'content-modal',
     'header' => Icon::show('info') . '<b>Infomation</b>',
+    'options'=>array('class'=>'info'),
     'closeButton' => [
         'aria-hidden' => 'true',
         'class' => 'hide',

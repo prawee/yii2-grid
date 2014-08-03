@@ -112,11 +112,17 @@ a.desc:after {
     font-size: 12px;
 }
 .usswo-index .aoi{
-    width: 100px;
+    width: 200px;
 }
 .usswo-index .rev_no{
     width: 100px;
 }
 .usswo-index .conten_date{
     width: 300px;
+}
+#content-modal .modal-body {
+    font-size: 12px;
+}
+#content-modal .modal-body .table > thead > tr > th, .table > tbody > tr > th, .table > tfoot > tr > th, .table > thead > tr > td, .table > tbody > tr > td, .table > tfoot > tr > td {
+    padding: 2px;
 }
