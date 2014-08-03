@@ -5,26 +5,24 @@ namespace common\models;
 use Yii;
 
 /**
- * This is the model class for table "xml".
+ * This is the model class for table "dailyplan".
  *
  * @property integer $id
  * @property string $name
  * @property string $path
  * @property integer $user_id
- * @property integer $scene_id
  * @property integer $status
- * @property integer $xml_type_id
  *
  * @property User $user
  */
-class Xml extends \yii\db\ActiveRecord
+class Dailyplan extends \yii\db\ActiveRecord
 {
     /**
      * @inheritdoc
      */
     public static function tableName()
     {
-        return 'xml';
+        return 'dailyplan';
     }
 
     /**
@@ -34,7 +32,7 @@ class Xml extends \yii\db\ActiveRecord
     {
         return [
             [['name'], 'required'],
-            [['user_id', 'scene_id', 'status', 'xml_type_id'], 'integer'],
+            [['user_id', 'status'], 'integer'],
             [['name', 'path'], 'string', 'max' => 255]
         ];
     }
@@ -49,9 +47,7 @@ class Xml extends \yii\db\ActiveRecord
             'name' => 'Name',
             'path' => 'Path',
             'user_id' => 'User Id',
-            'scene_id' => 'Scene Id',
             'status' => 'Status',
-            'xml_type_id' => 'Xml Type Id',
         ];
     }
 

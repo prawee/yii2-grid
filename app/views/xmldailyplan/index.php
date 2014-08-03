@@ -7,8 +7,10 @@ Icon::map($this);
 use yii\bootstrap\Modal;
 use yii\widgets\Pjax;
 
+
 $this->title = 'Xmls';
 //$this->params['breadcrumbs'][] = $this->title;
+
 Modal::begin([
     'id' =>'content-modal',
     'header' => Icon::show('star') . '<b>XML Import</b>',
@@ -17,22 +19,14 @@ Modal::begin([
         'class'=>'hide',
     ]
 ]);
-
-$id=Yii::$app->getRequest()->get('id');
-$type=Yii::$app->getRequest()->get('type');
-switch ($type){
-    case '1': $back=['uss/index']; break;
-    case '2': $back=['dailyplan/index']; break;
-    default : $back=['cuf/index']; break;
-}
 ?>
 <div class="xml-index">
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a(Icon::show('plus').' Create', ['create','id'=>$id,'type'=>$type], ['class' => 'btn btn-success']) ?>
+        <?= Html::a(Icon::show('plus').'Create', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
-    <?php Pjax::begin(['enablePushState'=>false]); ?>
+
     <?=
     GridView::widget([
         'dataProvider' => $dataProvider,
@@ -89,11 +83,7 @@ switch ($type){
         ],
     ]);
     ?>
-    <?php Pjax::end()?>
-    <?= Html::a(Icon::show('times-circle').'Close',$back,[
-        'class' => 'btn btn-danger', 
-        'name' => 'assign-button',
-    ]) ?>
+
 </div>
 <?php
 Modal::end();

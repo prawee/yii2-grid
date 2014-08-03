@@ -20,7 +20,11 @@ class Groupzone extends CGroupzone{
         $model->info_3=(string)$data->info_3;
         $model->info_4=(string)$data->info_4;
         $model->save();
-        return $model->id;
+        if($model->id){
+            return $model->id;
+        }else{
+            return null;
+        }
     }
 
     public static function updateXML($data,$id){
