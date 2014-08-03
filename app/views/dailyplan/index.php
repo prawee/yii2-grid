@@ -2,44 +2,54 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
-
-/* @var $this yii\web\View */
-/* @var $searchModel app\models\PlanLocalSearch */
-/* @var $dataProvider yii\data\ActiveDataProvider */
+use kartik\icons\Icon;
+Icon::map($this);
+use yii\widgets\Pjax;
 
 $this->title = 'Plan Locals';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="plan-local-index">
-
-    <h1><?= Html::encode($this->title) ?></h1>
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a('Create Plan Local', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a(Icon::show('plus').'Upload New Plan', ['xmldailyplan/index'], ['class' => 'btn btn-success']) ?>
     </p>
-
-    <?= GridView::widget([
+    <?php Pjax::begin(['enablePushState'=>false]); ?>
+    <?=
+    GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
-
-            'id',
-            'name',
-            'databasedata_id',
-            'start_date',
-            'end_date',
-            // 'plan_status_id',
-            // 'attr_version',
-            // 'attr_image',
-            // 'attr_key',
-            // 'attr_status',
-            // 'attr_type',
-            // 'attr_lock',
-
-            ['class' => 'yii\grid\ActionColumn'],
+            [
+                'attribute'=>'start_date',
+                'header'=>'Plan Date Start',
+            ],
+            [
+                'class' => 'prawee\grid\ActionColumn',
+                'header'=>'Action',
+                'template'=>'{shape} {export}',
+                'buttons' => [
+                    'shape' => function($data) {
+                        return Html::a(Icon::show('file-zip-o'), '#', [
+                                    'data-pjax' => '0',
+                                    'title' => ' Shape ',
+                                    'class' => 'btn btn-xs btn-danger',
+                        ]);
+                    },
+                    'export' => function($data) {
+                        return Html::a(Icon::show('upload'), '#', [
+                                    'data-pjax' => '0',
+                                    'title' => ' Export ',
+                                    'class' => 'btn btn-xs btn-danger',
+                        ]);
+                    },
+                ],
+                'options'=>['style'=>'width:70px;']
+            ],
         ],
-    ]); ?>
-
+    ]);
+    ?>
+    <?php Pjax::end();?>
 </div>
