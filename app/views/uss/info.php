@@ -49,8 +49,8 @@ Modal::begin([
                     //'unit',
                     'remark:ntext',
                     //'attr_ta',
-                    ['attribute'=>'attr_tl','label'=>'Priority'],
-                    'attr_s',
+                    ['attribute' => 'attr_tl', 'label' => 'Priority'],
+                    ['attribute' => 'attr_s', 'label' => 'Sensor'],
                     //'attr_pt',
                     //'attr_ct',
                     //'attr_ta_id',
@@ -59,7 +59,7 @@ Modal::begin([
                     //'attr_pt_id',
                     //'attr_ct_id',
                     //'is_ortho',
-                    'is_rush',
+                    ['attribute' => 'is_rush', 'label' => 'Rush'],
                     //'is_dem',
                     //'created',
                     //'modified',
@@ -67,14 +67,28 @@ Modal::begin([
                     //'wo_doc_year',
                     'wo_doc_no',
                     //'wo_created',
-                    'wo_modified',
-                    //'tpt_status',
-                    //'tpt_user_id',
-                    //'tpt_user_name',
-                    //'customer_id',
-                    //'customer_name',
-                    //'customer_name_th',
-                    //'project_name',
+                    [
+                        'attribute' => 'wo_modified',
+                        'value' => substr($model->wo_modified,0,19),
+                    ],
+                //'tpt_status',
+                //'tpt_user_id',
+                //'tpt_user_name',
+                //'customer_id',
+                //'customer_name',
+                //'customer_name_th',
+                //'project_name',
+                ],
+            ])
+            ?>
+            <b>Customer Information:</b>
+            <?php
+            //print_r($model->customer);
+            echo DetailView::widget([
+                'model' => $model->customer,
+                'attributes' => [
+                    ['attribute' => 'cus_name', 'label' => 'name'],
+                    ['attribute' => 'cus_department', 'label' => 'Department'],
                 ],
             ])
             ?>
