@@ -105,7 +105,7 @@ $this->params['breadcrumbs'][] = $this->title;
                             ]);
                         },
                         'import' => function($url,$model) {
-                            return Html::a(Icon::show('download'),['/xml/index','id'=>$model->id],[
+                            return Html::a(Icon::show('download'),['/xml/index','id'=>$model->id,'type'=>1],[
                                 'data-pjax'=>'0',
                                 'title'=>' Import ',
                                 'class'=>'btn btn-xs btn-success',
