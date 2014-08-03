@@ -17,6 +17,8 @@ use Yii;
  * @property integer $organism
  * @property string $delta_lat_north
  * @property string $delta_lat_south
+ * @property integer $strip_satellite
+ * @property integer $strip_orbit_phase
  *
  * @property MiseoGroupLocal[] $miseoGroupLocals
  * @property MissionLocal[] $missionLocals
@@ -38,7 +40,7 @@ class Databasedata extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['nb_summits_cov', 'organism'], 'integer'],
+            [['nb_summits_cov', 'organism', 'strip_satellite', 'strip_orbit_phase'], 'integer'],
             [['delta_lat_north', 'delta_lat_south'], 'number'],
             [['name', 'miseo_reference', 'miseo_group', 'miseo_template'], 'string', 'max' => 255],
             [['stereo_type'], 'string', 'max' => 1]
@@ -61,6 +63,8 @@ class Databasedata extends \yii\db\ActiveRecord
             'organism' => 'Organism',
             'delta_lat_north' => 'Delta Lat North',
             'delta_lat_south' => 'Delta Lat South',
+            'strip_satellite' => 'Strip Satellite',
+            'strip_orbit_phase' => 'Strip Orbit Phase',
         ];
     }
 
