@@ -16,7 +16,7 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="usswo-index " >
     <p>
-        <?= Html::a(Icon::show('plus').' Upload New Plan', ['xmldailyplan/index','type'=>2], ['class' => 'btn btn-success']) ?>
+        <?= Html::a(Icon::show('plus').' Upload New Plan', ['xmldailyplan/index'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?php //echo $this->render('_search', ['model' => $searchModel]);   ?>
