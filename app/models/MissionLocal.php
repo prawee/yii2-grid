@@ -53,4 +53,30 @@ class MissionLocal extends CMissionLocal{
             }
         }
     }
+    
+    public static function insertGetId($data){
+        if(is_object($data)){
+            $model=new self;
+            $model->name =(string)$data['name'];
+            if($data->DatabaseData){
+                $model->databasedata_id=(int)Databasedata::insertGetId($data->DatabaseData);
+            }
+            if($data->ProgZone){
+                $model->progzone_id=(int)  Progzone::insertGetId($data->ProgZone);
+            }
+            if($data->Definition){
+                $model->definition_id=(int) Definition::insertGetId($data->Definition);
+            }
+            if($data->Criteria){
+                $model->criteria_id=(int) Criteria::insertGetId($data->Criteria);
+            }
+            $model->version=(string)$data['version'];
+            $model->image=(string)$data['image'];
+            $model->type=(string)$data['type'];
+            $model->status=(string)$data['status'];
+            $model->save();
+            return $model->id;
+        }
+        return null;
+    }
 }
