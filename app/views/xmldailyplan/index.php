@@ -26,7 +26,7 @@ Modal::begin([
     <p>
         <?= Html::a(Icon::show('plus').'Create', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
-
+    <?php Pjax::begin(['enablePushState'=>false]); ?>
     <?=
     GridView::widget([
         'dataProvider' => $dataProvider,
@@ -83,7 +83,7 @@ Modal::begin([
         ],
     ]);
     ?>
-
+    <?php Pjax::end()?>
 </div>
 <?php
 Modal::end();
