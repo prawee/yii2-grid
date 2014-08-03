@@ -98,7 +98,7 @@ Modal::begin([
                     }?>
                 </tbody>
             </table>
-            <?php }else{echo "NULL";}?>
+            <?php }?>
             <b>Customer Information:</b>
             <?php
             //print_r($model->customer);
