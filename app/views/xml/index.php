@@ -61,7 +61,8 @@ switch ($type){
                     'import' => function($url,$model) {
                         if($model->status===0){
                             $ref=Yii::$app->getRequest()->get('id');
-                            $url=['import','id'=>$model->id,'ref'=>$ref];
+                            $type=Yii::$app->getRequest()->get('type');
+                            $url=['import','id'=>$model->id,'ref'=>$ref,'type'=>$type];
                             return Html::a('<span class="glyphicon glyphicon-upload btn btn-xs btn-success"></span>',$url,[
                                 'data-pjax'=>'0',
                                 'title'=>' Import ',
@@ -73,7 +74,8 @@ switch ($type){
                     },
                     'delete'=>function($url,$model){
                         $ref=Yii::$app->getRequest()->get('id');
-                        $url=['delete','id'=>$model->id,'ref'=>$ref];
+                        $type=Yii::$app->getRequest()->get('type');
+                        $url=['delete','id'=>$model->id,'ref'=>$ref,'type'=>$type];
                         return Html::a('<span class="glyphicon glyphicon-trash btn btn-xs btn-danger"></span>', $url, [
                             'title' => Yii::t('yii', 'Delete'),
                             'data-confirm' => Yii::t('yii', 'Are you sure you want to delete this item?'),

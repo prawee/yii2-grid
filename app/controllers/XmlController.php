@@ -85,7 +85,7 @@ class XmlController extends Controller {
             $model->xml_type_id=$type;
             if ($model->validate() && $model->save()) {  
                 $uploaded->saveAs('uploads/xml/'.$model->name);
-                return $this->redirect(['index', 'id' => $id]);
+                return $this->redirect(['index', 'id' => $id,'type'=>$type]);
             }else{
                 return $this->render('create', [
                         'model' => $model,
@@ -159,6 +159,7 @@ class XmlController extends Controller {
     public function actionImport(){
         $id=Yii::$app->getRequest()->get('id');
         $ref=Yii::$app->getRequest()->get('ref');
+        $type=Yii::$app->getRequest()->get('type');
         $model=$this->findModel($id);
         
         
@@ -174,7 +175,7 @@ class XmlController extends Controller {
         }
         $model->status=1;
         $model->save();
-        return $this->redirect(['index','id'=>$ref]);
+        return $this->redirect(['index','id'=>$ref,'type'=>$type]);
     }
 
 }
