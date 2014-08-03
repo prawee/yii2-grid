@@ -38,4 +38,10 @@ class USSWo extends ActiveRecord {
         $model = MiseoGroupLocal::find()->where(['scene_id' => $this->id])->one();
         return is_object($model) ? $model->name : null;
     }
+
+    public function getCustomer() {
+        $model = USSCustomer::find()->where(['id' => $this->customer_id])->one();
+        return is_object($model) ? $model : null;
+    }
+
 }

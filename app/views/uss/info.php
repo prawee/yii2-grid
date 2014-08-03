@@ -78,6 +78,18 @@ Modal::begin([
                 ],
             ])
             ?>
+            <b>Customer Information:</b>
+            <?php
+            //print_r($model->customer);
+            echo DetailView::widget([
+                'model' => $model->customer,
+                'attributes' => [
+                    ['attribute'=>'cus_name','label'=>'name'],
+                    ['attribute'=>'cus_department','label'=>'Department'],
+                ],
+            ])
+            ?>
+            <br>
             <?=
             Html::a(Icon::show('times') . 'Close', ['/uss/index'], [
                 'class' => 'btn btn-danger',
