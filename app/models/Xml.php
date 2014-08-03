@@ -11,7 +11,7 @@ class Xml extends CXml{
     public function rules() {
         return [
             [['name'], 'file', 'extensions' =>'xml'],
-            [['user_id', 'scene_id', 'status'], 'integer'],
+            [['user_id', 'scene_id', 'status','xml_type_id'], 'integer'],
             [['name', 'path'], 'string', 'max' => 255]
         ];
     }
