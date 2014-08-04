@@ -10,6 +10,7 @@ use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use auth\Asset;
 use auth\components\AccessControl;
+use auth\models\AssignmentForm;
 
 /**
  * UserController implements the CRUD actions for User model.
@@ -220,6 +221,53 @@ class UserController extends Controller {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
+        }
+    }
+    
+    /*
+     * 2014-08-04
+     */
+    public function actionPermission($id){
+        $user = User::findOne($id);
+        $model = new AssignmentForm();
+
+        if (isset($user->id)):
+            return $this->render('permission', [
+                        'user' => $user,
+                        'model' => $model,
+            ]);
+        else:
+            $this->redirect(['index']);
+        endif;
+    }
+    public function actionAssignment(){
+        $key=Yii::$app->getRequest()->get('key');
+        $type=Yii::$app->getRequest()->get('type');
+        $userId=Yii::$app->getRequest()->get('userid');
+        
+        $auth = Yii::$app->authManager;
+        $auth->init();
+
+        $role = $auth->getRole($key);
+        $permission = $auth->getPermission($key);
+
+        $item = is_object($role) ? $role : $permission;
+
+        if (is_object($item) && isset($userId)) {
+            if ($type === 'true'):
+                //Yii::$app->getSession()->setFlash('info-modal','Adding '.$item->name);
+                $chkAuth = $auth->getAssignment($item->name, $userId);
+                //!isset($chkAuth->roleName)?$auth->assign($item,$userId):'';
+                if (!isset($chkAuth->roleName)):
+                    Yii::$app->getSession()->setFlash('success-modal', 'Added ' . $item->name . ' Completed.');
+                    $auth->assign($item, $userId);
+                else:
+                    Yii::$app->getSession()->setFlash('info-modal', 'Exist data.');
+                endif;
+            else:
+                Yii::$app->getSession()->setFlash('error-modal', 'Deleted ' . $item->name . ' Already!');
+                $auth->revoke($item, $userId);
+            endif;
         }
     }
 
