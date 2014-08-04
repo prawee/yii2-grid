@@ -50,7 +50,7 @@ $this->params['breadcrumbs'][] = $this->title;
             [
                 'class' => 'prawee\grid\ActionColumn',
                 'template'=>'{user} {permission} {export} {update} {delete}',
-                'options'=>['style'=>'width:160px;'],
+                'options'=>['style'=>'width:145px;'],
                 'buttons'=>[
                     'user'=>function($url,$data){
                         return Html::a('<span class="glyphicon glyphicon-user btn btn-xs btn-success"></span>',['child','id'=>$data->id],[
