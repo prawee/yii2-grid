@@ -12,6 +12,8 @@ use auth\Asset;
 use yii\web\UploadedFile;
 use app\models\PlanLocal;
 use app\models\MiseoGroupLocal;
+use app\models\MissionLocal;
+use app\models\SplittedStripLocal;
 
 /**
  * XmldailyplanController implements the CRUD actions for Xml model.
@@ -160,23 +162,34 @@ class XmldailyplanController extends Controller {
         if (is_object($xml)) {
             foreach ($xml as $key => $data) {
                 if ($data['DBTable']=='PLAN_LOCAL') {
-                    //PlanLocal::insertGetId($data);
+                    PlanLocal::insertGetId($data);
                 } else {
-                    echo '<br/>==GROUPS==';
-                    //MiseoGroupLocal::insertGetId($data);
+                    //echo '<br/>==GROUPS';
+                    MiseoGroupLocal::insertGetId($data);
                     foreach($data->Groups as $keygroups=>$groups){
                         foreach($groups as $keygroup=>$group){
                             if($group['DBTable']){
-                                echo '<br/>==GROUP==';
-                                //MiseoGroupLocal::insertGetId($group);
+                                //echo '<br/>===GROUP';
+                                MiseoGroupLocal::insertGetId($group);
                                 foreach($group->Groups as $keysubgroups => $subgroups){
                                     foreach ($subgroups as $keysubgroup => $subgroup){
                                         if($subgroup['DBTable']){
-                                            echo '<br/>==SUB-GROUP==';
-                                            //MiseoGroupLocal::insertGetId($subgroup);
+                                            //echo '<br/>====SUB-GROUP';
+                                            MiseoGroupLocal::insertGetId($subgroup);
                                             foreach($subgroup->Requests as $keyrequests=>$requests){
                                                 foreach($requests as $keyrequest=>$request){
-                                                    echo '<pre>' . print_r($request, true) . '</pre>';
+                                                    if($request['DBTable']){
+                                                        //echo '<br/>=====MISSION';
+                                                        MissionLocal::insertGetId($request);
+                                                        foreach($request->STRIPS as $keystrips=>$strips){
+                                                            foreach($strips as $keystrip=>$strip){
+                                                                if($strip['DBTable']){
+                                                                    //echo '<br/>======SPLITTED-STRIP-LOCAL';
+                                                                    SplittedStripLocal::insertGetId($strip);
+                                                                }
+                                                            }
+                                                        }//strips
+                                                    }
                                                 }
                                             }//requests
                                         }
@@ -189,16 +202,8 @@ class XmldailyplanController extends Controller {
                 
             }
         }
-        //if(is_object($xml)){
-            //MiseoGroupLocal::updateBySceneId($xml,$ref);
-            //MissionLocal::updateBySceneId($xml->Requests,$ref);
-            //SplittedStripLocal::updateBySceneId($xml->Requests,$ref);
-            //MissionLocal::insertByLoop($xml->Requests,$ref);
-            //SplittedStripLocal::insertByLoop($xml->Requests,$ref);
-        //}
-        //$model->status=1;
+        $model->status=1;
         $model->save();
-        exit;
         return $this->redirect(['index']);
     }
 
