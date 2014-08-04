@@ -19,7 +19,7 @@ $this->title = 'Permission Management';
 $data = null;
 $items= null;
 foreach ($auth->getRoles() as $role) {
-    $items['title'] = ucfirst($role->name);
+    $items['title'] = ucfirst($role->description);
     $items['key'] = $role->name;
     $items['folder'] = true;
 
