@@ -75,8 +75,8 @@ Modal::begin([
                             'data-pjax' => '0',
                         ]);
                     }
-                ]
-                
+                ],
+                'options'=>['style'=>'width:70px;'],
             ],
         ],
     ]);
