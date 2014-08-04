@@ -26,9 +26,9 @@ use Yii;
  * @property integer $target_status_id
  * @property string $lat_center
  * @property string $lon_center
- * @property double $altitude_center
- * @property double $strip_length
- * @property double $strip_width
+ * @property string $altitude_center
+ * @property string $strip_length
+ * @property string $strip_width
  * @property string $lat_corner_nw
  * @property string $lon_corner_nw
  * @property string $altitude_nw
@@ -46,6 +46,7 @@ use Yii;
  * @property string $gain3
  * @property string $gain4
  * @property integer $filenb
+ * @property integer $trial_local_id
  */
 class TargetStripLocal extends \yii\db\ActiveRecord
 {
@@ -64,11 +65,13 @@ class TargetStripLocal extends \yii\db\ActiveRecord
     {
         return [
             [['attr_name'], 'required'],
-            [['attr_c1', 'attr_c2', 'attr_c3', 'attr_c4', 'rev_no', 'target_status_id', 'filenb'], 'integer'],
-            [['lat_center', 'lon_center', 'altitude_center', 'strip_length', 'strip_width', 'lat_corner_nw', 'lon_corner_nw', 'altitude_nw', 'lat_corner_ne', 'lon_corner_ne', 'altitude_ne', 'lat_corner_se', 'lon_corner_se', 'altitude_se', 'lat_corner_sw', 'lon_corner_sw', 'altitude_sw'], 'number'],
+            [['attr_c1', 'attr_c2', 'attr_c3', 'attr_c4', 'rev_no', 'target_status_id', 'filenb', 'trial_local_id'], 'integer'],
+            [['lat_corner_se', 'lon_corner_se', 'altitude_se'], 'number'],
             [['attr_name', 'miseo_reference', 'miseo_group', 'miseo_template', 'plan_id'], 'string', 'max' => 255],
             [['attr_status', 'attr_type', 'attr_image'], 'string', 'max' => 45],
-            [['satellite', 'phase', 'gain1', 'gain2', 'gain3', 'gain4'], 'string', 'max' => 1]
+            [['satellite', 'phase'], 'string', 'max' => 1],
+            [['lat_center', 'lon_center', 'altitude_center', 'strip_length', 'strip_width', 'lat_corner_nw', 'lon_corner_nw', 'altitude_nw', 'lat_corner_ne', 'lon_corner_ne', 'altitude_ne', 'lat_corner_sw', 'lon_corner_sw', 'altitude_sw'], 'string', 'max' => 100],
+            [['gain1', 'gain2', 'gain3', 'gain4'], 'string', 'max' => 20]
         ];
     }
 
@@ -117,6 +120,7 @@ class TargetStripLocal extends \yii\db\ActiveRecord
             'gain3' => 'Gain3',
             'gain4' => 'Gain4',
             'filenb' => 'Filenb',
+            'trial_local_id' => 'Trial Local ID',
         ];
     }
 }
