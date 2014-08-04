@@ -19,7 +19,7 @@ $this->params['breadcrumbs'][] = $this->title;
     GridView::widget([
         'id'=>'dailyplan-grid',
         'dataProvider' => $dataProvider,
-        'filterModel' => $searchModel,
+        //'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
             ['class' => 'yii\grid\CheckboxColumn'],
