@@ -240,6 +240,19 @@ class UserController extends Controller {
             $this->redirect(['index']);
         endif;
     }
+    public function actionPermissionChild($id){
+        $user = User::findOne($id);
+        $model = new AssignmentForm();
+
+        if (isset($user->id)):
+            return $this->render('permission-child', [
+                        'user' => $user,
+                        'model' => $model,
+            ]);
+        else:
+            $this->redirect(['index']);
+        endif;
+    }
     public function actionAssignment(){
         $key=Yii::$app->getRequest()->get('key');
         $type=Yii::$app->getRequest()->get('type');
