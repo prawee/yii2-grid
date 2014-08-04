@@ -5,7 +5,7 @@ use yii\bootstrap\ButtonGroup;
 use kartik\widgets\DatePicker;
 use kartik\icons\Icon;
 Icon::map($this);
-use yii\web\JsExpression;
+//use yii\web\JsExpression;
 ?>
 <div class="plan-local-filter">
     <div class="col-xs-2 well well-sm">
