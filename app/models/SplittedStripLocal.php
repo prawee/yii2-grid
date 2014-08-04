@@ -58,5 +58,31 @@ class SplittedStripLocal extends CSplittedStripLocal {
             }
         }
     }
+    
+    public static function insertGetId($data){
+        //echo '<pre>'.print_r($data,true).'</pre>';
+        if(is_object($data)){
+            $model=new self;
+            $model->name=(string)$data['name'];
+            $model->image=(string)$data['image'];
+            $model->type=(string)$data['type'];
+            $model->status=(string)$data['status'];
+            if($data->DatabaseData){
+                $model->databasedata_id=(int) Databasedata::insertGetId($data->DatabaseData);
+            }
+            if($data->Definition){
+                $model->strips_id=(int)  Strips::insertGetId($data->Definition);
+            }
+            $model->save();
+            
+            if($data->Passes){
+                StripAccessLocal::insertBySplitted($data->Passes, $model->id);
+            }
+            if($data->Trials){
+                TrialLocal::insertGetId($data->Trials);
+            }
+        }
+        return null;
+    }
 
 }
