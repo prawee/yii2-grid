@@ -47,12 +47,12 @@ class TrialLocal extends \yii\db\ActiveRecord
     {
         return [
             [['attr_name'], 'required'],
-            [['medium_post_x', 'medium_post_y', 'medium_post_z', 'roll', 'pitch'], 'number'],
             [['trial_status_id', 'orbit_cycle', 'cloud_coverage'], 'integer'],
             [['start_acqu_date', 'stop_acqu_date'], 'safe'],
             [['attr_name', 'miseo_reference', 'miseo_group', 'miseo_template', 'plan_id'], 'string', 'max' => 255],
             [['attr_lock', 'satellite', 'luminosity'], 'string', 'max' => 1],
-            [['attr_image', 'attr_type', 'attr_status'], 'string', 'max' => 45]
+            [['attr_image', 'attr_type', 'attr_status'], 'string', 'max' => 45],
+            [['medium_post_x', 'medium_post_y', 'medium_post_z', 'roll', 'pitch'], 'string', 'max' => 100]
         ];
     }
 
