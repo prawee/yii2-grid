@@ -65,7 +65,8 @@ $this->params['breadcrumbs'][] = $this->title;
                         ]);
                     },
                     'permission'=>function($url,$data){
-                        return Html::a('<span class="glyphicon glyphicon-check btn btn-xs btn-success"></span>','#',[
+                        $url=['auth/user/permission','id'=>$data->id];
+                        return Html::a('<span class="glyphicon glyphicon-check btn btn-xs btn-success"></span>',$url,[
                             'title'=>'Permission',
                             'data-pjax'=>'0'
                         ]);
