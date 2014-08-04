@@ -44,7 +44,7 @@ Modal::begin([
             [
                 'class' => 'prawee\grid\ActionColumn',
                 'template' => '{update} {delete}',
-                'options' => ['style' => 'width:70px;'],
+                'options' => ['style' => 'width:60px;'],
                 'buttons'=>[
                     'update'=>function($url,$data){
                         return Html::a('<span class="glyphicon glyphicon-edit btn btn-xs btn-warning"></span>',['update-admin','id'=>$data->id],[
