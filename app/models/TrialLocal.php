@@ -45,7 +45,18 @@ class TrialLocal extends CTrialLocal {
                         $model->save();
                         //print_r($model->errors);
                         //return $model->id;
+                        
+                        foreach($data->TargetArray as $keytargets=>$targets){
+                            foreach($targets as $keytarget=>$target){
+                                if($target['DBTable']){
+                                    //echo '<pre>' . print_r($target, true) . '</pre>';
+                                    TargetStripLocal::insertGetId($target,$model->id);
+                                }
+                            }
+                        }
+                        
                     }
+                    
                 }
             }
         }
