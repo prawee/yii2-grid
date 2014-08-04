@@ -60,7 +60,7 @@ Modal::begin([
             [
                 'class' => 'prawee\grid\ActionColumn',
                 'template' => '{permission} {export} {update} {delete}',
-                'options' => ['style' => 'width:130px;'],
+                'options' => ['style' => 'width:115px;'],
                 'buttons' => [
                     'export' => function($url, $data) {
                         return Html::a('<span class="glyphicon glyphicon-upload btn btn-xs btn-info"></span>', '#', [
