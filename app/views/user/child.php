@@ -47,16 +47,6 @@ Modal::begin([
             'telephone',
             'email:email',
             'nation',
-            // 'role',
-            // 'status',
-            // 'created',
-            // 'modified',
-            // 'last_login',
-            // 'user_type_id',
-            // 'address:ntext',
-            // 'organization',
-            // 'expired_date',
-            // 'parent_id',
             [
                 'class' => 'prawee\grid\ActionColumn',
                 'template' => '{permission} {export} {update} {delete}',
@@ -69,7 +59,9 @@ Modal::begin([
                         ]);
                     },
                     'permission' => function($url, $data) {
-                        return Html::a('<span class="glyphicon glyphicon-check btn btn-xs btn-success"></span>', '#', [
+                        $ref=Yii::$app->getRequest()->get('id');
+                        $url=['user/permission-child','id'=>$data->id,'ref'=>$ref];
+                        return Html::a('<span class="glyphicon glyphicon-check btn btn-xs btn-success"></span>',$url, [
                                     'title' => 'Permission',
                                     'data-pjax' => '0'
                         ]);
