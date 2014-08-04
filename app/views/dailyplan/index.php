@@ -17,6 +17,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php Pjax::begin(['enablePushState' => false]); ?>
     <?=
     GridView::widget([
+        'id'=>'dailyplan-grid',
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [

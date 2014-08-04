@@ -5,6 +5,7 @@ use yii\bootstrap\ButtonGroup;
 use kartik\widgets\DatePicker;
 use kartik\icons\Icon;
 Icon::map($this);
+use yii\web\JsExpression;
 ?>
 <div class="plan-local-filter">
     <div class="col-xs-2 well well-sm">
@@ -18,8 +19,22 @@ Icon::map($this);
         <p style="margin-top:15px;">
             <?php
             echo DatePicker::widget([
-
-                'name' => 'plan_date'
+                'model'=>$model,
+                'attribute' => 'start_date',
+                'options' => [
+                    'readonly' =>false,
+                    'placeholder'=>'Plan Date',
+                ],
+                'pluginOptions' => [
+                    'autoclose' => true,
+                    'format' => 'yyyy-mm-dd',
+                ],
+                'pluginEvents'=>[
+                    'changeDate'=>"function(e){ 
+                        //$.fn.yiiGridView.update('#dailyplan-grid');
+                        $.pjax({container: '#dailyplan-grid'})
+                     }"
+                ]
             ]);
             ?>
         </p>
