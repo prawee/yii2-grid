@@ -14,8 +14,9 @@ Icon::map($this);
 $this->title = 'Mail';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
+<?php echo $this->render('_search-manual', ['model' => $searchModel]);   ?>
+<div class="clearfix"></div>
 <div class="usswo-index " >
-    <?php //echo $this->render('_search', ['model' => $searchModel]);   ?>
     <div class="scrollspy-board" data-spy="scroll" data-offset="0">
         <?php
         Pjax::begin([
