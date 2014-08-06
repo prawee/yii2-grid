@@ -16,17 +16,17 @@ Icon::map($this);
         <b>Select Data</b>
         <p class="margin-top:15px;">
         <div class="row">
-            <div class="col-xs-4 col-sm-4">
+            <div class="col-xs-4 col-sm-4 bg-danger">
                 <select class="form-control col-xs-3">
                     <option>==Distributor==</option>
                 </select>
             </div>
-            <div class="col-xs-4 col-sm-4">
+            <div class="col-xs-4 col-sm-4 bg-success">
                 <select class="form-control col-xs-3">
                     <option>==Client==</option>
                 </select>
             </div>
-            <div class="col-xs-4 col-sm-4">
+            <div class="col-xs-4 col-sm-4 bg-info">
                 <select class="form-control col-xs-3">
                     <option>==XML Name==</option>
                 </select>
@@ -34,51 +34,56 @@ Icon::map($this);
         </div>
         </p>
     </div>
-    <div class="col-sm-7 well well-sm">
+    <div class="col-md-7">
         <div class="row">
-            <div class="col-xs-6 col-sm-6">
-                <p class="text-left"><b>Date Selection</b></p>
-                <div class="col-xs-3 col-sm-6 bg-danger">
-                    <div class="row">
-                    <?=ButtonGroup::widget([
-                        'id'=>'uss-date-filter',
+            <div class="col-xs-6 well well-sm">
+                <p class="text-left"><b>Data Selection</b></p>
+                <div class="bg-info">
+                <p style="margin-top:15px;">
+                    <?php
+                    $picker=DatePicker::widget([
+                                'name' => 'date',
+                                'options' => [
+                                    'style'=>'width:100%;'
+                                ]
+                            ]);
+                    echo ButtonGroup::widget([
+                        //'options' => ['class' => 'col-xs-12'],
                         'buttons' => [
                             [
-                                'label' => 'All Day', 
+                                'label' => 'a', 
                                 'options' => [
-                                    'class' => 'btn-default col-sm-5'
+                                    'class' => 'btn-default col-xs-4'
                                 ]
                             ],
                             [
-                                'label' => 'Choose Date',
+                                'label' => 'b',
                                 'options' => [
-                                    'class' => 'btn-default col-sm-7'
+                                    'class' => 'btn-default col-xs-4'
                                 ]
-                            ],           
+                            ],
+                            [
+                                'label' => 'c',
+                                'options' => [
+                                    'class' => 'btn-default col-xs-4'
+                                ]
+                            ],
+                            $picker
+                            
                         ],
                         'encodeLabels' => false,
                     ]);
+                    
                     ?>
-                    </div>
-                </div>
-                <div class="col-xs-3 col-sm-6 bg-success">
-                    <div class="row">
-                    <?=DatePicker::widget([
-                                'name' => 'date',
-                                'options' => [
-                                    'class'=>'col-sm-12'
-                                ]
-                            ]);
-                    ?>
-                    </div>
+                </p>
                 </div>
             </div>
-            <div class="col-xs-6 col-sm-6">
+            <div class="col-md-6 well well-sm text-center">
                 <p class="text-left"><b>Tool</b></p>
-                <p style="margin-top:10px;">
+                <p style="margin-top:15px;">
                     <?php
                     echo ButtonGroup::widget([
-                        'id'=>'uss-tools-filter',
+                        //'options' => ['class' => 'col-sm-12'],
                         'buttons' => [
                             [
                                 'label' => Icon::show('times') . 'Remove',
@@ -99,3 +104,4 @@ Icon::map($this);
         </div>
     </div>
 </div>
+
