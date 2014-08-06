@@ -63,13 +63,18 @@ Icon::map($this);
                 </div>
                 <div class="col-xs-3 col-sm-6 bg-success">
                     <div class="row">
-                    <?=DatePicker::widget([
-                                'name' => 'date',
-                                'options' => [
-                                    'class'=>'col-sm-12'
-                                ]
-                            ]);
-                    ?>
+                        <?=
+                        DatePicker::widget([
+                            'name' => 'date',
+                            'options' => [
+                                'class' => 'col-sm-12'
+                            ],
+                            'pluginOptions' => [
+                                'autoclose' => true,
+                                'format' => 'yyyy-mm-dd',
+                            ],
+                        ]);
+                        ?>
                     </div>
                 </div>
             </div>
