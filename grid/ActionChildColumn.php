@@ -9,8 +9,9 @@ namespace prawee\grid;
 
 use Yii;
 use yii\helpers\Html;
+use yii\grid\ActionColumn;
 
-class ActionChildColumn extends \yii\grid\ActionColumn {
+class ActionChildColumn extends ActionColumn {
 
     protected function initDefaultButtons() {
         if (!isset($this->buttons['view'])) {
