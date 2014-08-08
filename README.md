@@ -52,3 +52,16 @@ on gridview
 ],
 ...
 ```
+
+support multi param
+```php
+...
+[
+    'class'=>'prawee\grid\ActionChildColumn',
+    'params'=>[
+        'ref'=>Yii::$app->getRequest()->get('id'),
+        'station'=>2,
+    ],
+],
+...
+```
