@@ -1,6 +1,6 @@
 <?php
 
-use yii\db\Schema;
+//use yii\db\Schema;
 use yii\db\Migration;
 
 class m140810_123649_clear_request_table extends Migration
@@ -8,7 +8,7 @@ class m140810_123649_clear_request_table extends Migration
     public function up()
     {
         $this->dropTable('miseo_group_local');
-        $this->dropTable('misson_local');
+        $this->dropTable('mission_local');
         $this->dropTable('plan_local');
         $this->dropTable('strip_access_local');
         $this->dropTable('splitted_strip_local');
