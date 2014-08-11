@@ -2,35 +2,78 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
+use kartik\icons\Icon;
 
-/* @var $this yii\web\View */
-/* @var $searchModel app\models\SceneSearch */
-/* @var $dataProvider yii\data\ActiveDataProvider */
+Icon::map($this);
 
-$this->title = 'Scenes';
+use yii\widgets\Pjax;
+
+$this->title = 'Request Analysis';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
+<?php echo $this->render('_search-manual', ['model' => $searchModel]); ?>
+<div class="clearfix"></div>
 <div class="scene-index">
-
-    <h1><?= Html::encode($this->title) ?></h1>
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
-
-    <p>
-        <?= Html::a('Create Scene', ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
-
-    <?= GridView::widget([
-        'dataProvider' => $dataProvider,
-        'filterModel' => $searchModel,
-        'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
-
-            'id',
-            'wo_doc_name',
-            'aoi_name',
-
-            ['class' => 'yii\grid\ActionColumn'],
-        ],
-    ]); ?>
-
+    <div class="scrollspy-board" data-spy="scroll" data-offset="0">
+        <?php
+        Pjax::begin([
+            'id' => 'Pjax',
+            'enablePushState' => false
+        ]);
+        echo GridView::widget([
+            'dataProvider' => $dataProvider,
+            'filterModel' => $searchModel,
+            'columns' => [
+                ['class' => '\yii\grid\SerialColumn'],
+                ['class' => '\yii\grid\CheckboxColumn'],
+                'wo_doc_name',
+                'aoi_name',
+                [
+                    'class' => 'prawee\grid\ActionColumn',
+                    'template' => '{shape}  {export}  {info} {orbit} {import}',
+                    'header' => 'Action & Infomation.',
+                    'buttons' => [
+                        'shape' => function($data) {
+                            return Html::a(Icon::show('file-zip-o'), '#', [
+                                        'data-pjax' => '0',
+                                        'title' => ' Shape ',
+                                        'class' => 'btn btn-xs btn-danger',
+                            ]);
+                        },
+                        'export' => function($data) {
+                            return Html::a(Icon::show('upload'), '#', [
+                                        'data-pjax' => '0',
+                                        'title' => ' Export ',
+                                        'class' => 'btn btn-xs btn-danger',
+                            ]);
+                        },
+                        'info' => function($url, $model) {
+                            return Html::a(Icon::show('info'), $url, [
+                                        'data-pjax' => '0',
+                                        'title' => ' Info ',
+                                        'class' => 'btn btn-xs btn-info',
+                            ]);
+                        },
+                        'orbit' => function($url, $model) {
+                            return Html::a(Icon::show('support'), $url, [
+                                        'data-pjax' => '0',
+                                        'title' => ' Orbit ',
+                                        'class' => 'btn btn-xs btn-warning',
+                            ]);
+                        },
+                        'import' => function($url, $model) {
+                            return Html::a(Icon::show('download'), ['/xml/index', 'id' => $model->id, 'type' => 1], [
+                                        'data-pjax' => '0',
+                                        'title' => ' Import ',
+                                        'class' => 'btn btn-xs btn-success',
+                            ]);
+                        }
+                    ],
+                    'options' => ['class' => 'width-action'],
+                ],
+            ],
+        ]);
+        Pjax::end();
+        ?>
+    </div>
 </div>
