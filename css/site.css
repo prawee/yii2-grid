@@ -133,3 +133,24 @@ table.wo_attribute{width: 50%;}
 table.wo_attribute th{
     width: 200px;
 }
+
+/*20140811*/
+.scene-index thead{
+    font-size: 12px;
+    font-weight: bold;
+}
+.scene-index .table{
+    font-size: 12px;
+}
+.scene-index .aoi{
+    width: 300px;
+}
+.scene-index .wo_id{
+    width: 250px;
+}
+.scene-index .rev_no{
+    width: 100px;
+}
+.scene-index .conten_date{
+    width: 300px;
+}
