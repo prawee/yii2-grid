@@ -8,12 +8,11 @@ namespace app\models;
 //use Yii;
 use common\models\Xml as CXml;
 class Xml extends CXml{
-    public $distributor;
     public function rules() {
         return [
             [['name'], 'required'],
             [['name'], 'file', 'extensions' =>'xml'],
-            [['user_id', 'scene_id', 'status','xml_type_id'], 'integer'],
+            [['client_id', 'scene_id', 'status','xml_type_id','distributor_id'], 'integer'],
             [['name', 'path'], 'string', 'max' => 255]
         ];
     }

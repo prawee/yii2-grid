@@ -127,6 +127,6 @@ class User extends \yii\db\ActiveRecord
      */
     public function getXmls()
     {
-        return $this->hasMany(Xml::className(), ['user_id' => 'id']);
+        return $this->hasMany(Xml::className(), ['client_id' => 'id']);
     }
 }

@@ -10,12 +10,14 @@ use Yii;
  * @property integer $id
  * @property string $name
  * @property string $path
- * @property integer $user_id
+ * @property integer $client_id
  * @property integer $scene_id
  * @property integer $status
  * @property integer $xml_type_id
+ * @property integer $distributor_id
  *
- * @property User $user
+ * @property User $distributor
+ * @property User $client
  */
 class Xml extends \yii\db\ActiveRecord
 {
@@ -34,7 +36,7 @@ class Xml extends \yii\db\ActiveRecord
     {
         return [
             [['name'], 'required'],
-            [['user_id', 'scene_id', 'status', 'xml_type_id'], 'integer'],
+            [['client_id', 'scene_id', 'status', 'xml_type_id', 'distributor_id'], 'integer'],
             [['name', 'path'], 'string', 'max' => 255]
         ];
     }
@@ -48,18 +50,27 @@ class Xml extends \yii\db\ActiveRecord
             'id' => 'ID',
             'name' => 'Name',
             'path' => 'Path',
-            'user_id' => 'User ID',
+            'client_id' => 'Client ID',
             'scene_id' => 'Scene ID',
             'status' => 'Status',
             'xml_type_id' => 'Xml Type ID',
+            'distributor_id' => 'Distributor ID',
         ];
     }
 
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getUser()
+    public function getDistributor()
     {
-        return $this->hasOne(User::className(), ['id' => 'user_id']);
+        return $this->hasOne(User::className(), ['id' => 'distributor_id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getClient()
+    {
+        return $this->hasOne(User::className(), ['id' => 'client_id']);
     }
 }
