@@ -79,4 +79,38 @@ class MissionLocal extends CMissionLocal{
         }
         return null;
     }
+    public static function insertGetId2($xml,$data){
+        //echo '<pre>'.print_r($data->attributes,true).'</pre>';
+        echo '<pre>'.print_r($xml->DatabaseData,true).'</pre>';
+        if(is_object($xml)){
+            if($xml['DBTable']=='MISSION_LOCAL'){
+                $model=new self;
+                //attributes
+                $model->attr_version=self::trim($xml['version']);
+                $model->attr_image=self::trim($xml['image']);
+                $model->attr_type=self::trim($xml['type']);
+                $model->attr_status=self::trim($xml['status']);
+                $model->attr_lock=self::trim($xml['lock']);
+                $model->attr_name=self::trim($xml['name']);
+                $model->name=self::trim($xml[0]);
+                
+                //databasedata
+                $model->dbd_miseo_reference=self::trim($xml->DatabaseData->ReferenceMiseo);
+                $model->dbd_miseo_group=self::trim($xml->DatabaseData->Group);
+                $model->dbd_miseo_group=self::trim($xml->DatabaseData->Group);
+                
+                //xml data
+                $model->distributor_id=$data->distributor_id;
+                $model->client_id=$data->client_id;
+                $model->scene_id=$data->scene_id;
+                
+                
+                echo '<pre>'.print_r($model->attributes,true).'</pre>';
+            }
+        }
+        exit;
+    }
+    public static function trim($data){
+        return (string)trim($data);
+    }
 }
