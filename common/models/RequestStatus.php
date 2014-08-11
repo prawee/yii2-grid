@@ -10,7 +10,7 @@ use Yii;
  * @property integer $id
  * @property string $name
  *
- * @property Progzone[] $progzones
+ * @property MissionLocal[] $missionLocals
  */
 class RequestStatus extends \yii\db\ActiveRecord
 {
@@ -46,8 +46,8 @@ class RequestStatus extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getProgzones()
+    public function getMissionLocals()
     {
-        return $this->hasMany(Progzone::className(), ['request_status_id' => 'id']);
+        return $this->hasMany(MissionLocal::className(), ['pgz_request_status_id' => 'id']);
     }
 }

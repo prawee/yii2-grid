@@ -11,7 +11,7 @@ use Yii;
  * @property string $name
  * @property integer $value
  *
- * @property Progzone[] $progzones
+ * @property MissionLocal[] $missionLocals
  */
 class DownlinkStation extends \yii\db\ActiveRecord
 {
@@ -50,8 +50,8 @@ class DownlinkStation extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getProgzones()
+    public function getMissionLocals()
     {
-        return $this->hasMany(Progzone::className(), ['downlink_station_id' => 'id']);
+        return $this->hasMany(MissionLocal::className(), ['pgz_downlink_station_id' => 'id']);
     }
 }

@@ -9,8 +9,6 @@ use Yii;
  *
  * @property integer $id
  * @property string $name
- *
- * @property PlanLocal[] $planLocals
  */
 class PlanStatus extends \yii\db\ActiveRecord
 {
@@ -41,13 +39,5 @@ class PlanStatus extends \yii\db\ActiveRecord
             'id' => 'ID',
             'name' => 'Name',
         ];
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getPlanLocals()
-    {
-        return $this->hasMany(PlanLocal::className(), ['plan_status_id' => 'id']);
     }
 }

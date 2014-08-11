@@ -10,8 +10,6 @@ use Yii;
  * @property integer $id
  * @property string $name
  * @property string $value
- *
- * @property Definition[] $definitions
  */
 class Priority extends \yii\db\ActiveRecord
 {
@@ -45,13 +43,5 @@ class Priority extends \yii\db\ActiveRecord
             'name' => 'Name',
             'value' => 'Value',
         ];
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getDefinitions()
-    {
-        return $this->hasMany(Definition::className(), ['priority_id' => 'id']);
     }
 }

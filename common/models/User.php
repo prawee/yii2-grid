@@ -28,7 +28,8 @@ use Yii;
  * @property integer $parent_id
  *
  * @property Account[] $accounts
- * @property Dailyplan[] $dailyplans
+ * @property MissionLocal[] $missionLocals
+ * @property StripAccessLocal[] $stripAccessLocals
  * @property UserType $userType
  * @property Xml[] $xmls
  */
@@ -100,9 +101,17 @@ class User extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getDailyplans()
+    public function getMissionLocals()
     {
-        return $this->hasMany(Dailyplan::className(), ['user_id' => 'id']);
+        return $this->hasMany(MissionLocal::className(), ['midified_by_id' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getStripAccessLocals()
+    {
+        return $this->hasMany(StripAccessLocal::className(), ['modified_by_id' => 'id']);
     }
 
     /**

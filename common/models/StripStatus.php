@@ -10,7 +10,7 @@ use Yii;
  * @property integer $id
  * @property string $name
  *
- * @property Strips[] $strips
+ * @property SplittedStripLocal[] $splittedStripLocals
  */
 class StripStatus extends \yii\db\ActiveRecord
 {
@@ -47,8 +47,8 @@ class StripStatus extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getStrips()
+    public function getSplittedStripLocals()
     {
-        return $this->hasMany(Strips::className(), ['strip_status_id' => 'id']);
+        return $this->hasMany(SplittedStripLocal::className(), ['def_strip_status_id' => 'id']);
     }
 }
