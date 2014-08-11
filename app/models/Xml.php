@@ -8,6 +8,7 @@ namespace app\models;
 //use Yii;
 use common\models\Xml as CXml;
 class Xml extends CXml{
+    public $distributor;
     public function rules() {
         return [
             [['name'], 'required'],
