@@ -29,6 +29,33 @@ $this->params['breadcrumbs'][] = $this->title;
                 'wo_doc_name',
                 'aoi_name',
                 [
+                    'header'=>'Request Name',
+                    'attribute'=>'missionLocals.attr_name',
+                ],
+                [
+                    'header'=>'Strip Name',
+                    'attribute'=>'splittedStripLocals.attr_name',
+                ],
+                [
+                    'attribute'=>'id',
+                    'header'=>'Rev No.',
+                    'value'=>function($data){return null;}
+                ],
+                [
+                    'attribute'=>'id',
+                    'header'=>'Lastest Program Date',
+                    'value'=>function($data){return null;}
+                ],
+                [
+                    'attribute'=>'id',
+                    'header'=>'Delivery Date',
+                    'value'=>function($data){return null;}
+                ],
+                [
+                    'header'=>'Deposit Date',
+                    'attribute'=>'missionLocals.def_deposit_date',
+                ],
+                [
                     'class' => 'prawee\grid\ActionColumn',
                     'template' => '{shape}  {export}  {info} {orbit} {import}',
                     'header' => 'Action & Infomation.',
