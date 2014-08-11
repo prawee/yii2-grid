@@ -8,6 +8,8 @@ use app\models\SceneSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use auth\Asset;
+use app\models\USSWo;
 
 /**
  * RequestController implements the CRUD actions for Scene model.
@@ -24,6 +26,23 @@ class RequestController extends Controller
                 ],
             ],
         ];
+    }
+    
+    public function init() {
+        parent::init();
+        Asset::register($this->view);
+        //auto insert
+        $models=  USSWo::find()->all();
+        foreach($models as $model){
+            $mgl=Scene::find()->where(['id'=>$model->id])->one();
+            if(!is_object($mgl)){
+                $scene=new Scene;
+                $scene->id=$model->id;
+                $scene->wo_doc_name=$model->wo_doc_name;
+                $scene->aoi_name=$model->aoi_name;
+                $scene->save();
+            }
+        }
     }
 
     /**
