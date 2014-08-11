@@ -7,6 +7,7 @@ Icon::map($this);
 
 
 $id=Yii::$app->getRequest()->get('id');
+$type=Yii::$app->getRequest()->get('type');
 Modal::begin([
     'id' =>'form-modal',
     'header' => Icon::show('cog') . '<b>Import XML</b>',
@@ -29,7 +30,7 @@ Modal::begin([
 
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? Icon::show('plus').' Create' : Icon::show('edit').' Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
-        <?= Html::a(Icon::show('times-circle').'Close',['/xml/index','id'=>$id],[
+        <?= Html::a(Icon::show('times-circle').'Close',['/xml/index','id'=>$id,'type'=>$type],[
         'class' => 'btn btn-danger', 
         'name' => 'assign-button',
     ]) ?>
