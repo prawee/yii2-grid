@@ -18,7 +18,7 @@ class XmlSearch extends Xml
     public function rules()
     {
         return [
-            [['id', 'user_id', 'scene_id', 'status','xml_type_id'], 'integer'],
+            [['id', 'client_id', 'scene_id', 'status','xml_type_id','distributor_id'], 'integer'],
             [['name', 'path'], 'safe'],
         ];
     }
@@ -53,10 +53,11 @@ class XmlSearch extends Xml
 
         $query->andFilterWhere([
             'id' => $this->id,
-            'user_id' => $this->user_id,
+            'client_id' => $this->client_id,
             'scene_id' => $this->scene_id,
             'status' => $this->status,
             'xml_type_id'=>$this->xml_type_id,
+            'distributor_id'=>$this->distributor_id,
         ]);
 
         $query->andFilterWhere(['like', 'name', $this->name])
