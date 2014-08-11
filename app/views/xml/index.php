@@ -21,7 +21,7 @@ Modal::begin([
 $id=Yii::$app->getRequest()->get('id');
 $type=Yii::$app->getRequest()->get('type');
 switch ($type){
-    case '1': $back=['uss/index']; break;
+    case '1': $back=['request/index']; break;
     case '2': $back=['dailyplan/index']; break;
     default : $back=['cuf/index']; break;
 }
