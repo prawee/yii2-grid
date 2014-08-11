@@ -13,6 +13,8 @@ use yii\web\UploadedFile;
 use app\models\MiseoGroupLocal;
 use app\models\MissionLocal;
 use app\models\SplittedStripLocal;
+use yii\helpers\Json;
+use app\models\User;
 
 /**
  * XmlController implements the CRUD actions for Xml model.
@@ -79,7 +81,6 @@ class XmlController extends Controller {
             
             $model->name=$uploaded->baseName.'.'.$uploaded->extension;
             $model->path='uploaded/xml';
-            $model->user_id=Yii::$app->user->identity->id;
             $model->scene_id=$id;
             $model->status=0;
             $model->xml_type_id=$type;
@@ -167,15 +168,38 @@ class XmlController extends Controller {
         $content=utf8_encode(file_get_contents($request));
         $xml=simplexml_load_string($content);
         if(is_object($xml)){
-            MiseoGroupLocal::updateBySceneId($xml,$ref);
+            //MiseoGroupLocal::updateBySceneId($xml,$ref);
             //MissionLocal::updateBySceneId($xml->Requests,$ref);
             //SplittedStripLocal::updateBySceneId($xml->Requests,$ref);
-            MissionLocal::insertByLoop($xml->Requests,$ref);
-            SplittedStripLocal::insertByLoop($xml->Requests,$ref);
+            //MissionLocal::insertByLoop($xml->Requests,$ref);
+            //SplittedStripLocal::insertByLoop($xml->Requests,$ref);
+            
+            echo '<pre>'.print_r($xml,true).'</pre>';
         }
-        $model->status=1;
+        //$model->status=1;
         $model->save();
         return $this->redirect(['index','id'=>$ref,'type'=>$type]);
+    }
+
+    public function actionClient() {
+        $out = [];
+        if (Yii::$app->getRequest()->post('depdrop_parents')) {
+            $parents = end(Yii::$app->getRequest()->post('depdrop_parents'));
+            $list = User::find()->where(['parent_id' => $parents])->asArray()->all();
+            $selected = null;
+            if ($parents != null && count($list) > 0) {
+                $selected = '';
+                foreach ($list as $i => $account) {
+                    $out[] = ['id' => $account['id'], 'name' => $account['username']];
+                    if ($i == 0) {
+                        $selected = $account['id'];
+                    }
+                }
+                echo Json::encode(['output' => $out, 'selected' => '']);
+                return;
+            }
+        }
+        echo Json::encode(['output' => '', 'selected' => '']);
     }
 
 }
