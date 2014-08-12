@@ -131,6 +131,7 @@ class XmlController extends Controller {
         if ($model->name) {
             if (file_exists(Yii::getAlias('@urlUploads') . '/' . $model->name)) {
                 @unlink(Yii::getAlias('@urlUploads') . '/' . $model->name);
+                MissionLocal::find()->where(['scene_id'=>$model->scene_id])->delete();
                 $model->delete();
             }
         }
