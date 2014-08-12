@@ -8,6 +8,9 @@ Icon::map($this);
 
 use yii\widgets\Pjax;
 
+use app\models\MissionLocal;
+use app\models\SplittedStripLocal;
+
 $this->title = 'Request Analysis';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
@@ -31,10 +34,18 @@ $this->params['breadcrumbs'][] = $this->title;
                 [
                     'header'=>'Request Name',
                     'attribute'=>'missionLocals.attr_name',
+                    'value'=>function($data){
+                        $model=MissionLocal::find()->where(['scene_id'=>$data->id])->one();
+                        return ($model['attr_name']?$model['attr_name']:null);
+                    }
                 ],
                 [
                     'header'=>'Strip Name',
                     'attribute'=>'splittedStripLocals.attr_name',
+                    'value'=>function($data){
+                        $model=SplittedStripLocal::find()->where(['scene_id'=>$data->id])->one();
+                        return ($model['attr_name']?$model['attr_name']:null);
+                    }
                 ],
                 [
                     'attribute'=>'id',
@@ -54,6 +65,10 @@ $this->params['breadcrumbs'][] = $this->title;
                 [
                     'header'=>'Deposit Date',
                     'attribute'=>'missionLocals.def_deposit_date',
+                    'value'=>function($data){
+                        $model=MissionLocal::find()->where(['scene_id'=>$data->id])->one();
+                        return ($model['def_deposit_date']?$model['def_deposit_date']:null);
+                    }
                 ],
                 [
                     'class' => 'prawee\grid\ActionColumn',
