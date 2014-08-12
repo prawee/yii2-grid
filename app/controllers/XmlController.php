@@ -31,7 +31,7 @@ class XmlController extends Controller {
             ],
         ];
     }
-    
+
     public function init() {
         parent::init();
         Asset::register($this->view);
@@ -42,11 +42,11 @@ class XmlController extends Controller {
      * @return mixed
      */
     public function actionIndex($id) {
-        $type=Yii::$app->getRequest()->get('type');
+        $type = Yii::$app->getRequest()->get('type');
         $searchModel = new XmlSearch();
-        $params=Yii::$app->request->queryParams;
-        $params['XmlSearch']['scene_id']=$id;
-        $params['XmlSearch']['xml_type_id']=$type;
+        $params = Yii::$app->request->queryParams;
+        $params['XmlSearch']['scene_id'] = $id;
+        $params['XmlSearch']['xml_type_id'] = $type;
         $dataProvider = $searchModel->search($params);
 
         return $this->render('index', [
@@ -72,27 +72,27 @@ class XmlController extends Controller {
      * @return mixed
      */
     public function actionCreate($id) {
-        $type=Yii::$app->getRequest()->get('type');
+        $type = Yii::$app->getRequest()->get('type');
         $model = new Xml();
         if (Yii::$app->request->isPost) {
-            $uploaded = UploadedFile::getInstance($model,'name');
-            
+            $uploaded = UploadedFile::getInstance($model, 'name');
+
             $model->load(Yii::$app->request->post());
-            
-            $model->name=$uploaded->baseName.'.'.$uploaded->extension;
-            $model->path='uploaded/xml';
-            $model->scene_id=$id;
-            $model->status=0;
-            $model->xml_type_id=$type;
-            if ($model->validate() && $model->save()) {  
-                $uploaded->saveAs('uploads/xml/'.$model->name);
-                return $this->redirect(['index', 'id' => $id,'type'=>$type]);
-            }else{
+
+            $model->name = $uploaded->baseName . '.' . $uploaded->extension;
+            $model->path = 'uploaded/xml';
+            $model->scene_id = $id;
+            $model->status = 0;
+            $model->xml_type_id = $type;
+            if ($model->validate() && $model->save()) {
+                $uploaded->saveAs('uploads/xml/' . $model->name);
+                return $this->redirect(['index', 'id' => $id, 'type' => $type]);
+            } else {
                 return $this->render('create', [
-                        'model' => $model,
+                            'model' => $model,
                 ]);
             }
-        }else{
+        } else {
             return $this->render('create', [
                         'model' => $model,
             ]);
@@ -124,19 +124,19 @@ class XmlController extends Controller {
      * @return mixed
      */
     public function actionDelete() {
-        $id=Yii::$app->getRequest()->get('id');
-        $ref=Yii::$app->getRequest()->get('ref');
-        $type=Yii::$app->getRequest()->get('type');
-        $model=$this->findModel($id);
+        $id = Yii::$app->getRequest()->get('id');
+        $ref = Yii::$app->getRequest()->get('ref');
+        $type = Yii::$app->getRequest()->get('type');
+        $model = $this->findModel($id);
         if ($model->name) {
+            //MissionLocal::deleteAll(['scene_id'=>$model->scene_id]);
             if (file_exists(Yii::getAlias('@urlUploads') . '/' . $model->name)) {
                 @unlink(Yii::getAlias('@urlUploads') . '/' . $model->name);
-                MissionLocal::find()->where(['scene_id'=>$model->scene_id])->delete();
                 $model->delete();
             }
         }
 
-        return $this->redirect(['index','id'=>$ref,'type'=>$type]);
+        return $this->redirect(['index', 'id' => $ref, 'type' => $type]);
     }
 
     /**
@@ -153,22 +153,22 @@ class XmlController extends Controller {
             throw new NotFoundHttpException('The requested page does not exist.');
         }
     }
-    
-    
+
     /*
      * 20140724
      */
-    public function actionImport(){
-        $id=Yii::$app->getRequest()->get('id');
-        $ref=Yii::$app->getRequest()->get('ref');
-        $type=Yii::$app->getRequest()->get('type');
-        $model=$this->findModel($id);
-        
-        
-        $request=Yii::getAlias('@urlUploads/').$model->name;
-        $content=utf8_encode(file_get_contents($request));
-        $xml=simplexml_load_string($content);
-        if(is_object($xml)){
+
+    public function actionImport() {
+        $id = Yii::$app->getRequest()->get('id');
+        $ref = Yii::$app->getRequest()->get('ref');
+        $type = Yii::$app->getRequest()->get('type');
+        $model = $this->findModel($id);
+
+
+        $request = Yii::getAlias('@urlUploads/') . $model->name;
+        $content = utf8_encode(file_get_contents($request));
+        $xml = simplexml_load_string($content);
+        if (is_object($xml)) {
             //MiseoGroupLocal::updateBySceneId($xml,$ref);
             //MissionLocal::updateBySceneId($xml->Requests,$ref);
             //SplittedStripLocal::updateBySceneId($xml->Requests,$ref);
@@ -176,21 +176,41 @@ class XmlController extends Controller {
             //SplittedStripLocal::insertByLoop($xml->Requests,$ref);
             //echo '<pre>'.print_r($model->attributes,true).'</pre>';
             //echo '<pre>'.print_r($xml,true).'</pre>';
-            $missionId=MissionLocal::insertGetId2($xml,$model);
-            if($missionId){
-                foreach($xml->STRIPS as $keystrips=>$strips){
-                    foreach($strips as $keystrip=>$strip){
-                        if($strip['DBTable']=='SPLITTED_STRIP_LOCAL'){
-                            SplittedStripLocal::insertWithStrip($strip,$model,$missionId);
+
+            if ($xml['DBTable'] == 'MISEO_GROUP_LOCAL') {
+                $groupId=MiseoGroupLocal::insertGetId2($xml);
+                foreach ($xml->Requests as $requests) {
+                    foreach ($requests as $request) {
+                        if ($request['DBTable'] == 'MISSION_LOCAL') {
+                            $missionId = MissionLocal::insertGetId2($request, $model, $groupId);
+                            if ($missionId) {
+                                foreach ($request->STRIPS as $strips) {
+                                    foreach ($strips as $strip) {
+                                        if ($strip['DBTable'] == 'SPLITTED_STRIP_LOCAL') {
+                                            SplittedStripLocal::insertWithStrip($strip, $model, $missionId);
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            } else {
+                $missionId = MissionLocal::insertGetId2($xml, $model);
+                if ($missionId) {
+                    foreach ($xml->STRIPS as $keystrips => $strips) {
+                        foreach ($strips as $keystrip => $strip) {
+                            if ($strip['DBTable'] == 'SPLITTED_STRIP_LOCAL') {
+                                SplittedStripLocal::insertWithStrip($strip, $model, $missionId);
+                            }
                         }
                     }
                 }
             }
-            
         }
         $model->status=1;
         $model->save();
-        return $this->redirect(['index','id'=>$ref,'type'=>$type]);
+        return $this->redirect(['index', 'id' => $ref, 'type' => $type]);
     }
 
     public function actionClient() {
