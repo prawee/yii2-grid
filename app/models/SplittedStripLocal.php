@@ -84,5 +84,18 @@ class SplittedStripLocal extends CSplittedStripLocal {
         }
         return null;
     }
+    public static function insertGetId2($xml,$data,$missionId){
+        echo '<pre>'.print_r($xml,true).'</pre>';
+        echo '<pre>'.print_r($data->attributes,true).'</pre>';
+        echo $missionId;
+        if(is_object($xml)){
+            $model=new self;
+            
+            $model->scene_id=$data->scene_id;
+            
+            echo '<pre>'.print_r($model->attributes,true).'</pre>';
+        }
+        exit;
+    }
 
 }
