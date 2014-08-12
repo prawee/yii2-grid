@@ -99,7 +99,7 @@ class MissionLocal extends CMissionLocal{
     }
     public static function insertGetId2($xml,$data,$groupId=null){
         //echo '<pre>'.print_r($data->attributes,true).'</pre>';
-        //echo '<pre>'.print_r($xml->DatabaseData,true).'</pre>';
+        echo '<pre>'.print_r($xml,true).'</pre>';
         
         //delete old data
         self::deleteAll(['scene_id'=>$data->scene_id]);
@@ -161,9 +161,11 @@ class MissionLocal extends CMissionLocal{
                 $model->def_end_date=self::date($xml->Definition->EndDate);
                 $model->def_completion_date=self::datetime($xml->Definition->CompletionDate);
                 $model->def_priority_id=(int)$xml->Definition->Priority;
-                $model->def_periodicity_flag=self::periodicity($xml->Definition->Periodicity);
-                $model->def_periodicity_period=self::trim($xml->Definition->Periodicity->Periodic->Period);
-                $model->def_periodicity_min_delay_between_shots=self::trim($xml->Definition->Periodicity->Periodic->Delay);
+                if($xml->Definition->Periodicity){
+                    $model->def_periodicity_flag=self::periodicity($xml->Definition->Periodicity);
+                    $model->def_periodicity_period=self::trim($xml->Definition->Periodicity->Periodic->Period);
+                    $model->def_periodicity_min_delay_between_shots=self::trim($xml->Definition->Periodicity->Periodic->Delay);
+                }
     
                 //criteria
                 $model->cri_attr_name=self::trim($xml->Criteria['name']);
@@ -206,7 +208,6 @@ class MissionLocal extends CMissionLocal{
                 //echo '<pre>'.print_r($model->attributes,true).'</pre>';
             }
         }
-        //exit;
     }
     public static function trim($data){
         return (string)trim($data);
