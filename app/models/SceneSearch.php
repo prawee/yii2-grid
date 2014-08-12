@@ -44,7 +44,7 @@ class SceneSearch extends Scene
     public function search($params)
     {
         $query = Scene::find();
-        //$query->with('missionLocals');
+        //$query->joinWith('missionLocals');
         //$query->joinWith(['missionLocals','somPolygonLocals','splittedStripLocals','stripAccessLocals']);
 
         $sort = new Sort;
