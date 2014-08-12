@@ -6,8 +6,23 @@
 namespace app\models;
 
 use common\models\SplittedStripLocal as CSplittedStripLocal;
-class SplittedStripLocal extends CSplittedStripLocal {
+use yii\behaviors\TimestampBehavior;
+use yii\db\ActiveRecord;
+use yii\db\Expression;
 
+class SplittedStripLocal extends CSplittedStripLocal {
+    public function behaviors() {
+        return [
+            'timestamp' => [
+                'class' => TimestampBehavior::className(),
+                'attributes' => [
+                    ActiveRecord::EVENT_BEFORE_INSERT =>['created','modified'],
+                    ActiveRecord::EVENT_BEFORE_UPDATE => 'modified',
+                ],
+                'value' => new Expression('NOW()'),
+            ],
+        ];
+    }
     public static function insertBySceneId($sceneId) {
         $model = new self;
         $model->databasedata_id = (int) Databasedata::insertGetId();
