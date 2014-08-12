@@ -77,7 +77,8 @@ class XmldailyplanController extends Controller {
 
             $model->name = $uploaded->baseName . '.' . $uploaded->extension;
             $model->path = 'uploaded/xml';
-            $model->user_id = Yii::$app->user->identity->id;
+            $model->client_id = Yii::$app->user->identity->id;
+            $model->distributor_id=Yii::$app->user->identity->id;
             $model->status = 0;
             $model->xml_type_id = 2;
             if ($model->validate() && $model->save()) {
@@ -145,45 +146,46 @@ class XmldailyplanController extends Controller {
             throw new NotFoundHttpException('The requested page does not exist.');
         }
     }
+
     /*
      * 20140803
      */
-    public function actionImport(){
-        $id=Yii::$app->getRequest()->get('id');
-        $model=$this->findModel($id);
-        
-        
-        $request=Yii::getAlias('@urlUploads/').$model->name;
-        $content=utf8_encode(file_get_contents($request));
-        $xml=simplexml_load_string($content);
-        
+    public function actionImport1() {
+        $id = Yii::$app->getRequest()->get('id');
+        $model = $this->findModel($id);
+
+
+        $request = Yii::getAlias('@urlUploads/') . $model->name;
+        $content = utf8_encode(file_get_contents($request));
+        $xml = simplexml_load_string($content);
+
         //echo '<pre>'.print_r($xml,true).'</pre>';
-        
+
         if (is_object($xml)) {
             foreach ($xml as $key => $data) {
-                if ($data['DBTable']=='PLAN_LOCAL') {
+                if ($data['DBTable'] == 'PLAN_LOCAL') {
                     PlanLocal::insertGetId($data);
                 } else {
                     //echo '<br/>==GROUPS';
                     MiseoGroupLocal::insertGetId($data);
-                    foreach($data->Groups as $keygroups=>$groups){
-                        foreach($groups as $keygroup=>$group){
-                            if($group['DBTable']){
+                    foreach ($data->Groups as $keygroups => $groups) {
+                        foreach ($groups as $keygroup => $group) {
+                            if ($group['DBTable']) {
                                 //echo '<br/>===GROUP';
                                 MiseoGroupLocal::insertGetId($group);
-                                foreach($group->Groups as $keysubgroups => $subgroups){
-                                    foreach ($subgroups as $keysubgroup => $subgroup){
-                                        if($subgroup['DBTable']){
+                                foreach ($group->Groups as $keysubgroups => $subgroups) {
+                                    foreach ($subgroups as $keysubgroup => $subgroup) {
+                                        if ($subgroup['DBTable']) {
                                             //echo '<br/>====SUB-GROUP';
                                             MiseoGroupLocal::insertGetId($subgroup);
-                                            foreach($subgroup->Requests as $keyrequests=>$requests){
-                                                foreach($requests as $keyrequest=>$request){
-                                                    if($request['DBTable']){
+                                            foreach ($subgroup->Requests as $keyrequests => $requests) {
+                                                foreach ($requests as $keyrequest => $request) {
+                                                    if ($request['DBTable']) {
                                                         //echo '<br/>=====MISSION';
                                                         MissionLocal::insertGetId($request);
-                                                        foreach($request->STRIPS as $keystrips=>$strips){
-                                                            foreach($strips as $keystrip=>$strip){
-                                                                if($strip['DBTable']){
+                                                        foreach ($request->STRIPS as $keystrips => $strips) {
+                                                            foreach ($strips as $keystrip => $strip) {
+                                                                if ($strip['DBTable']) {
                                                                     //echo '<br/>======SPLITTED-STRIP-LOCAL';
                                                                     SplittedStripLocal::insertGetId($strip);
                                                                 }
@@ -199,12 +201,73 @@ class XmldailyplanController extends Controller {
                         }//end
                     }//end 
                 }
-                
             }
         }
-        $model->status=1;
+        $model->status = 1;
         $model->save();
         return $this->redirect(['index']);
     }
 
+    /*
+     * 2014-08-13
+     */
+    public function actionImport() {
+        $id = Yii::$app->getRequest()->get('id');
+        $model = $this->findModel($id);
+
+
+        $request = Yii::getAlias('@urlUploads/') . $model->name;
+        $content = utf8_encode(file_get_contents($request));
+        $xml = simplexml_load_string($content);
+
+        //echo '<pre>'.print_r($xml,true).'</pre>';
+
+        if (is_object($xml)) {
+            foreach ($xml as $data) {
+                if ($data['DBTable'] == 'PLAN_LOCAL') {
+                    PlanLocal::insertGetId2($data);
+                } else {
+                    //echo '<br/>==GROUPS';
+                    //MiseoGroupLocal::insertGetId($data);
+                    /*foreach ($data->Groups as $groups) {
+                        foreach ($groups as $keygroup => $group) {
+                            if ($group['DBTable']) {
+                                //echo '<br/>===GROUP';
+                                MiseoGroupLocal::insertGetId($group);
+                                foreach ($group->Groups as $keysubgroups => $subgroups) {
+                                    foreach ($subgroups as $keysubgroup => $subgroup) {
+                                        if ($subgroup['DBTable']) {
+                                            //echo '<br/>====SUB-GROUP';
+                                            MiseoGroupLocal::insertGetId($subgroup);
+                                            foreach ($subgroup->Requests as $keyrequests => $requests) {
+                                                foreach ($requests as $keyrequest => $request) {
+                                                    if ($request['DBTable']) {
+                                                        //echo '<br/>=====MISSION';
+                                                        MissionLocal::insertGetId($request);
+                                                        foreach ($request->STRIPS as $keystrips => $strips) {
+                                                            foreach ($strips as $keystrip => $strip) {
+                                                                if ($strip['DBTable']) {
+                                                                    //echo '<br/>======SPLITTED-STRIP-LOCAL';
+                                                                    SplittedStripLocal::insertGetId($strip);
+                                                                }
+                                                            }
+                                                        }//strips
+                                                    }
+                                                }
+                                            }//requests
+                                        }
+                                    }//end subgroups
+                                }//end group->Groups
+                            }
+                        }//end
+                    }//end 
+                     * 
+                     */
+                }
+            }
+        }
+        $model->status = 1;
+        $model->save();
+        return $this->redirect(['index']);
+    }
 }
