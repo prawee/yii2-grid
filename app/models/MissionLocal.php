@@ -99,10 +99,10 @@ class MissionLocal extends CMissionLocal{
     }
     public static function insertGetId2($xml,$data,$groupId=null){
         //echo '<pre>'.print_r($data->attributes,true).'</pre>';
-        echo '<pre>'.print_r($xml,true).'</pre>';
+        //echo '<pre>'.print_r($xml,true).'</pre>';
         
         //delete old data
-        self::deleteAll(['scene_id'=>$data->scene_id]);
+        //self::deleteAll(['scene_id'=>$data->scene_id]);
         
         //import
         if(is_object($xml)){
