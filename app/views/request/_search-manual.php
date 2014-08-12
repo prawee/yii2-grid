@@ -104,3 +104,28 @@ Icon::map($this);
         </div>
     </div>
 </div>
+
+
+<div>
+    <div class="col-sm-2 well well-sm">
+<!--        <b>Type</b>-->
+        <select class="form-control inline col-xs-3">
+            <option>Type</option>
+        </select>
+    </div>
+    <div class="col-sm-2 well well-sm">
+<!--        <b>Accessible Orbit</b>-->
+        <select class="form-control inline col-xs-3">
+            <option>Accessible Orbit</option>
+        </select>
+    </div>
+    <div class="col-sm-2 well well-sm">
+        <input type="text" class="form-control" placeholder="Roll Max =>"/>
+    </div>
+    <div class="col-sm-2 well well-sm">
+        <input type="text" class="form-control" placeholder="Roll Max <="/>
+    </div>
+    <div class="col-sm-4 well well-sm">
+        <input type="text" class="form-control inline " placeholder="Search Keyword"/>
+    </div>
+</div>
