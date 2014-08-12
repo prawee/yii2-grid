@@ -175,11 +175,19 @@ class XmlController extends Controller {
             //SplittedStripLocal::insertByLoop($xml->Requests,$ref);
             //echo '<pre>'.print_r($model->attributes,true).'</pre>';
             //echo '<pre>'.print_r($xml,true).'</pre>';
-            //$missionId=MissionLocal::insertGetId2($xml,$model);
-            $missionId=3;
+            $missionId=MissionLocal::insertGetId2($xml,$model);
+            if($missionId){
+                foreach($xml->STRIPS as $keystrips=>$strips){
+                    foreach($strips as $keystrip=>$strip){
+                        if($strip['DBTable']=='SPLITTED_STRIP_LOCAL'){
+                            SplittedStripLocal::insertWithStrip($strip,$model,$missionId);
+                        }
+                    }
+                }
+            }
             
         }
-        //$model->status=1;
+        $model->status=1;
         $model->save();
         return $this->redirect(['index','id'=>$ref,'type'=>$type]);
     }
