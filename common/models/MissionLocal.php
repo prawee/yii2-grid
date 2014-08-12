@@ -87,12 +87,14 @@ use Yii;
  * @property integer $status
  * @property integer $scene_id
  * @property integer $miseo_group_local_id
+ * @property integer $xml_id
  *
- * @property MiseoGroupLocal $miseoGroupLocal
+ * @property Xml $xml
  * @property User $client
  * @property User $createdBy
  * @property User $distributor
  * @property DownlinkStation $pgzDownlinkStation
+ * @property MiseoGroupLocal $miseoGroupLocal
  * @property User $midifiedBy
  * @property RequestStatus $pgzRequestStatus
  * @property Scene $scene
@@ -116,7 +118,7 @@ class MissionLocal extends \yii\db\ActiveRecord
     {
         return [
             [['dbd_miseo_group', 'def_miseo_comment'], 'string'],
-            [['dbd_organism', 'dbd_nb_summits_cov', 'pgz_request_status_id', 'pgz_downlink_station_id', 'pgz_average_altitude', 'pgz_nb_summits_cov', 'pgz_item_length', 'def_id_user', 'def_priority_id', 'def_periodicity_period', 'def_periodicity_min_delay_between_shots', 'cri_sensor_type', 'cri_compression_ratio', 'created_by_id', 'midified_by_id', 'distributor_id', 'client_id', 'status', 'scene_id', 'miseo_group_local_id'], 'integer'],
+            [['dbd_organism', 'dbd_nb_summits_cov', 'pgz_request_status_id', 'pgz_downlink_station_id', 'pgz_average_altitude', 'pgz_nb_summits_cov', 'pgz_item_length', 'def_id_user', 'def_priority_id', 'def_periodicity_period', 'def_periodicity_min_delay_between_shots', 'cri_sensor_type', 'cri_compression_ratio', 'created_by_id', 'midified_by_id', 'distributor_id', 'client_id', 'status', 'scene_id', 'miseo_group_local_id', 'xml_id'], 'integer'],
             [['pgz_center_latitude', 'pgz_center_longitude', 'cri_nadir_min_roll', 'cri_nadir_max_roll', 'cri_nadir_min_pitch', 'cri_nadir_max_pitch'], 'number'],
             [['def_deposit_date', 'def_start_date', 'def_end_date', 'def_completion_date', 'created', 'modified'], 'safe'],
             [['attr_version', 'attr_image', 'attr_type', 'attr_status', 'attr_lock', 'attr_name', 'pgz_attr_image', 'pgz_attr_type', 'pgz_attr_c1', 'pgz_attr_c2', 'pgz_attr_c3', 'pgz_attr_c4', 'pgz_satellite', 'def_attr_image', 'def_attr_type', 'def_attr_c1', 'def_attr_c2', 'def_attr_c3', 'def_attr_c4', 'cri_attr_name', 'cri_attr_image', 'cri_attr_type', 'cri_attr_c1', 'cri_attr_c2', 'cri_attr_c3', 'cri_attr_c4'], 'string', 'max' => 45],
@@ -213,15 +215,16 @@ class MissionLocal extends \yii\db\ActiveRecord
             'status' => 'Status',
             'scene_id' => 'Scene ID',
             'miseo_group_local_id' => 'Miseo Group Local ID',
+            'xml_id' => 'Xml ID',
         ];
     }
 
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getMiseoGroupLocal()
+    public function getXml()
     {
-        return $this->hasOne(MiseoGroupLocal::className(), ['id' => 'miseo_group_local_id']);
+        return $this->hasOne(Xml::className(), ['id' => 'xml_id']);
     }
 
     /**
@@ -254,6 +257,14 @@ class MissionLocal extends \yii\db\ActiveRecord
     public function getPgzDownlinkStation()
     {
         return $this->hasOne(DownlinkStation::className(), ['id' => 'pgz_downlink_station_id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getMiseoGroupLocal()
+    {
+        return $this->hasOne(MiseoGroupLocal::className(), ['id' => 'miseo_group_local_id']);
     }
 
     /**

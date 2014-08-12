@@ -14,7 +14,7 @@ use Yii;
  * @property string $attr_image
  * @property string $attr_name
  * @property string $dbd_miseo_reference
- * @property string $dbd_miseo_gruop
+ * @property string $dbd_miseo_group
  * @property string $dbd_miseo_template
  * @property string $gz_attr_name
  * @property string $gz_attr_image
@@ -47,7 +47,7 @@ class MiseoGroupLocal extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['dbd_miseo_gruop', 'gz_info1', 'gz_info2', 'gz_info3', 'gz_info4'], 'string'],
+            [['dbd_miseo_group', 'gz_info1', 'gz_info2', 'gz_info3', 'gz_info4'], 'string'],
             [['attr_version', 'attr_status', 'attr_type', 'attr_image', 'dbd_miseo_template', 'gz_attr_name', 'gz_attr_image', 'gz_attr_type', 'gz_attr_c1', 'gz_attr_c2', 'gz_attr_c3', 'gz_attr_c4'], 'string', 'max' => 45],
             [['attr_name', 'dbd_miseo_reference', 'gz_miseo_name'], 'string', 'max' => 255]
         ];
@@ -66,7 +66,7 @@ class MiseoGroupLocal extends \yii\db\ActiveRecord
             'attr_image' => 'Attr Image',
             'attr_name' => 'Attr Name',
             'dbd_miseo_reference' => 'Dbd Miseo Reference',
-            'dbd_miseo_gruop' => 'Dbd Miseo Gruop',
+            'dbd_miseo_group' => 'Dbd Miseo Group',
             'dbd_miseo_template' => 'Dbd Miseo Template',
             'gz_attr_name' => 'Gz Attr Name',
             'gz_attr_image' => 'Gz Attr Image',
