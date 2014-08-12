@@ -33,7 +33,6 @@ $this->params['breadcrumbs'][] = $this->title;
                     'attribute'=>'id',
                     'label'=>'XML Name',
                     'value'=>function($url,$data){
-                        echo $data->id;
                         return null;
                     }
                 ],

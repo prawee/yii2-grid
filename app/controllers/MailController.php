@@ -3,14 +3,15 @@
 namespace app\controllers;
 
 use Yii;
-use app\models\USSWoSearch;
+use app\models\MissionLocalSearch;
+
 class MailController extends \yii\web\Controller
 {
     public function actionIndex()
     {
-        $searchModel = new USSWoSearch();
-        $params['USSWoSearch']['id']=12;
-        $dataProvider = $searchModel->searchx(Yii::$app->request->queryParams);
+        $searchModel = new MissionLocalSearch();
+        $params['MissionLocalSearch']['id']=12;
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
         return $this->render('index',[
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
