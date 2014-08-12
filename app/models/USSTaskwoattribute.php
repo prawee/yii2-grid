@@ -13,7 +13,7 @@ use \yii\db\ActiveRecord;
 class USSTaskwoattribute extends ActiveRecord {
 
     public static function getDb() {
-        return Yii::$app->db3;
+        return Yii::$app->db2;
     }
 
     public static function tableName() {
