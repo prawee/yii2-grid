@@ -100,6 +100,11 @@ class MissionLocal extends CMissionLocal{
     public static function insertGetId2($xml,$data){
         //echo '<pre>'.print_r($data->attributes,true).'</pre>';
         //echo '<pre>'.print_r($xml->DatabaseData,true).'</pre>';
+        
+        //delete old data
+        self::deleteAll(['scene_id'=>$data->scene_id]);
+        
+        //import
         if(is_object($xml)){
             if($xml['DBTable']=='MISSION_LOCAL'){
                 $model=new self;
