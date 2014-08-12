@@ -97,7 +97,7 @@ class MissionLocal extends CMissionLocal{
         }
         return null;
     }
-    public static function insertGetId2($xml,$data,$groupId=null){
+    public static function insertGetId2($xml,$data,$groupId=null,$xmlId=null){
         //echo '<pre>'.print_r($data->attributes,true).'</pre>';
         //echo '<pre>'.print_r($xml,true).'</pre>';
         
@@ -197,6 +197,7 @@ class MissionLocal extends CMissionLocal{
                 $model->client_id=$data->client_id;
                 $model->scene_id=$data->scene_id;
                 $model->miseo_group_local_id=$groupId;
+                $model->xml_id=$xmlId;
                 
                 if($model->save()){
                     return $model->id;
