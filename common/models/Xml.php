@@ -16,6 +16,7 @@ use Yii;
  * @property integer $xml_type_id
  * @property integer $distributor_id
  *
+ * @property MissionLocal[] $missionLocals
  * @property User $distributor
  * @property User $client
  */
@@ -56,6 +57,14 @@ class Xml extends \yii\db\ActiveRecord
             'xml_type_id' => 'Xml Type ID',
             'distributor_id' => 'Distributor ID',
         ];
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getMissionLocals()
+    {
+        return $this->hasMany(MissionLocal::className(), ['xml_id' => 'id']);
     }
 
     /**
