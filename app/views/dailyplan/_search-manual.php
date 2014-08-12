@@ -64,3 +64,23 @@ Icon::map($this);
     </div>
 </div>
 
+<div>
+    <div class="col-sm-3 well well-sm">
+        <select class="form-control inline col-xs-3">
+            <option>Plan Date Start</option>
+        </select>
+    </div>
+    <div class="col-sm-3 well well-sm">
+        <select class="form-control inline col-xs-3">
+            <option>Downlink Station</option>
+        </select>
+    </div>
+    <div class="col-sm-2 well well-sm">
+        <select class="form-control inline col-xs-3">
+            <option>Rev No.</option>
+        </select>
+    </div>
+    <div class="col-sm-4 well well-sm">
+        <input type="text" class="form-control inline " placeholder="Search Keyword"/>
+    </div>
+</div>
