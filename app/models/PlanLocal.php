@@ -36,7 +36,7 @@ class PlanLocal extends CPlanLocal{
     }
     public static function insertGetId2($data){
         if(is_object($data) && $data['DBTable']=='PLAN_LOCAL'){
-            echo '<pre>'.print_r($data->Status->NotDatabased->CufInfo,true).'</pre>';
+            //echo '<pre>'.print_r($data->Status->NotDatabased->CufInfo,true).'</pre>';
             $model=new self;
             $model->attr_version=self::trim($data['version']);
             $model->attr_image=self::trim($data['image']);
