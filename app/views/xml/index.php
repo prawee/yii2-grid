@@ -26,7 +26,7 @@ switch ($type){
     default : $back=['cuf/index']; break;
 }
 ?>
-<div class="xml-index">
+<div class="grid-index">
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
@@ -83,8 +83,8 @@ switch ($type){
                             'data-pjax' => '0',
                         ]);
                     }
-                ]
-                
+                ],
+                'options'=>['style'=>'width:70px;']
             ],
         ],
     ]);

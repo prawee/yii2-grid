@@ -12,7 +12,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
 <?php echo $this->render('_search-manual', ['model' => $searchModel]);  ?>
 <div class="clearfix"></div>
-<div class="plan-local-index">
+<div class="grid-index">
     <div class="scrollspy-board" data-spy="scroll" data-offset="0">
     <?php Pjax::begin(['enablePushState' => false]); ?>
     <?=

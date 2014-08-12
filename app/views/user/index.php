@@ -13,7 +13,7 @@ use yii\widgets\Pjax;
 $this->title = 'Group';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="user-index">
+<div class="grid-index">
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>

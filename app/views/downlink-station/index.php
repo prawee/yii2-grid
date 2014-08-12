@@ -18,7 +18,7 @@ Modal::begin([
     ]
 ]);
 ?>
-<div class="downlink-station-index">
+<div class="grid-index">
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
