@@ -116,7 +116,7 @@ Modal::begin([
             ])
             ?>
             <?=
-            Html::a(Icon::show('times') . 'Close', ['/uss/index'], [
+            Html::a(Icon::show('times') . 'Close', ['/request/index'], [
                 'class' => 'btn btn-danger',
                 'name' => 'assign-button',
             ]);
