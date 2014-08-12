@@ -99,18 +99,73 @@ class SplittedStripLocal extends CSplittedStripLocal {
         }
         return null;
     }
-    public static function insertGetId2($xml,$data,$missionId){
-        echo '<pre>'.print_r($xml,true).'</pre>';
-        echo '<pre>'.print_r($data->attributes,true).'</pre>';
-        echo $missionId;
+    public static function insertWithStrip($xml,$data,$missionId){
+        //echo '<pre>'.print_r($xml,true).'</pre>';
+        //echo '<pre>'.print_r($data->attributes,true).'</pre>';
         if(is_object($xml)){
             $model=new self;
+            $model->mission_local_id=$missionId;
+            $model->attr_status=self::trim($xml['status']);
+            $model->attr_type=  self::trim($xml['type']);
+            $model->attr_image=  self::trim($xml['image']);
+            $model->attr_lock=  self::trim($xml['lock']);
+            $model->attr_name= self::trim($xml['name']);
             
+            //databasedata;
+            $model->dbd_miseo_reference=self::trim($xml->DatabaseData->ReferenceMiseo);
+            $model->dbd_miseo_group=self::trim($xml->DatabaseData->Group);
+            $model->dbd_miseo_template=self::trim($xml->DatabaseData->Template);
+            $model->dbd_satellite=self::sattellite($xml->DatabaseData->ReqSatellite);
+            $model->dbd_phase=self::phase($xml->DatabaseData->StripOrbitPhase);
+            $model->dbd_delta_lat_north=self::trim($xml->DatabaseData->DeltaLatNorth);
+            $model->dbd_delta_lat_south=self::trim($xml->DatabaseData->DeltaLatSouth);
+            
+            //definition
+            $model->def_attr_name=self::trim($xml->Definition['name']);
+            $model->def_attr_image=self::trim($xml->Definition['image']);
+            $model->def_attr_type=self::trim($xml->Definition['type']);
+            $model->def_attr_c1=self::trim($xml->Definition['c1']);
+            $model->def_attr_c2=self::trim($xml->Definition['c2']);
+            $model->def_attr_c3=self::trim($xml->Definition['c3']);
+            $model->def_attr_c4=self::trim($xml->Definition['c4']);
+            $model->def_miseo_name=self::trim($xml->Definition->StripName);
+            $model->def_strip_status_id=(int)$xml->Definition->StripStatus;
+            $model->def_rank=self::trim($xml->Definition->Rank);
+            $model->def_lat_center=self::trim($xml->Definition->StripCenter->Latitude);
+            $model->def_lon_center=self::trim($xml->Definition->StripCenter->Longitude);
+            $model->def_strip_length=self::trim($xml->Definition->StripLength);
+            $model->def_strip_width=self::trim($xml->Definition->StripWidth);
+            $model->def_lat_corner_nw=self::trim($xml->Definition->CornerNW->Latitude);
+            $model->def_lon_corner_nw=self::trim($xml->Definition->CornerNW->Longitude);
+            $model->def_lat_corner_ne=self::trim($xml->Definition->CornerNE->Latitude);
+            $model->def_lon_corner_ne=self::trim($xml->Definition->CornerNE->Longitude);
+            $model->def_lat_corner_se=self::trim($xml->Definition->CornerSE->Latitude);
+            $model->def_lon_corner_se=self::trim($xml->Definition->CornerSE->Longitude);
+            $model->def_lat_corner_sw=self::trim($xml->Definition->CornerSW->Latitude);
+            $model->def_lon_corner_sw=self::trim($xml->Definition->CornerSW->Longitude);
+            
+            //data
             $model->scene_id=$data->scene_id;
-            
-            echo '<pre>'.print_r($model->attributes,true).'</pre>';
+ 
+            if($model->save()){
+                if($xml->Passes>0){
+                    StripAccessLocal::insertBySplitted($xml->Passes,$model->id, $data->scene_id);
+                }
+            }else{
+                Yii::$app->getSession()->setFlash('error','Splitted strip local import error.');
+                return null;
+            }
+            //echo '<pre>'.print_r($model->attributes,true).'</pre>';
         }
-        exit;
     }
-
+    
+    public static function trim($data){
+        return MissionLocal::trim($data);
+    }
+    public static function sattellite($data){
+        return MissionLocal::satellite($data);
+    }
+    public static function phase($data){
+        return MissionLocal::phase($data);
+    }
 }
