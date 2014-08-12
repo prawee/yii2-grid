@@ -9,7 +9,7 @@ use yii\widgets\Pjax;
 Icon::map($this);
 
 //use app\models\SplittedStripLocal;
-//use app\models\MissionLocal;
+use app\models\MissionLocal;
 
 $this->title = 'Mail';
 $this->params['breadcrumbs'][] = $this->title;
@@ -32,17 +32,26 @@ $this->params['breadcrumbs'][] = $this->title;
                 [
                     'attribute'=>'id',
                     'label'=>'XML Name',
-                    'value'=>function($data){return null;},
+                    'value'=>function($url,$data){
+                        echo $data->id;
+                        return null;
+                    }
                 ],
                 [
                     'attribute'=>'id',
                     'label'=>'Request Name',
-                    'value'=>function($data){return null;},
+                    'value'=>function($url,$data){
+                        
+                        return null;  
+                    },
                 ],
                 [
                     'attribute'=>'id',
                     'label'=>'Strip',
-                    'value'=>function($data){return null;},
+                    'value'=>function($url,$data){
+                        return null;
+                        
+                    },
                 ],
                 [
                     'attribute'=>'id',
