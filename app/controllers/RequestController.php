@@ -145,4 +145,13 @@ class RequestController extends Controller
             'model'=>$model,
         ]);
     }
+    public function actionOrbit($id)
+    {
+        $dataProvider = new ActiveDataProvider([
+            'query' => StripAccessLocal::find()->where(['scene_id'=>$id]),
+        ]);
+        return $this->render('orbit',[
+            'dataProvider'=>$dataProvider,
+        ]);
+    }  
 }
