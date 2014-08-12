@@ -154,3 +154,24 @@ table.wo_attribute th{
 .scene-index .conten_date{
     width: 300px;
 }
+
+/*20140813*/
+.grid-index thead{
+    font-size: 12px;
+    font-weight: bold;
+}
+.grid-index .table{
+    font-size: 12px;
+}
+.grid-index .aoi{
+    width: 300px;
+}
+.grid-index .wo_id{
+    width: 250px;
+}
+.grid-index .rev_no{
+    width: 100px;
+}
+.grid-index .conten_date{
+    width: 300px;
+}
