@@ -137,4 +137,12 @@ class RequestController extends Controller
             throw new NotFoundHttpException('The requested page does not exist.');
         }
     }
+    
+    public function actionInfo($id)
+    {
+        $model=  USSWo::findOne($id);
+        return $this->render('info',[
+            'model'=>$model,
+        ]);
+    }
 }
