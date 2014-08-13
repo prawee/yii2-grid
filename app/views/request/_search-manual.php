@@ -8,8 +8,12 @@ use yii\bootstrap\ButtonGroup;
 use kartik\icons\Icon;
 //use yii\bootstrap\Dropdown;
 //use yii\widgets\InputWidget;
+use yii\helpers\ArrayHelper;
+use auth\models\User;
 
 Icon::map($this);
+
+$model=new app\models\MissionLocal;
 ?>
 <div class="uss-filter">
     <div class="col-sm-5 well well-sm">
@@ -17,14 +21,22 @@ Icon::map($this);
         <p class="margin-top:15px;">
         <div class="row">
             <div class="col-xs-4 col-sm-4">
-                <select class="form-control col-xs-3">
-                    <option>==Distributor==</option>
-                </select>
+                <?php
+                $items=  ArrayHelper::map(User::find()->where(['role'=>88])->asArray()->all(),'id','username');
+                echo Html::activeDropDownList($model,'id', $items,[
+                    'prompt'=>'==Distributor==',
+                    'class'=>'form-control col-xs-3'
+                ]);
+                ?>
             </div>
             <div class="col-xs-4 col-sm-4">
-                <select class="form-control col-xs-3">
-                    <option>==Client==</option>
-                </select>
+                <?php
+                $items=  ArrayHelper::map(User::find()->where(['role'=>88])->asArray()->all(),'id','username');
+                echo Html::activeDropDownList($model,'id', $items,[
+                    'prompt'=>'==Client==',
+                    'class'=>'form-control col-xs-3'
+                ]);
+                ?>
             </div>
             <div class="col-xs-4 col-sm-4">
                 <select class="form-control col-xs-3">
