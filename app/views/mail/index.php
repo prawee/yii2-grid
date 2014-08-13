@@ -33,23 +33,39 @@ $this->params['breadcrumbs'][] = $this->title;
                     'attribute'=>'id',
                     'label'=>'XML Name',
                     'value'=>function($url,$data){
-                        
-                        return null;
+                        switch($data->id){
+                            case 4: $d='THA_AMNATCHA_20140803_URG_FL'; break;
+                            case 6: $d='CEO_201407311432_565_PM_STD'; break;
+                            case 7: $d='USA_L2_3_WC'; break;
+                            default: $d=''; break;
+                        }
+                        return $d;
                     }
                 ],
                 [
                     'attribute'=>'id',
                     'label'=>'Request Name',
                     'value'=>function($url,$data){
-                        
-                        return null;  
+                        switch($data->id){
+                            case 4: $d='THA_AMNATCHA_20140803_URG_FL'; break;
+                            case 6: $d='CEO_201407311432_565_PM_STD'; break;
+                            case 7: $d='USA_L2_3_WC'; break;
+                            default: $d=''; break;
+                        }
+                        return $d;  
                     },
                 ],
                 [
                     'attribute'=>'id',
                     'label'=>'Strip',
                     'value'=>function($url,$data){
-                        return null;
+                        switch($data->id){
+                            case 4: $d='Strip #1'; break;
+                            case 6: $d='Strip #2'; break;
+                            case 7: $d='Strip #1'; break;
+                            default: $d=''; break;
+                        }
+                        return $d;
                         
                     },
                 ],
