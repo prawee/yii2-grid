@@ -26,6 +26,12 @@ class MissionLocal extends CMissionLocal{
             ],
         ];
     }
+    public function attributeLabels() {
+        return array_merge(parent::attributeLabels(),[
+            'pgz_request_status_id' => 'Request Status',
+        ]);
+    }
+
     public static function insertBySceneId($sceneId){
         $model=new self;
         $model->databasedata_id=(int)  Databasedata::insertGetId();
