@@ -105,7 +105,7 @@ $model=new app\models\MissionLocal;
                                 'options' => ['class' => 'btn-default']
                             ], [
                                 'label' => Icon::show('edit') . 'Change Status',
-                                'options' => ['class' => 'btn-default']
+                                'options' => ['class' => 'btn-default','id'=>'changeStatus']
                             ],
                         ],
                         'encodeLabels' => false,
