@@ -32,17 +32,44 @@ $this->params['breadcrumbs'][] = $this->title;
                 [
                     'attribute'=>'id',
                     'label'=>'XML Name',
-                    'value'=>function($data){return null;},
+                    'value'=>function($data){
+                        switch($data->id){
+                            case '30': $d='THA_SAKHONNAK_20140805_URG_FL'; break;
+                            case '21': $d='THA_AMNATCHA_20140803_URG_FL'; break;
+                            case '20': $d='THA_YASOTORN_20140802_URG_FL'; break;
+                            case '17': $d='CEO_201407311432_565_PM_STD'; break;
+                            default : $d='CEO_201407311437_566_PM_STD'; break;
+                        }
+                        return $d;
+                    },
                 ],
                 [
                     'attribute'=>'id',
                     'label'=>'Request Name',
-                    'value'=>function($data){return null;},
+                    'value'=>function($data){
+                        switch($data->id){
+                            case '30': $d='ST01'; break;
+                            case '21': $d='ST05'; break;
+                            case '20': $d='ST08'; break;
+                            case '17': $d='ST32'; break;
+                            default : $d='ST09'; break;
+                        }
+                        return $d;
+                    },
                 ],
                 [
                     'attribute'=>'id',
                     'label'=>'Strip',
-                    'value'=>function($data){return null;},
+                    'value'=>function($data){
+                        switch($data->id){
+                            case '30': $d='Strip #1'; break;
+                            case '21': $d='Strip #3'; break;
+                            case '20': $d='Strip #2'; break;
+                            case '17': $d='Strip #1'; break;
+                            default : $d='Strip #1'; break;
+                        }
+                        return $d;
+                    },
                 ],
                 [
                     'attribute'=>'id',

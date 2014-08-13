@@ -27,13 +27,31 @@ $this->params['breadcrumbs'][] = $this->title;
                 'attribute' => 'start_date',
                 'header' => 'Plan Date Start',
             ],
-            ['attribute'=>'id','value'=>function($e){return null;},'header'=>'Request Name'],
-            ['attribute'=>'id','value'=>function($e){return null;},'header'=>'Strip'],
+            ['attribute'=>'id','value'=>function($data){
+                switch($data->id){
+                    case '30': $d='THA_SAKHONNAK_20140805_URG_FL'; break;
+                    case '21': $d='THA_AMNATCHA_20140803_URG_FL'; break;
+                    case '20': $d='THA_YASOTORN_20140802_URG_FL'; break;
+                    case '17': $d='CEO_201407311432_565_PM_STD'; break;
+                    default : $d='CEO_201407311437_566_PM_STD'; break;
+                }
+                return $d;
+            },'header'=>'Request Name'],
+            ['attribute'=>'id','value'=>function($data){
+                switch($data->id){
+                    case '30': $d='Strip #1'; break;
+                    case '21': $d='Strip #3'; break;
+                    case '20': $d='Strip #2'; break;
+                    case '17': $d='Strip #1'; break;
+                    default : $d='Strip #1'; break;
+                }
+                return $d;
+            },'header'=>'Strip'],
             ['attribute'=>'id','value'=>function($e){return null;},'header'=>'Orbit'],
             ['attribute'=>'id','value'=>function($e){return null;},'header'=>'PAN File'],
             ['attribute'=>'id','value'=>function($e){return null;},'header'=>'MS File'],
             ['attribute'=>'id','value'=>function($e){return null;},'header'=>'Rev No.'],
-            ['attribute'=>'id','value'=>function($e){return null;},'header'=>'Downlink Station'],
+            ['attribute'=>'id','value'=>function($e){return 'Bangkok';},'header'=>'Downlink Station'],
             ['attribute'=>'id','value'=>function($e){return null;},'header'=>'PAN'],
             ['attribute'=>'id','value'=>function($e){return null;},'header'=>'B1'],
             ['attribute'=>'id','value'=>function($e){return null;},'header'=>'B2'],
