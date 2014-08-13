@@ -4,8 +4,12 @@ use yii\helpers\Html;
 //use kartik\daterange\DateRangePicker;
 use kartik\field\FieldRange;
 use kartik\icons\Icon;
-
 Icon::map($this);
+use yii\helpers\ArrayHelper;
+
+use app\models\MissionLocal;
+use app\models\DownlinkStation;
+$model=new MissionLocal;
 ?>
 <div class="satellite-filter">
     <div class="col-lg-6 well well-sm">
@@ -31,9 +35,13 @@ Icon::map($this);
         <p style="margin-top:15px;">
         <div class="row">
             <div class="col-xs-12 col-sm-12">
-                <select class="form-control">
-                    <option>Downlink station</option>
-                </select>
+                <?php
+                $items=  ArrayHelper::map(DownlinkStation::find()->asArray()->all(),'id','name');
+                echo Html::activeDropDownList($model,'id', $items,[
+                    'prompt'=>'Downlink Station',
+                    'class'=>'form-control col-xs-3'
+                ]);
+                ?>
             </div>
         </div>
         </p>
