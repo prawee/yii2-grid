@@ -147,14 +147,16 @@ $this->params['breadcrumbs'][] = $this->title;
                     'header'=>'Import | Export',
                     'buttons'=>[
                         'export' => function($data) {
-                            return Html::a(Icon::show('upload'),'#',[
+                            $urlFile='http://mvos3.gistda.or.th/tpt/uploads/shape/THA_AMNATCHA_20140803_URG_FL-Strip_01.zip';
+                            return Html::a(Icon::show('upload'),$urlFile,[
                                 'data-pjax'=>'0',
                                 'title'=>' Export ',
                                 'class'=>'btn btn-xs btn-danger',
                             ]);
                         },
                         'import' => function($url,$model) {
-                            return Html::a(Icon::show('download'),'#',[
+                            $urlFile='http://mvos3.gistda.or.th/tpt/uploads/shape/THA_SAKHONNAK_20140805_URG_FL-01.xls';
+                            return Html::a(Icon::show('download'),$urlFile,[
                                 'data-pjax'=>'0',
                                 'title'=>' Import ',
                                 'class'=>'btn btn-xs btn-success',
