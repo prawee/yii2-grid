@@ -24,6 +24,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'enablePushState' => false
         ]);
         echo GridView::widget([
+            'id'=>'grid-request',
             'dataProvider' => $dataProvider,
             //'filterModel' => $searchModel,
             'columns' => [
