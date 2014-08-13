@@ -12,6 +12,9 @@ use auth\Asset;
 use app\models\USSWo;
 use yii\data\ActiveDataProvider;
 use app\models\StripAccessLocal;
+use app\models\MissionLocal;
+use app\models\SplittedStripLocal;
+use app\models\SplittedStripLocalSearch;
 
 /**
  * RequestController implements the CRUD actions for Scene model.
@@ -34,7 +37,7 @@ class RequestController extends Controller
         parent::init();
         Asset::register($this->view);
         //auto insert
-        $models=  USSWo::find()->all();
+        /*$models=  USSWo::find()->all();
         foreach($models as $model){
             $mgl=Scene::find()->where(['id'=>$model->id])->one();
             if(!is_object($mgl)){
@@ -44,7 +47,7 @@ class RequestController extends Controller
                 $scene->aoi_name=$model->aoi_name;
                 $scene->save();
             }
-        }
+        }*/
     }
 
     /**
@@ -54,6 +57,7 @@ class RequestController extends Controller
     public function actionIndex()
     {
         $searchModel = new SceneSearch();
+        //$searchModel=new SplittedStripLocalSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -156,4 +160,26 @@ class RequestController extends Controller
             'dataProvider'=>$dataProvider,
         ]);
     }  
+    public function actionChangeStatus($id){
+        $model=MissionLocal::find()->where(['scene_id'=>$id])->one();
+        
+        if ($model->load(Yii::$app->request->post())){
+            //echo '<pre>'.print_r(Yii::$app->request->post(),true).'</pre>';
+            //echo Yii::$app->request->post('MissionLocal[sendmail]');
+            echo 'old='.$model->oldAttributes['pgz_request_status_id'];
+            echo 'new='.$model->pgz_request_status_id;
+            if($model->sendmail){
+                echo 'send mail';
+            }
+//            echo '<pre>'.print_r($model->attributes,true).'</pre>';
+//            echo '<pre>'.print_r($model->oldAttributes['pgz_request_status_id'],true).'</pre>';
+            exit;
+            $model->save();
+            return $this->redirect(['index']);
+        }
+        
+        return $this->render('changeStatus',[
+            'model'=>$model,
+        ]);
+    }
 }
