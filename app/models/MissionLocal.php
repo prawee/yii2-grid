@@ -13,6 +13,7 @@ use yii\db\Expression;
 
 
 class MissionLocal extends CMissionLocal{
+    public $sendmail;
     public function behaviors() {
         return [
             'timestamp' => [
