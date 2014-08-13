@@ -43,6 +43,8 @@ class SplittedStripLocalSearch extends SplittedStripLocal
     public function search($params)
     {
         $query = SplittedStripLocal::find();
+        //$query->innerWith(['scene']);
+        //$query->innerJoin('scene','scene.id=splitted_strip_local.scene_id');
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
