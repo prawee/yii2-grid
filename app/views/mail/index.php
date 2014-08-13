@@ -72,17 +72,41 @@ $this->params['breadcrumbs'][] = $this->title;
                 [
                     'attribute'=>'id',
                     'label'=>'Status',
-                    'value'=>function($data){return null;},
+                    'value'=>function($data){
+                        switch($data->id){
+                            case 4: $d='Pending'; break;
+                            case 6: $d='Programed'; break;
+                            case 7: $d='Completed'; break;
+                            default: $d=''; break;
+                        }
+                        return $d;
+                    },
                 ],   
                 [
                     'attribute'=>'id',
                     'label'=>'User',
-                    'value'=>function($data){return null;},
+                    'value'=>function($data){
+                        switch($data->id){
+                            case 4: $d='Calval'; break;
+                            case 6: $d='User1'; break;
+                            case 7: $d='User2'; break;
+                            default: $d=''; break;
+                        }
+                        return $d;
+                    },
                 ],  
                 [
                     'attribute'=>'id',
                     'label'=>'Date Update',
-                    'value'=>function($data){return null;},
+                    'value'=>function($data){
+                        switch($data->id){
+                            case 4: $d='2014-08-09'; break;
+                            case 6: $d='2014-08-10'; break;
+                            case 7: $d='2014-08-13'; break;
+                            default: $d=''; break;
+                        }
+                        return $d;
+                    },
                 ],  
             ],
         ]);
