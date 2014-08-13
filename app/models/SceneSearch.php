@@ -46,7 +46,10 @@ class SceneSearch extends Scene
         $query = Scene::find();
         //$query->joinWith('missionLocals');
         //$query->joinWith(['missionLocals','somPolygonLocals','splittedStripLocals','stripAccessLocals']);
-
+        $query->joinWith([
+            'missionLocals'
+        ]);
+        
         $sort = new Sort;
         $sort->attributes=[
             'wo_doc_name'=>[
