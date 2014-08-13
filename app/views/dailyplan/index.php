@@ -52,19 +52,21 @@ $this->params['breadcrumbs'][] = $this->title;
                 'template' => '{shape} {export}',
                 'buttons' => [
                     'shape' => function($data) {
-                return Html::a(Icon::show('file-zip-o'), '#', [
-                            'data-pjax' => '0',
-                            'title' => ' Shape ',
-                            'class' => 'btn btn-xs btn-danger',
-                ]);
-            },
+                        $urlFile='http://mvos3.gistda.or.th/tpt/uploads/shape/THA_AMNATCHA_20140803_URG_FL-Strip_01.zip';
+                        return Html::a(Icon::show('file-zip-o'),$urlFile, [
+                                    'data-pjax' => '0',
+                                    'title' => ' Shape ',
+                                    'class' => 'btn btn-xs btn-danger',
+                        ]);
+                    },
                     'export' => function($data) {
-                return Html::a(Icon::show('upload'), '#', [
-                            'data-pjax' => '0',
-                            'title' => ' Export ',
-                            'class' => 'btn btn-xs btn-danger',
-                ]);
-            },
+                        $urlFile='http://mvos3.gistda.or.th/tpt/uploads/shape/THA_SAKHONNAK_20140805_URG_FL-01.xls';
+                        return Html::a(Icon::show('upload'),$urlFile, [
+                                    'data-pjax' => '0',
+                                    'title' => ' Export ',
+                                    'class' => 'btn btn-xs btn-danger',
+                        ]);
+                    },
                 ],
                 'options' => ['style' => 'width:70px;']
             ],
