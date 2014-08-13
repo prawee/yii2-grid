@@ -31,6 +31,11 @@ class MissionLocal extends CMissionLocal{
             'pgz_request_status_id' => 'Request Status',
         ]);
     }
+    public function rules() {
+        return array_merge(parent::rules(),[
+            [['sendmail'],'integer'],
+        ]);
+    }
 
     public static function insertBySceneId($sceneId){
         $model=new self;
