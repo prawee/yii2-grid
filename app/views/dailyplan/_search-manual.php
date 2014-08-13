@@ -6,6 +6,11 @@ use kartik\widgets\DatePicker;
 use kartik\icons\Icon;
 Icon::map($this);
 //use yii\web\JsExpression;
+
+use yii\helpers\ArrayHelper;
+use app\models\MissionLocal;
+use app\models\DownlinkStation;
+
 ?>
 <div class="plan-local-filter">
     <div class="col-xs-2 well well-sm">
@@ -71,9 +76,14 @@ Icon::map($this);
         </select>
     </div>
     <div class="col-sm-3 well well-sm">
-        <select class="form-control inline col-xs-3">
-            <option>Downlink Station</option>
-        </select>
+        <?php
+        $model=new MissionLocal;
+        $items = ArrayHelper::map(DownlinkStation::find()->asArray()->all(), 'id', 'name');
+        echo Html::activeDropDownList($model, 'id', $items, [
+            'prompt' => 'Downlink Station',
+            'class' => 'form-control col-xs-3'
+        ]);
+        ?>
     </div>
     <div class="col-sm-2 well well-sm">
         <select class="form-control inline col-xs-3">
