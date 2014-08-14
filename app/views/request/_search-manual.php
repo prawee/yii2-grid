@@ -10,6 +10,7 @@ use kartik\icons\Icon;
 //use yii\widgets\InputWidget;
 use yii\helpers\ArrayHelper;
 use auth\models\User;
+use yii\web\JsExpression;
 
 Icon::map($this);
 
@@ -48,7 +49,7 @@ $model=new app\models\MissionLocal;
     </div>
     <div class="col-sm-7 well well-sm">
         <div class="row">
-            <div class="col-xs-6 col-sm-6">
+            <div class="col-xs-7 col-sm-7">
                 <p class="text-left"><b>Date Selection</b></p>
                 <div class="col-xs-3 col-sm-6 bg-danger">
                     <div class="row">
@@ -79,7 +80,8 @@ $model=new app\models\MissionLocal;
                         DatePicker::widget([
                             'name' => 'date',
                             'options' => [
-                                'class' => 'col-sm-12'
+                                'class' => 'col-sm-12',
+                                'default'=>true,
                             ],
                             'pluginOptions' => [
                                 'autoclose' => true,
@@ -90,22 +92,31 @@ $model=new app\models\MissionLocal;
                     </div>
                 </div>
             </div>
-            <div class="col-xs-6 col-sm-6">
+            <div class="col-xs-5 col-sm-5">
                 <p class="text-left"><b>Tool</b></p>
                 <p style="margin-top:10px;">
                     <?php
                     echo ButtonGroup::widget([
                         'id'=>'uss-tools-filter',
                         'buttons' => [
-                            [
+                            /*[
                                 'label' => Icon::show('times') . 'Remove',
                                 'options' => ['class' => 'btn-default']
-                            ], [
+                            ],*/ [
                                 'label' => Icon::show('eye') . 'View',
                                 'options' => ['class' => 'btn-default']
                             ], [
                                 'label' => Icon::show('edit') . 'Change Status',
-                                'options' => ['class' => 'btn-default','id'=>'changeStatus']
+                                'options' => [
+                                    'class' => 'btn-default',
+                                    'id'=>'changeStatus',
+                                    'onclick'=>new JsExpression("
+                                        var id=$('#grid-request').yiiGridView('getSelectedRows');
+                                        if(id.length){
+                                            window.location.href='change-status?id='+id;
+                                        }
+                                    "),
+                                ]
                             ],
                         ],
                         'encodeLabels' => false,
