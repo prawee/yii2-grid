@@ -13,16 +13,13 @@ use app\models\USSWo;
 use yii\data\ActiveDataProvider;
 use app\models\StripAccessLocal;
 use app\models\MissionLocal;
-use app\models\SplittedStripLocal;
-use app\models\SplittedStripLocalSearch;
 
 /**
  * RequestController implements the CRUD actions for Scene model.
  */
-class RequestController extends Controller
-{
-    public function behaviors()
-    {
+class RequestController extends Controller {
+
+    public function behaviors() {
         return [
             'verbs' => [
                 'class' => VerbFilter::className(),
@@ -32,37 +29,35 @@ class RequestController extends Controller
             ],
         ];
     }
-    
+
     public function init() {
         parent::init();
         Asset::register($this->view);
         //auto insert
-        /*$models=  USSWo::find()->all();
-        foreach($models as $model){
-            $mgl=Scene::find()->where(['id'=>$model->id])->one();
-            if(!is_object($mgl)){
-                $scene=new Scene;
-                $scene->id=$model->id;
-                $scene->wo_doc_name=$model->wo_doc_name;
-                $scene->aoi_name=$model->aoi_name;
-                $scene->save();
-            }
-        }*/
+        /* $models=  USSWo::find()->all();
+          foreach($models as $model){
+          $mgl=Scene::find()->where(['id'=>$model->id])->one();
+          if(!is_object($mgl)){
+          $scene=new Scene;
+          $scene->id=$model->id;
+          $scene->wo_doc_name=$model->wo_doc_name;
+          $scene->aoi_name=$model->aoi_name;
+          $scene->save();
+          }
+          } */
     }
 
     /**
      * Lists all Scene models.
      * @return mixed
      */
-    public function actionIndex()
-    {
+    public function actionIndex() {
         $searchModel = new SceneSearch();
-        //$searchModel=new SplittedStripLocalSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
+                    'searchModel' => $searchModel,
+                    'dataProvider' => $dataProvider,
         ]);
     }
 
@@ -71,10 +66,9 @@ class RequestController extends Controller
      * @param integer $id
      * @return mixed
      */
-    public function actionView($id)
-    {
+    public function actionView($id) {
         return $this->render('view', [
-            'model' => $this->findModel($id),
+                    'model' => $this->findModel($id),
         ]);
     }
 
@@ -83,15 +77,14 @@ class RequestController extends Controller
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
-    public function actionCreate()
-    {
+    public function actionCreate() {
         $model = new Scene();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('create', [
-                'model' => $model,
+                        'model' => $model,
             ]);
         }
     }
@@ -102,15 +95,14 @@ class RequestController extends Controller
      * @param integer $id
      * @return mixed
      */
-    public function actionUpdate($id)
-    {
+    public function actionUpdate($id) {
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('update', [
-                'model' => $model,
+                        'model' => $model,
             ]);
         }
     }
@@ -121,8 +113,7 @@ class RequestController extends Controller
      * @param integer $id
      * @return mixed
      */
-    public function actionDelete($id)
-    {
+    public function actionDelete($id) {
         $this->findModel($id)->delete();
 
         return $this->redirect(['index']);
@@ -135,51 +126,58 @@ class RequestController extends Controller
      * @return Scene the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
-    protected function findModel($id)
-    {
+    protected function findModel($id) {
         if (($model = Scene::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
         }
     }
-    
-    public function actionInfo($id)
-    {
-        $model=  USSWo::findOne($id);
-        return $this->render('info',[
-            'model'=>$model,
+
+    public function actionInfo($id) {
+        $model = USSWo::findOne($id);
+        return $this->render('info', [
+                    'model' => $model,
         ]);
     }
-    public function actionOrbit($id)
-    {
+
+    public function actionOrbit($id) {
         $dataProvider = new ActiveDataProvider([
-            'query' => StripAccessLocal::find()->where(['scene_id'=>$id]),
+            'query' => StripAccessLocal::find()->where(['scene_id' => $id]),
         ]);
-        return $this->render('orbit',[
-            'dataProvider'=>$dataProvider,
+        return $this->render('orbit', [
+                    'dataProvider' => $dataProvider,
         ]);
-    }  
-    public function actionChangeStatus($id){
-        $model=MissionLocal::find()->where(['scene_id'=>$id])->one();
-        
-        if ($model->load(Yii::$app->request->post())){
+    }
+
+    public function actionChangeStatus($id) {
+        $model = MissionLocal::find()->where(['scene_id' => $id])->one();
+        if (empty($model->id)) {
+            $js = "jQuery alert('ok'); ";
+            $this->getView()->registerJs($js);
+
+            Yii::$app->getSession()->setFlash('error','Import Request first!');
+            return $this->redirect(['index']); 
+        }
+        if ($model->load(Yii::$app->request->post())) {
             //echo '<pre>'.print_r(Yii::$app->request->post(),true).'</pre>';
             //echo Yii::$app->request->post('MissionLocal[sendmail]');
-            echo 'old='.$model->oldAttributes['pgz_request_status_id'];
-            echo 'new='.$model->pgz_request_status_id;
-            if($model->sendmail){
+            //echo 'old='.$model->oldAttributes['pgz_request_status_id'];
+            //echo 'new='.$model->pgz_request_status_id;
+            if ($model->sendmail) {
                 echo 'send mail';
             }
-//            echo '<pre>'.print_r($model->attributes,true).'</pre>';
-//            echo '<pre>'.print_r($model->oldAttributes['pgz_request_status_id'],true).'</pre>';
-            exit;
-            $model->save();
+            //echo '<pre>'.print_r($model->attributes,true).'</pre>';
+            //echo '<pre>'.print_r($model->oldAttributes['pgz_request_status_id'],true).'</pre>';
+            //$model->save();
+            Yii::$app->getSession()->setFlash('success','Change Status completed!');
             return $this->redirect(['index']);
         }
+
         
-        return $this->render('changeStatus',[
-            'model'=>$model,
+        return $this->render('changeStatus', [
+                    'model' => $model,
         ]);
     }
+
 }

@@ -13,7 +13,7 @@ use yii\data\Sort;
  */
 class SceneSearch extends Scene
 {
-    public $mission;
+    public $requestName;
     /**
      * @inheritdoc
      */
@@ -21,7 +21,7 @@ class SceneSearch extends Scene
     {
         return [
             [['id'], 'integer'],
-            [['wo_doc_name', 'aoi_name','mission'], 'safe'],
+            [['wo_doc_name', 'aoi_name','requestName'], 'safe'],
         ];
     }
 
@@ -43,12 +43,15 @@ class SceneSearch extends Scene
      */
     public function search($params)
     {
-        $query = Scene::find();
-        //$query->joinWith('missionLocals');
-        //$query->joinWith(['missionLocals','somPolygonLocals','splittedStripLocals','stripAccessLocals']);
-        $query->joinWith([
-            'missionLocals'
-        ]);
+        $query=Scene::find();
+        $query->joinWith('splittedStripLocals');
+        //$query->joinWith('splittedStripLocals',true,'RIGHT JOIN')->orderBy('scene.id')->all();
+        /*$query->joinWith([
+            'splittedStripLocals'=>function($query){
+                $query->from('splitted_strip_local');
+            }
+        ]);*/
+        
         
         $sort = new Sort;
         $sort->attributes=[
@@ -60,10 +63,10 @@ class SceneSearch extends Scene
                 'asc' => ['aoi_name' => SORT_ASC],
                 'desc' => ['aoi_name' => SORT_DESC],
             ],
-//            'mission'=>[
-//                'asc' => ['mission_local.attr_name' => SORT_ASC],
-//                'desc' => ['mission_local.attr_name' => SORT_DESC],
-//            ]
+            'requestName'=>[
+                'asc' => ['splitted_strip_local.attr_name' => SORT_ASC],
+                'desc' => ['splitted_strip_local.attr_name' => SORT_DESC],
+            ]
         ];
         
         $dataProvider = new ActiveDataProvider([
@@ -82,7 +85,6 @@ class SceneSearch extends Scene
         $query->andFilterWhere(['like', 'wo_doc_name', $this->wo_doc_name])
             ->andFilterWhere(['like', 'aoi_name', $this->aoi_name]);
         
-        //$query->andFilterWhere(['like', 'missionLocals.attr_name', $this->mission]);
 
         return $dataProvider;
     }

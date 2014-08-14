@@ -30,24 +30,29 @@ $this->params['breadcrumbs'][] = $this->title;
             'columns' => [
                 ['class' => '\yii\grid\SerialColumn'],
                 ['class' => '\yii\grid\CheckboxColumn'],
+                //'id',
+                'id',
                 'wo_doc_name',
                 'aoi_name',
-                [
-                    'header'=>'Request Name',
-                    'attribute'=>'missionLocals.attr_name',
-                    'value'=>function($data){
-                        $model=MissionLocal::find()->where(['scene_id'=>$data->id])->one();
-                        return ($model['attr_name']?$model['attr_name']:null);
-                    }
-                ],
-                [
-                    'header'=>'Strip Name',
-                    'attribute'=>'splittedStripLocals.attr_name',
-                    'value'=>function($data){
-                        $model=SplittedStripLocal::find()->where(['scene_id'=>$data->id])->one();
-                        return ($model['attr_name']?$model['attr_name']:null);
-                    }
-                ],
+                //'requestName',
+                'splittedStripLocals.attr_name',
+//                [
+//                    'header'=>'Request Name',
+//                    'attribute'=>'missionLocals.attr_name',
+//                    'value'=>function($data){
+//                        $model=MissionLocal::find()->where(['scene_id'=>$data->id])->one();
+//                        return ($model['attr_name']?$model['attr_name']:null);
+//                    }
+//                ],
+                'splittedStripLocals.attr_name',
+//                [
+//                    'header'=>'Strip Name',
+//                    'attribute'=>'splittedStripLocals.attr_name',
+//                    'value'=>function($data){
+//                        $model=SplittedStripLocal::find()->where(['scene_id'=>$data->id])->one();
+//                        return ($model['attr_name']?$model['attr_name']:null);
+//                    }
+//                ],
                 [
                     'attribute'=>'id',
                     'header'=>'Rev No.',
@@ -63,14 +68,14 @@ $this->params['breadcrumbs'][] = $this->title;
                     'header'=>'Delivery Date',
                     'value'=>function($data){return null;}
                 ],
-                [
-                    'header'=>'Deposit Date',
-                    'attribute'=>'missionLocals.def_deposit_date',
-                    'value'=>function($data){
-                        $model=MissionLocal::find()->where(['scene_id'=>$data->id])->one();
-                        return ($model['def_deposit_date']?$model['def_deposit_date']:null);
-                    }
-                ],
+//                [
+//                    'header'=>'Deposit Date',
+//                    'attribute'=>'missionLocals.def_deposit_date',
+//                    'value'=>function($data){
+//                        $model=MissionLocal::find()->where(['scene_id'=>$data->id])->one();
+//                        return ($model['def_deposit_date']?$model['def_deposit_date']:null);
+//                    }
+//                ],
                 [
                     'class' => 'prawee\grid\ActionColumn',
                     'template' => '{shape}  {export}  {info} {orbit} {import}',
