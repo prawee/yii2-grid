@@ -18,6 +18,10 @@
         {
             "type": "git",
             "url": "https://github.com/prawee/yii2-components.git"
+        },
+        {
+            "type": "git",
+            "url": "https://github.com/prawee/yii2-widgets.git"
         }
     ],
     "require": {
@@ -36,7 +40,8 @@
         "kartik-v/yii2-grid": "*",
         "zhuravljov/yii2-datetime-widgets" : "dev-master",
         "kartik-v/yii2-date-range": "dev-master",
-        "kartik-v/yii2-datecontrol": "dev-master"
+        "kartik-v/yii2-datecontrol": "dev-master",
+        "prawee/yii2-widgets":"*"
     },
     "suggest": {
         "codeception/codeception": "Codeception, 1.8.*@dev is currently works well with Yii.",
