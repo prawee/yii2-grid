@@ -1,7 +1,7 @@
 <?php
 /*
  * 20140725
- * konkeanweb@gmail.com
+ * @author Prawee Wongsa <konkeanweb@gmail.com>
  */
 namespace prawee\grid;
 
