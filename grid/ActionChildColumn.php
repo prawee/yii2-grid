@@ -2,7 +2,7 @@
 
 /*
  * 2014-07-28
- * konkeanweb@gmail.com
+ * @author Prawee Wongsa <konkeanweb@gmail.com>
  */
 
 namespace prawee\grid;
