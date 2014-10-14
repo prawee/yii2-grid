@@ -20,7 +20,11 @@ class ImageColumn extends \yii\grid\Column {
     public function renderDataCellContent($model){
         if(!empty($model->{$this->attribute})){
             $image=$model->{$this->attribute};
-            $path=Yii::$app->getUrlManager()->getBaseUrl().DIRECTORY_SEPARATOR.$this->path.DIRECTORY_SEPARATOR.$image;
+            if($this->path){
+                $path=Yii::$app->getUrlManager()->getBaseUrl().DIRECTORY_SEPARATOR.$this->path.DIRECTORY_SEPARATOR.$image;
+            }else{
+                $path=$image;
+            }
             return Html::img($path,$this->options);
         }else{
             return Html::img('http://placehold.it/40x20',$this->options);
