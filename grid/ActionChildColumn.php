@@ -36,6 +36,7 @@ class ActionChildColumn extends ActionColumn {
                 return Html::a('<span class="glyphicon glyphicon-eye-open btn btn-xs btn-primary"></span>',$url, [
                             'title' => Yii::t('yii', 'View'),
                             'data-pjax' => '0',
+                    'data-toggle'=>'tooltip'
                 ]);
             };
         }
@@ -45,6 +46,7 @@ class ActionChildColumn extends ActionColumn {
                 return Html::a('<span class="glyphicon glyphicon-pencil btn btn-xs btn-warning"></span>',$url, [
                             'title' => Yii::t('yii', 'Update'),
                             'data-pjax' => '0',
+                    'data-toggle'=>'tooltip'
                 ]);
             };
         }
@@ -56,6 +58,7 @@ class ActionChildColumn extends ActionColumn {
                             'data-confirm' => Yii::t('yii', 'Are you sure you want to delete this item?'),
                             'data-method' => 'post',
                             'data-pjax' => '0',
+                    'data-toggle'=>'tooltip'
                 ]);
             };
         }
