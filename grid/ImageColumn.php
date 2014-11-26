@@ -17,7 +17,7 @@ class ImageColumn extends \yii\grid\Column {
             $this->options=array_merge($this->options,['class' => 'img-thumbnail',]);
         }
     }
-    public function renderDataCellContent($model){
+    public function renderDataCellContent($model,$key,$index){
         if(!empty($model->{$this->attribute})){
             $image=$model->{$this->attribute};
             if($this->path){
