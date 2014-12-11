@@ -65,3 +65,19 @@ support multi param
 ],
 ...
 ```
+
+MediaColumn
+===========
+on gridview
+```php
+....
+[
+    'class'=>'prawee\grid\MediaColumn',
+    'attribute'=>'name',
+    'format'=>'image', #image,video
+    'options'=>[
+        'width'=>'40px',
+    ],
+],
+....
+```
