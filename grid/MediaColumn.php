@@ -15,7 +15,7 @@ class MediaColumn extends ImageColumn {
     public $format;
     public function renderDataCellContent($model,$key,$index){
         if($this->format=='image'){
-            $this->Image($model);
+            return $this->Image($model);
         }
     }
     protected function Image($model){
