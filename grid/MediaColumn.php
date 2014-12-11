@@ -29,7 +29,7 @@ class MediaColumn extends ImageColumn {
         }
 
         if($this->format[$model->{$this->compareWith}]=='video'){
-            return $this->Image($model);
+            return $this->Video($model);
         }
     }
     protected function Image($model){
