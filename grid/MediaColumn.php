@@ -13,8 +13,22 @@ class MediaColumn extends ImageColumn {
      * @params image,video
      */
     public $format;
+    /*
+     * attribute for compare with
+     * @params
+     */
+    public $compareWith;
+    public function init()
+    {
+        parent::init();
+    }
+
     public function renderDataCellContent($model,$key,$index){
-        if($this->format=='image'){
+        if($this->format[$model->{$this->compareWith}]=='image'){
+            return $this->Image($model);
+        }
+
+        if($this->format[$model->{$this->compareWith}]=='video'){
             return $this->Image($model);
         }
     }
@@ -25,6 +39,9 @@ class MediaColumn extends ImageColumn {
         }else{
             return Html::img('http://placehold.it/40x20',$this->options);
         }
+    }
+    protected function Video($model){
+        return 'Video';
     }
 }
 
