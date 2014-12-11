@@ -15,10 +15,10 @@ class MediaColumn extends ImageColumn {
     public $format;
     public function renderDataCellContent($model,$key,$index){
         if($this->format=='image'){
-            $this->Image();
+            $this->Image($model);
         }
     }
-    protected function Image(){
+    protected function Image($model){
         if(!empty($model->{$this->attribute})){
             $image=$model->{$this->attribute};
             if($this->path){
