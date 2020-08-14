@@ -1,24 +1,34 @@
-yii2-gridview
-=============
+# Extends grid classes for Yii2 and Bootstrap 4
 
-Manage Yii2 GridView
+## Contains
 
+- ActionAuthColumn
+- ActionChildColumn
+- ActionColumn
+- ActionRuleColumn
+- ImageColumn
+- MediaColumn
 
-Installation:
-=============
-Command run
+## Installation
+
+on your terminal run this command
+
 ```php
-$ php composer.phar require prawee/yii2-grid "dev-master"
+php composer.phar require prawee/yii2-grid "dev-master"
 ```
 
 or add to composer.json on require path.
+
 ```php
 "prawee/yii2-grid": "dev-master"
 ```
 
-ActionColumn
-============
-on gridview
+## Usage
+
+### ActionColumn
+
+on your grid
+
 ```php
 ....
 [
@@ -27,9 +37,10 @@ on gridview
 .....
 ```
 
-ImageColumn
-===========
-on gridview
+#### ImageColumn
+
+on your grid
+
 ```php
 ....
 [
@@ -42,9 +53,10 @@ on gridview
 ....
 ```
 
-ActionChildColumn
-=================
-on gridview
+#### ActionChildColumn
+
+on your grid
+
 ```php
 ...
 [
@@ -53,7 +65,8 @@ on gridview
 ...
 ```
 
-support multi param
+or it have child that's support multi param
+
 ```php
 ...
 [
@@ -66,9 +79,10 @@ support multi param
 ...
 ```
 
-MediaColumn
-===========
-on gridview
+#### MediaColumn
+
+on your grid
+
 ```php
 ....
 [
