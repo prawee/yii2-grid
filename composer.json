@@ -16,13 +16,11 @@
         "php": ">=5.4.0",
         "yiisoft/yii2": "*",
         "yiisoft/yii2-bootstrap": "*",
-        "kartik-v/yii2-icons": "*",
-        "prawee/yii2-fancytree-widget": "dev-master"
-        
+        "kartik-v/yii2-icons": "*"        
     },
     "autoload": {
         "psr-4": {
-            "prawee\\": ""
+            "prawee\\grid\\": "src"
         }
     }
 }
